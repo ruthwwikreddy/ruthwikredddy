@@ -43,28 +43,30 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`floating-navbar transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
-      <div className="container mx-auto flex justify-between items-center">
-        <a href="#home" className="font-heading text-2xl font-bold text-white">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[90%] md:max-w-[80%] rounded-full px-4 py-3 backdrop-blur-md bg-black/80 border border-[#ea384c]/20 shadow-lg">
+      <div className="flex justify-between items-center">
+        <a href="#home" className="font-heading text-xl font-bold text-white mr-4">
           Ruthwik
         </a>
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-2 text-white" 
+          className="md:hidden p-2 text-white hover:text-[#ea384c] transition-colors" 
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
         {/* Desktop menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-6">
           {menuItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className={`nav-item transition-colors duration-300 ${
-                activeSection === item.href.substring(1) ? 'active' : ''
+              className={`transition-colors duration-300 text-sm ${
+                activeSection === item.href.substring(1) 
+                  ? 'text-[#ea384c] font-medium' 
+                  : 'text-gray-300 hover:text-[#ea384c]'
               }`}
             >
               {item.name}
@@ -74,14 +76,16 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-md shadow-md py-4 animate-fade-in">
-            <div className="flex flex-col space-y-4 container">
+          <div className="md:hidden absolute bottom-full left-0 right-0 mb-2 bg-black/90 backdrop-blur-md rounded-lg shadow-md py-4 animate-fade-in border border-[#ea384c]/20">
+            <div className="flex flex-col space-y-3">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`nav-item transition-colors duration-300 ${
-                    activeSection === item.href.substring(1) ? 'active' : ''
+                  className={`px-4 py-2 transition-colors duration-300 ${
+                    activeSection === item.href.substring(1) 
+                      ? 'text-[#ea384c] font-medium' 
+                      : 'text-gray-300 hover:text-[#ea384c]'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

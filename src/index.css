@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -48,7 +47,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* We're not using light/dark mode switching, but keeping the dark config for reference */
+  /* Keep dark mode config */
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -112,11 +111,11 @@
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-portfolio-primary text-white rounded-md font-medium transition-all hover:bg-portfolio-secondary;
+    @apply px-6 py-3 bg-[#ea384c] text-white rounded-md font-medium transition-all hover:bg-[#c2152a];
   }
   
   .btn-outline {
-    @apply px-6 py-3 border-2 border-portfolio-primary text-portfolio-primary rounded-md font-medium transition-all hover:bg-portfolio-primary hover:text-white;
+    @apply px-6 py-3 border-2 border-[#ea384c] text-[#ea384c] rounded-md font-medium transition-all hover:bg-[#ea384c] hover:text-white;
   }
 
   .section-title {
@@ -125,16 +124,11 @@
   
   .section-title::after {
     content: '';
-    @apply absolute left-0 -bottom-2 w-1/2 h-1 bg-portfolio-primary rounded-full;
+    @apply absolute left-0 -bottom-2 w-1/2 h-1 bg-[#ea384c] rounded-full;
   }
   
   .card {
     @apply bg-card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
-  }
-  
-  /* Floating navbar with blur effect */
-  .floating-navbar {
-    @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/60 border-b border-white/10;
   }
 }
 
@@ -145,9 +139,9 @@ html {
 
 /* Active navigation item */
 .nav-item {
-  @apply text-gray-300 hover:text-portfolio-primary transition-colors;
+  @apply text-gray-300 hover:text-[#ea384c] transition-colors;
 }
 
 .nav-item.active {
-  @apply text-portfolio-primary font-medium;
+  @apply text-[#ea384c] font-medium;
 }
