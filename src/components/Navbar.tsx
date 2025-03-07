@@ -43,15 +43,15 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`floating-navbar transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <a href="#home" className="font-heading text-2xl font-bold text-portfolio-dark">
+        <a href="#home" className="font-heading text-2xl font-bold text-white">
           Ruthwik
         </a>
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-2 text-portfolio-dark" 
+          className="md:hidden p-2 text-white" 
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -74,7 +74,7 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md py-4 animate-fade-in">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-md shadow-md py-4 animate-fade-in">
             <div className="flex flex-col space-y-4 container">
               {menuItems.map((item) => (
                 <a

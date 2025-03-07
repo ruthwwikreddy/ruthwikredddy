@@ -24,17 +24,6 @@ const Certifications = () => {
     ]
   };
   
-  const activities = [
-    "Successfully led teams for Youth Ideathon competitions: Top 100 (2022, 2023), Top 1500 (2024)",
-    "Participated in Atal Marathon 2023, achieving Top 400 ranking.",
-    "Finalist in Indian Future Tycoon, focusing on innovative entrepreneurship.",
-    "Represented school in the National Space Innovation Challenge 2023.",
-    "Registered and participated in the 40-day ATL Tinkerpreneur Program 2024.",
-    "Participated in ATL campaigns promoting STEM and innovation.",
-    "Represented School at CBSE Regional Science Exhibition.",
-    "Participated in Yugen 4.0 MUN and CBSE National Youth Parliament.",
-  ];
-
   const certificates = Array.from({ length: 24 }, (_, i) => ({
     id: i + 1,
     url: `/assets/images/Certificate Portfolio/Certificate Portfolio-${String(i + 1).padStart(2, '0')}.png`
@@ -91,17 +80,17 @@ const Certifications = () => {
   }, [selectedImageIndex]);
 
   return (
-    <section id="certifications" className="py-20 bg-white">
+    <section id="certifications" className="py-20 bg-background">
       <div className="container mx-auto">
         <h2 className="section-title text-center mx-auto">Certifications</h2>
         
         <div className="mt-12">
-          <div className="flex border-b border-gray-200 mb-8">
+          <div className="flex border-b border-gray-700 mb-8">
             <button
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'microsoft'
                   ? 'text-portfolio-primary border-b-2 border-portfolio-primary'
-                  : 'text-gray-500 hover:text-portfolio-primary'
+                  : 'text-gray-400 hover:text-portfolio-primary'
               }`}
               onClick={() => setActiveTab('microsoft')}
             >
@@ -111,7 +100,7 @@ const Certifications = () => {
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'google'
                   ? 'text-portfolio-primary border-b-2 border-portfolio-primary'
-                  : 'text-gray-500 hover:text-portfolio-primary'
+                  : 'text-gray-400 hover:text-portfolio-primary'
               }`}
               onClick={() => setActiveTab('google')}
             >
@@ -122,13 +111,13 @@ const Certifications = () => {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {activeTab === 'microsoft' 
               ? certifications.microsoft.map((cert, index) => (
-                <div key={index} className="bg-blue-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div key={index} className="bg-card rounded-lg p-6 hover:shadow-md transition-shadow">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/50">
                       <Award className="h-6 w-6 text-portfolio-primary" />
                     </span>
                   </div>
-                  <h4 className="text-center font-medium text-portfolio-dark">{cert.name}</h4>
+                  <h4 className="text-center font-medium text-white">{cert.name}</h4>
                   <div className="mt-4 text-center">
                     <button className="text-sm text-portfolio-primary hover:text-portfolio-secondary transition-colors">
                       View Certificate
@@ -137,14 +126,14 @@ const Certifications = () => {
                 </div>
               ))
               : certifications.google.map((cert, index) => (
-                <div key={index} className="bg-blue-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div key={index} className="bg-card rounded-lg p-6 hover:shadow-md transition-shadow">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/50">
                       <Award className="h-6 w-6 text-portfolio-primary" />
                     </span>
                   </div>
-                  <h4 className="text-center font-medium text-portfolio-dark">{cert.name}</h4>
-                  <p className="text-center text-xs text-gray-500 mt-2">{cert.date}</p>
+                  <h4 className="text-center font-medium text-white">{cert.name}</h4>
+                  <p className="text-center text-xs text-gray-400 mt-2">{cert.date}</p>
                   <div className="mt-4 text-center">
                     <button className="text-sm text-portfolio-primary hover:text-portfolio-secondary transition-colors">
                       View Certificate
@@ -156,27 +145,11 @@ const Certifications = () => {
           </div>
           
           <div className="mt-16">
-            <h3 className="text-2xl font-semibold mb-6">Co-Curricular Activities (CCA)</h3>
-            <div className="bg-blue-50 rounded-lg p-6">
-              <ul className="space-y-3">
-                {activities.map((activity, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
-                      <span className="text-portfolio-primary text-sm font-medium">{index + 1}</span>
-                    </span>
-                    <span className="text-gray-700">{activity}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-16">
             <h3 className="text-2xl font-semibold mb-6">All Certificates</h3>
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {certificates.map((cert, index) => (
-                  <div key={cert.id} className="certificate-item bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                  <div key={cert.id} className="certificate-item bg-card border border-gray-800 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                     <button 
                       onClick={() => openModal(index, 'certificate')}
                       className="block relative aspect-[4/3] overflow-hidden w-full"
@@ -186,8 +159,8 @@ const Certifications = () => {
                         alt={`Certificate ${cert.id}`}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                        <span className="bg-white text-portfolio-primary px-4 py-2 rounded-full text-sm font-medium">
+                      <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                        <span className="bg-portfolio-primary text-white px-4 py-2 rounded-full text-sm font-medium">
                           View Certificate
                         </span>
                       </div>
@@ -202,7 +175,7 @@ const Certifications = () => {
 
       {/* Certificate Modal */}
       {selectedImageIndex !== null && modalType === 'certificate' && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center p-4">
           <div className="absolute inset-0" onClick={closeModal}></div>
           
           <div className="relative z-10 max-w-7xl w-full h-full flex flex-col">
@@ -245,7 +218,7 @@ const Certifications = () => {
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
               <button 
                 onClick={showPreviousImage}
-                className="bg-white rounded-full p-2 text-portfolio-dark hover:bg-portfolio-primary hover:text-white transition-colors"
+                className="bg-portfolio-primary rounded-full p-2 text-white hover:bg-portfolio-secondary transition-colors"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
@@ -254,7 +227,7 @@ const Certifications = () => {
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
               <button 
                 onClick={showNextImage}
-                className="bg-white rounded-full p-2 text-portfolio-dark hover:bg-portfolio-primary hover:text-white transition-colors"
+                className="bg-portfolio-primary rounded-full p-2 text-white hover:bg-portfolio-secondary transition-colors"
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
