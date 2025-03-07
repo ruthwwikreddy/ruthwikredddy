@@ -153,11 +153,15 @@ const Projects = () => {
                   </p>
                   
                   <div className="flex flex-wrap gap-2 mt-4">
-                    <a href="#" className="text-portfolio-primary hover:text-portfolio-secondary transition-colors font-medium text-sm">
+                    <a href="https://ruthwikreddy.xyz/emergency-card/" target="_blank" rel="noopener noreferrer" className="text-portfolio-primary hover:text-portfolio-secondary transition-colors font-medium text-sm">
+                      Emergency Card
+                    </a>
+                    <span className="text-gray-300">•</span>
+                    <a href="https://medilinkindia.glide.page" target="_blank" rel="noopener noreferrer" className="text-portfolio-primary hover:text-portfolio-secondary transition-colors font-medium text-sm">
                       MediLink India
                     </a>
                     <span className="text-gray-300">•</span>
-                    <a href="#" className="text-portfolio-primary hover:text-portfolio-secondary transition-colors font-medium text-sm">
+                    <a href="https://ruthwikreddy.xyz/medilink/" target="_blank" rel="noopener noreferrer" className="text-portfolio-primary hover:text-portfolio-secondary transition-colors font-medium text-sm">
                       MediLink Portal
                     </a>
                   </div>

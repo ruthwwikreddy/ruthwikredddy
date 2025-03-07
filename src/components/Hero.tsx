@@ -1,5 +1,5 @@
 
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram, Github } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -37,9 +37,24 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               <a href="#contact" className="btn-primary">Get In Touch</a>
               <a href="#projects" className="btn-outline">View Projects</a>
+            </div>
+
+            <div className="flex space-x-4">
+              <a href="https://www.linkedin.com/in/ruthwikredd/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-portfolio-primary transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="https://x.com/ruthwikreddy" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-portfolio-primary transition-colors">
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a href="https://www.instagram.com/ruthwwikreddy/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-portfolio-primary transition-colors">
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="https://github.com/ruthwikredd" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-portfolio-primary transition-colors">
+                <Github className="w-6 h-6" />
+              </a>
             </div>
           </div>
 
