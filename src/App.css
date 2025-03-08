@@ -9,7 +9,70 @@
   background-color: black;
 }
 
-/* Scrollbar styling */
+/* Upgraded Advanced Cursor styling */
+body {
+  cursor: none;
+  background-color: black;
+}
+
+/* Custom cursor elements will be added dynamically via JS */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.3s ease;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(234, 56, 76, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(234, 56, 76, 0.8), 0 0 20px rgba(234, 56, 76, 0.4);
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(234, 56, 76, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border 0.2s;
+}
+
+.cursor-hover {
+  width: 50px;
+  height: 50px;
+  border-width: 3px;
+  background: rgba(234, 56, 76, 0.1);
+  mix-blend-mode: difference;
+}
+
+.cursor-active {
+  width: 24px;
+  height: 24px;
+  background: rgba(234, 56, 76, 0.3);
+}
+
+.cursor-text {
+  border-radius: 4px;
+  width: auto;
+  height: auto;
+  min-width: 80px;
+  min-height: 30px;
+  padding: 3px 6px;
+  font-size: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(234, 56, 76, 0.9);
+}
+
+/* Enhanced Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -39,20 +102,24 @@
 /* Page transitions */
 .page-transition-enter {
   opacity: 0;
+  transform: translateY(10px);
 }
 
 .page-transition-enter-active {
   opacity: 1;
-  transition: opacity 400ms;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
 }
 
 .page-transition-exit {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .page-transition-exit-active {
   opacity: 0;
-  transition: opacity 400ms;
+  transform: translateY(-10px);
+  transition: opacity 400ms, transform 400ms;
 }
 
 /* Glow effect for important elements */
@@ -65,10 +132,23 @@
   box-shadow: 0 0 25px rgba(234, 56, 76, 0.7);
 }
 
-/* Futuristic button hover effect */
+/* Enhanced Futuristic button hover effect */
 .button-hover-effect {
   position: relative;
   overflow: hidden;
+}
+
+.button-hover-effect::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button-hover-effect:hover::before {
+  opacity: 1;
 }
 
 .button-hover-effect::after {
@@ -86,7 +166,7 @@
   left: 100%;
 }
 
-/* Text shimmer effect */
+/* Enhanced Text shimmer effect */
 .text-shimmer {
   background: linear-gradient(90deg, #fff, #ea384c, #fff);
   background-size: 200% auto;
@@ -102,7 +182,7 @@
   100% { background-position: 200% 50%; }
 }
 
-/* Typing animation */
+/* Enhanced Typing animation */
 .typing-animation {
   overflow: hidden;
   border-right: 2px solid #ea384c;
@@ -121,7 +201,7 @@
   50% { border-color: #ea384c }
 }
 
-/* Scan line effect */
+/* Enhanced Scan line effect */
 .scan-line-effect {
   position: relative;
   overflow: hidden;
@@ -143,7 +223,7 @@
   100% { top: 105%; }
 }
 
-/* Glitch effect */
+/* Enhanced Glitch effect */
 .glitch-effect {
   position: relative;
 }
@@ -160,7 +240,7 @@
   100% { transform: translate(5px, -5px); }
 }
 
-/* Circle shine effect */
+/* Enhanced Circle shine effect */
 .circle-shine {
   position: relative;
   overflow: hidden;
@@ -183,7 +263,7 @@
   transform: scale(1.05);
 }
 
-/* Background grid */
+/* Enhanced Background grid */
 .bg-grid {
   background-image: 
     linear-gradient(rgba(234, 56, 76, 0.05) 1px, transparent 1px),
@@ -191,7 +271,7 @@
   background-size: 30px 30px;
 }
 
-/* Particle effect */
+/* Enhanced Particle effect */
 .particle-bg {
   position: relative;
 }
@@ -202,6 +282,7 @@
   height: 2px;
   background-color: rgba(234, 56, 76, 0.3);
   border-radius: 50%;
+  box-shadow: 0 0 5px rgba(234, 56, 76, 0.3);
   animation: float-random 20s linear infinite;
 }
 
@@ -212,7 +293,7 @@
   100% { transform: translate(0, 0); }
 }
 
-/* Neo trail effect */
+/* Enhanced Neo trail effect */
 .neo-trail {
   position: relative;
 }
@@ -232,3 +313,71 @@
 .neo-trail:hover::before {
   background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 60%);
 }
+
+/* Physics-based effects for interactive elements */
+.physics-float {
+  animation: physics-float 3s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+
+.physics-float:hover {
+  animation-play-state: paused;
+}
+
+@keyframes physics-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(1deg); }
+  75% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Magnetic effect for buttons and interactive elements */
+.magnetic-effect {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Gravity effect for interactive elements */
+.gravity-effect {
+  transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.gravity-effect:hover {
+  transform: scale(1.05);
+}
+
+/* Force field effect */
+.force-field {
+  position: relative;
+  overflow: hidden;
+}
+
+.force-field::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.force-field:hover::before {
+  opacity: 1;
+}
+
+/* Lightning effect */
+.lightning-effect:hover {
+  animation: lightning 1.5s ease-in-out;
+}
+
+@keyframes lightning {
+  0%, 5%, 10%, 15%, 20%, 100% {
+    box-shadow: none;
+  }
+  2%, 8%, 12%, 18% {
+    box-shadow: 0 0 20px rgba(234, 56, 76, 0.8), 0 0 30px rgba(234, 56, 76, 0.6);
+  }
+}
+
+/* Add dynamic cursor script to be injected into page */

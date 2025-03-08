@@ -1,5 +1,9 @@
 
+import { useState } from 'react';
+
 const Blogs = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
   const blogs = [
     {
       title: "AI in Healthcare: Transforming Patient Care and Medical Research",
@@ -40,28 +44,59 @@ const Blogs = () => {
   ];
 
   return (
-    <section id="blogs" className="py-20 bg-gray-50">
-      <div className="container mx-auto">
+    <section id="blogs" className="py-20 bg-black relative overflow-hidden">
+      {/* Background grid effect */}
+      <div className="absolute inset-0 bg-grid opacity-20"></div>
+      
+      {/* Animated particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <div 
+            key={i}
+            className="particle absolute animate-float"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 10 + 10}s`,
+              opacity: Math.random() * 0.5 + 0.2,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="container mx-auto relative z-10">
         <h2 className="section-title text-center mx-auto">Blog Posts</h2>
         
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
-            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-              <div className="h-48 overflow-hidden">
+            <div 
+              key={index} 
+              className="card backdrop-blur-lg p-0 hover:shadow-neon-glow transition-all duration-500 group"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <div className="h-48 overflow-hidden relative">
                 <img 
                   src={blog.image} 
                   alt={blog.title} 
-                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                
+                {/* Scan line effect */}
+                <div className={`absolute inset-0 scan-line-effect ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-portfolio-dark mb-2">{blog.title}</h3>
-                <p className="text-gray-600 mb-4">{blog.description}</p>
+              <div className="p-6 bg-black/80 backdrop-blur-sm border-t border-[#ea384c]/20">
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#ea384c] transition-colors duration-300">{blog.title}</h3>
+                <p className="text-gray-300 mb-4">{blog.description}</p>
                 <a 
                   href={blog.url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-portfolio-primary font-medium hover:text-portfolio-secondary transition-colors"
+                  className="inline-block text-[#ea384c] font-medium neo-trail relative overflow-hidden after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#ea384c] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left group-hover:after:shadow-[0_0_10px_rgba(234,56,76,0.7)]"
                 >
                   Read More
                 </a>
