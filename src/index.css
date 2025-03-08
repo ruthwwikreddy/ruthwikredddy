@@ -220,7 +220,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom cursor */
+/* Enhanced Custom cursors with red glow effect */
 body {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" stroke="%23ea384c" stroke-width="1.5" fill="black" stroke-opacity="0.8"/><circle cx="9" cy="9" r="3" fill="%23ea384c" fill-opacity="0.5"/></svg>') 9 9, auto;
   background-color: black;
