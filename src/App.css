@@ -6,6 +6,7 @@
   text-align: center;
   color: #fff;
   overflow-x: hidden;
+  background-color: black;
 }
 
 /* Scrollbar styling */
@@ -21,10 +22,12 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(234, 56, 76, 0.5);
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(234, 56, 76, 0.8);
+  box-shadow: 0 0 8px rgba(234, 56, 76, 0.5);
 }
 
 /* Text selection */
@@ -116,4 +119,116 @@
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: #ea384c }
+}
+
+/* Scan line effect */
+.scan-line-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line-effect::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(180deg, transparent, rgba(234, 56, 76, 0.2), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+/* Glitch effect */
+.glitch-effect {
+  position: relative;
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(-5px, 5px); }
+  50% { transform: translate(-5px, -5px); }
+  75% { transform: translate(5px, 5px); }
+  100% { transform: translate(5px, -5px); }
+}
+
+/* Circle shine effect */
+.circle-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.circle-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(234, 56, 76, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.circle-shine:hover::after {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Background grid */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(234, 56, 76, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234, 56, 76, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Particle effect */
+.particle-bg {
+  position: relative;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(234, 56, 76, 0.3);
+  border-radius: 50%;
+  animation: float-random 20s linear infinite;
+}
+
+@keyframes float-random {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(var(--x1, 20px), var(--y1, -30px)); }
+  66% { transform: translate(var(--x2, -30px), var(--y2, -10px)); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Neo trail effect */
+.neo-trail {
+  position: relative;
+}
+
+.neo-trail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(234, 56, 76, 0);
+  transition: background 0.3s;
+  pointer-events: none;
+}
+
+.neo-trail:hover::before {
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 60%);
 }
