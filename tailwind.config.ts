@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -75,6 +76,15 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			textShadow: {
+				sm: '0 1px 2px var(--tw-shadow-color)',
+				DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+				lg: '0 8px 16px var(--tw-shadow-color)',
+				'neon-red': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.5)',
+			},
+			boxShadow: {
+				'neon-glow': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.3)'
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -113,5 +123,17 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function ({ matchUtilities, theme }: any) {
+			matchUtilities(
+				{
+					'text-shadow': (value: string) => ({
+						textShadow: value,
+					}),
+				},
+				{ values: theme('textShadow') }
+			);
+		},
+	],
 } satisfies Config;

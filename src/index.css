@@ -114,11 +114,11 @@
   }
 
   .neon-text {
-    @apply text-[#ea384c] text-shadow-[0_0_10px_rgba(234,56,76,0.7),0_0_20px_rgba(234,56,76,0.5)] transition-all duration-300;
+    @apply text-[#ea384c] text-shadow-neon-red transition-all duration-300;
   }
 
   .neon-border {
-    @apply border border-[#ea384c] shadow-[0_0_10px_rgba(234,56,76,0.7),0_0_20px_rgba(234,56,76,0.3)] transition-all duration-300;
+    @apply border border-[#ea384c] shadow-neon-glow transition-all duration-300;
   }
 
   .section-title {
