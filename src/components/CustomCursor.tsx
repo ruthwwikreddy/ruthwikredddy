@@ -204,7 +204,8 @@ const CustomCursor = () => {
       ))}
       
       {/* Add global styles for cursor effects */}
-      <style jsx global>{`
+      <style>
+        {`
         .interactive-element {
           cursor: none !important;
         }
@@ -230,7 +231,8 @@ const CustomCursor = () => {
         .cursor-trail {
           animation: cursor-trail-fade 0.5s ease-out forwards;
         }
-      `}</style>
+        `}
+      </style>
     </>
   );
 };
