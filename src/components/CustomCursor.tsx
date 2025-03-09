@@ -178,6 +178,14 @@ const CustomCursor = () => {
         style={{ 
           transform: `translate(-50%, -50%) ${isClicking ? 'scale(0.5)' : ''}`,
           mixBlendMode: isHovering ? 'difference' : 'normal',
+          position: 'fixed',
+          pointerEvents: 'none',
+          width: '8px',
+          height: '8px',
+          backgroundColor: '#ea384c',
+          borderRadius: '50%',
+          zIndex: 9999999,
+          transition: 'transform 0.1s ease',
         }}
       />
       
@@ -185,7 +193,23 @@ const CustomCursor = () => {
       <div 
         ref={ringRef} 
         className={`cursor-ring ${isHovering ? 'cursor-hover' : ''} ${isClicking ? 'cursor-active' : ''} ${hasText ? 'cursor-text' : ''}`}
-        style={{ mixBlendMode: isHovering ? 'difference' : 'normal' }}
+        style={{ 
+          mixBlendMode: isHovering ? 'difference' : 'normal',
+          position: 'fixed',
+          pointerEvents: 'none',
+          width: isHovering ? '80px' : '40px',
+          height: isHovering ? '80px' : '40px',
+          border: '2px solid #ea384c',
+          borderRadius: '50%',
+          zIndex: 999999,
+          transition: 'width 0.3s, height 0.3s, transform 0.1s',
+          transform: `translate(-50%, -50%) ${isClicking ? 'scale(0.8)' : 'scale(1)'}`,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#fff',
+          fontSize: '12px',
+        }}
       >
         {hasText && <span className="text-xs">{hasText}</span>}
       </div>
@@ -195,15 +219,20 @@ const CustomCursor = () => {
         <div
           key={index}
           ref={(el) => el && (trailsRef.current[index] = el)}
-          className="cursor-trail absolute w-2 h-2 rounded-full bg-[#ea384c]/30 pointer-events-none z-[999998]"
           style={{
+            position: 'fixed',
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(234, 56, 76, 0.3)',
             boxShadow: '0 0 5px rgba(234, 56, 76, 0.3)',
             transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none',
+            zIndex: 999998,
           }}
         />
       ))}
       
-      {/* Add global styles for cursor effects */}
       <style>
         {`
         .interactive-element {
@@ -228,8 +257,27 @@ const CustomCursor = () => {
           100% { opacity: 0; }
         }
         
-        .cursor-trail {
-          animation: cursor-trail-fade 0.5s ease-out forwards;
+        .cursor-hover {
+          backdrop-filter: invert(1);
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .cursor-active {
+          transform: translate(-50%, -50%) scale(0.8) !important;
+        }
+        
+        .cursor-text {
+          backdrop-filter: blur(2px);
+          background-color: rgba(234, 56, 76, 0.8);
+        }
+        
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         `}
       </style>
