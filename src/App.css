@@ -1,5 +1,6 @@
+
 #root {
-  max-width: 100vw;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0;
   text-align: center;
@@ -16,7 +17,7 @@ body {
   max-width: 100vw;
 }
 
-/* Custom cursor elements */
+/* Custom cursor elements will be added dynamically via JS */
 .cursor-dot,
 .cursor-ring {
   position: fixed;
@@ -123,7 +124,17 @@ body {
   transition: opacity 400ms, transform 400ms;
 }
 
-/* Enhanced Hover effects */
+/* Glow effect for important elements */
+.glow-effect {
+  box-shadow: 0 0 15px rgba(234, 56, 76, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 25px rgba(234, 56, 76, 0.7);
+}
+
+/* Enhanced Futuristic button hover effect */
 .button-hover-effect {
   position: relative;
   overflow: hidden;
@@ -166,6 +177,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 /* Enhanced Typing animation */
@@ -375,65 +391,4 @@ body {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
-}
-
-/* Additional effects */
-.hover-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.hover-shine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: skewX(-25deg);
-  transition: all 0.75s;
-}
-
-.hover-shine:hover::before {
-  left: 125%;
-}
-
-.ripple-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(234, 56, 76, 0.3);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-}
-
-.hardware-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-@media (max-width: 768px) {
-  .cursor-dot, .cursor-ring {
-    display: none;
-  }
-  
-  body {
-    cursor: auto !important;
-  }
-}
-
-html, body, #root, .overflow-fix {
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
 }
