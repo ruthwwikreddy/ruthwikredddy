@@ -8,10 +8,16 @@ import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import { useEffect } from "react";
 
 const Index = () => {
+  // Add scroll restoration on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <CustomCursor />
       <Navbar />
       <Hero />

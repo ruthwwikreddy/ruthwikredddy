@@ -88,6 +88,9 @@ export default {
 				'neon-pulse': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.3), 0 0 30px rgba(234, 56, 76, 0.1)',
 				'neon-strong': '0 0 15px rgba(234, 56, 76, 0.8), 0 0 30px rgba(234, 56, 76, 0.5), 0 0 45px rgba(234, 56, 76, 0.2)'
 			},
+			backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            },
 			keyframes: {
 				'accordion-down': {
 					from: {
