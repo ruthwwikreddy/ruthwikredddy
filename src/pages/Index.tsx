@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
 import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
+import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 
@@ -19,6 +20,7 @@ const Index = () => {
       <Projects />
       <Certifications />
       <Blogs />
+      <Banner />
       <Contact />
       <Footer />
     </div>
