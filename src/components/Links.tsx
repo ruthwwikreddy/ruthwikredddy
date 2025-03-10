@@ -92,20 +92,6 @@ const Links = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <a 
-            href="https://ruthwikreddy.xyz" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-[#ea384c] hover:text-white border-2 border-[#ea384c] 
-                   bg-black/60 px-6 py-3 rounded-md transition-all duration-300 hover:bg-[#ea384c]/20 
-                   hover:shadow-neon-glow text-lg font-medium button-hover-effect group"
-          >
-            <span>Visit Main Portfolio</span>
-            <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-all" />
-          </a>
-        </div>
-        
         <div className="absolute particle w-2 h-2 opacity-40 bottom-32 right-20" style={{"--x1": "-50px", "--y1": "30px", "--x2": "20px", "--y2": "-40px"} as React.CSSProperties}></div>
         <div className="absolute particle w-2 h-2 opacity-40 top-40 left-1/3" style={{"--x1": "70px", "--y1": "-20px", "--x2": "-30px", "--y2": "50px"} as React.CSSProperties}></div>
         <div className="absolute particle w-2 h-2 opacity-40 top-20 right-1/4" style={{"--x1": "-30px", "--y1": "50px", "--x2": "40px", "--y2": "20px"} as React.CSSProperties}></div>
