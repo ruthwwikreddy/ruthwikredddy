@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { useEffect } from "react";
 import Banner from "@/components/Banner";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   // Add scroll restoration on component mount
@@ -19,7 +20,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden w-full">
       <CustomCursor />
       <Navbar />
       <Hero />
@@ -31,6 +32,7 @@ const Index = () => {
       <Blogs />
       <Contact />
       <Footer />
+      <Toaster />
     </div>
   );
 };

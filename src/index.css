@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -84,11 +83,16 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
-  body {
+  html, body {
     @apply bg-black text-foreground font-sans;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -96,11 +100,11 @@
   }
 
   section {
-    @apply py-16 md:py-24 bg-black relative overflow-hidden;
+    @apply py-16 md:py-24 bg-black relative overflow-hidden w-full;
   }
 
   .container {
-    @apply px-4 md:px-6 mx-auto max-w-7xl;
+    @apply px-4 md:px-6 mx-auto max-w-7xl w-full;
   }
 }
 
@@ -228,4 +232,35 @@ body {
 
 a, button, [role="button"] {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" stroke="%23ea384c" stroke-width="2" fill="black" stroke-opacity="0.8"/><circle cx="14" cy="14" r="6" fill="%23ea384c" fill-opacity="0.3"/><circle cx="14" cy="14" r="2" fill="%23ea384c"/></svg>') 14 14, pointer;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+section {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }

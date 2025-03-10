@@ -46,15 +46,16 @@ const Links = () => {
   };
 
   return (
-    <section id="links" className="py-20 bg-black bg-grid">
-      <div className="container mx-auto">
+    <section id="links" className="py-20 bg-black bg-grid relative overflow-hidden">
+      {/* Fixed width container to prevent overflow */}
+      <div className="container mx-auto px-4">
         <h2 className="section-title text-center mx-auto mb-10">Explore My Work</h2>
         <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
           Browse through my portfolio of web development projects, interactive tools, educational resources, 
           and UI/UX showcases. Each link represents a unique solution to specific challenges.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {allLinks.map((link, index) => (
             <a
               key={index}
@@ -91,10 +92,6 @@ const Links = () => {
             </a>
           ))}
         </div>
-
-        <div className="absolute particle w-2 h-2 opacity-40 bottom-32 right-20" style={{"--x1": "-50px", "--y1": "30px", "--x2": "20px", "--y2": "-40px"} as React.CSSProperties}></div>
-        <div className="absolute particle w-2 h-2 opacity-40 top-40 left-1/3" style={{"--x1": "70px", "--y1": "-20px", "--x2": "-30px", "--y2": "50px"} as React.CSSProperties}></div>
-        <div className="absolute particle w-2 h-2 opacity-40 top-20 right-1/4" style={{"--x1": "-30px", "--y1": "50px", "--x2": "40px", "--y2": "20px"} as React.CSSProperties}></div>
       </div>
     </section>
   );
