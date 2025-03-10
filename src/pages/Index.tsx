@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { useEffect } from "react";
+import Banner from "@/components/Banner";
 
 const Index = () => {
   // Add scroll restoration on component mount
@@ -23,6 +24,7 @@ const Index = () => {
       <Hero />
       <About />
       <Projects />
+      <Banner />
       <Certifications />
       <Blogs />
       <Contact />
