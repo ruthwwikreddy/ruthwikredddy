@@ -17,10 +17,14 @@ const Index = () => {
   // Add scroll restoration on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Fix for any lingering scroll issues
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
   }, []);
 
   return (
-    <div className="min-h-screen bg-background w-full max-w-[100vw] overflow-x-hidden">
+    <div className="min-h-screen bg-background w-full overflow-x-hidden">
       <CustomCursor />
       <Navbar />
       <main className="w-full overflow-x-hidden">

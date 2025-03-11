@@ -9,10 +9,10 @@ interface CaseStudyTabsProps {
 
 const CaseStudyTabs: React.FC<CaseStudyTabsProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="flex justify-center mb-12 px-4">
-      <div className="flex flex-wrap justify-center gap-2 p-2 bg-black/50 rounded-lg border border-[#ea384c]/20 backdrop-blur-sm shadow-neon-glow max-w-full">
-        <div className="w-full overflow-x-auto pb-2 flex justify-start md:justify-center">
-          <div className="flex gap-2">
+    <div className="flex justify-center mb-12 px-4 w-full overflow-hidden">
+      <div className="flex flex-wrap justify-center gap-2 p-2 bg-black/50 rounded-lg border border-[#ea384c]/20 backdrop-blur-sm shadow-neon-glow w-full max-w-full">
+        <div className="w-full overflow-x-auto scrollbar-thin pb-2 flex justify-start md:justify-center">
+          <div className="flex gap-2 px-1">
             {caseStudies.map((study, index) => (
               <button
                 key={index}
@@ -21,7 +21,7 @@ const CaseStudyTabs: React.FC<CaseStudyTabsProps> = ({ activeTab, setActiveTab }
                   activeTab === index 
                   ? 'bg-[#ea384c] text-white shadow-neon-glow border border-[#ea384c]/50' 
                   : 'text-white/70 hover:text-white hover:bg-white/5 border border-transparent'
-                } relative group overflow-hidden`}
+                } relative group overflow-hidden flex-shrink-0`}
               >
                 <span className="relative z-10">{study.title.split(' ')[0]}</span>
                 {activeTab === index && (

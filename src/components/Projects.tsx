@@ -10,7 +10,7 @@ const Projects = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   return (
-    <section id="projects" className="py-20 bg-black bg-grid relative w-full">
+    <section id="projects" className="py-20 bg-black bg-grid relative w-full overflow-hidden">
       {/* Background effects */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-[#ea384c]/5 rounded-full filter blur-3xl animate-pulse-scale"></div>
@@ -22,7 +22,7 @@ const Projects = () => {
         
         <CaseStudyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         
-        <div className="mt-6">
+        <div className="mt-6 w-full overflow-hidden">
           <div className="futuristic-card overflow-hidden transition-all duration-500 animate-fade-in">
             <div className="p-4 md:p-8 relative">
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#ea384c]/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
