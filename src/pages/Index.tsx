@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,34 +10,60 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { useEffect } from "react";
 import Banner from "@/components/Banner";
-import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
-  // Add scroll restoration on component mount
+  // Add scroll restoration and smooth scroll behavior
   useEffect(() => {
+    // Restore scroll position on mount
     window.scrollTo(0, 0);
     
-    // Fix for any lingering scroll issues
-    document.documentElement.style.overflowX = "hidden";
-    document.body.style.overflowX = "hidden";
+    // Handle anchor links smoothly
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const href = target.closest('a')?.getAttribute('href');
+      
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          // Add offset for fixed elements
+          const offset = 100; // Increased offset to account for navbar
+          
+          // Use scrollIntoView with behavior: 'smooth' instead of manual calculation
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Apply offset after scroll
+          setTimeout(() => {
+            window.scrollBy(0, -offset);
+          }, 10);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
   return (
-    <div className="min-h-screen bg-background w-full overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-background overflow-hidden">
       <CustomCursor />
-      <Navbar />
-      <main className="w-full overflow-x-hidden">
-        <Hero />
-        <About />
-        <Projects />
-        <Links />
-        <Banner />
-        <Certifications />
-        <Blogs />
-        <Contact />
-      </main>
-      <Footer />
-      <Toaster />
+      <div className="flex flex-col w-full">
+        <Navbar />
+        <main className="flex-1 w-full">
+          <Hero />
+          <About />
+          <Projects />
+          <Links />
+          <Banner />
+          <Certifications />
+          <Blogs />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

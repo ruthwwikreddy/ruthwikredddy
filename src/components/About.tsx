@@ -1,4 +1,3 @@
-
 import ProgressBar from './ProgressBar';
 
 const About = () => {

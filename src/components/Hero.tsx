@@ -1,9 +1,8 @@
-
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram, Github } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16 bg-black">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 bg-black overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(234,56,76,0.15)_0%,rgba(0,0,0,0)_60%)]"></div>
       
       {/* Animated background lines */}
@@ -73,7 +72,7 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full border border-[#ea384c]/30 animate-pulse"></div>
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-[#ea384c] shadow-[0_0_30px_rgba(234,56,76,0.5)]">
                 <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=500" 
+                  src="/assets/images/logo.jpg" 
                   alt="Ruthwik Reddy"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />

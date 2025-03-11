@@ -1,147 +1,129 @@
-
 import { useEffect, useState } from 'react';
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isPointer, setIsPointer] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const [cursorText, setCursorText] = useState('');
+  const [isHovering, setIsHovering] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasText, setHasText] = useState<string | null>(null);
 
   useEffect(() => {
-    // Create cursor elements
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
-
-    const cursorRing = document.createElement('div');
-    cursorRing.className = 'cursor-ring';
-    document.body.appendChild(cursorRing);
-
-    // Track mouse movement with physics
-    let cursorPosition = { x: 0, y: 0 };
-    let dotPosition = { x: 0, y: 0 };
-    let ringPosition = { x: 0, y: 0 };
+    // Only create cursor elements if they don't exist
+    let cursorDot = document.querySelector('.cursor-dot');
+    let cursorRing = document.querySelector('.cursor-ring');
     
-    const handleMouseMove = (e: MouseEvent) => {
-      // Update the state position
-      setPosition({ x: e.clientX, y: e.clientY });
-      
-      // Update target position for physics calculation
-      cursorPosition.x = e.clientX;
-      cursorPosition.y = e.clientY;
+    if (!cursorDot) {
+      cursorDot = document.createElement('div');
+      cursorDot.classList.add('cursor-dot');
+      document.body.appendChild(cursorDot);
+    }
+    
+    if (!cursorRing) {
+      cursorRing = document.createElement('div');
+      cursorRing.classList.add('cursor-ring');
+      document.body.appendChild(cursorRing);
+    }
 
-      // Check if the cursor is over a clickable element
+    const handleMouseMove = (e: MouseEvent) => {
+      // Update state
+      setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+      
+      // Directly update DOM for smoother performance
+      if (cursorDot instanceof HTMLElement) {
+        cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }
+      
+      if (cursorRing instanceof HTMLElement) {
+        cursorRing.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }
+    };
+
+    const handleMouseDown = () => setIsActive(true);
+    const handleMouseUp = () => setIsActive(false);
+    
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+
+    // Handle hover states for interactive elements
+    const handleElementMouseEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Check for clickable elements
-      const isClickable = 
-        target.tagName.toLowerCase() === 'button' ||
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'input' ||
-        target.tagName.toLowerCase() === 'textarea' ||
-        target.tagName.toLowerCase() === 'select' ||
-        target.closest('button') !== null ||
-        target.closest('a') !== null ||
-        target.closest('[role="button"]') !== null ||
-        target.closest('input') !== null ||
-        target.closest('textarea') !== null ||
-        target.closest('select') !== null ||
-        window.getComputedStyle(target).cursor === 'pointer';
-      
-      setIsPointer(isClickable);
-      
-      // Check for custom cursor text
-      const dataText = target.getAttribute('data-cursor-text') || 
-                      (target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text') || '');
-      setCursorText(dataText);
-    };
-
-    const handleMouseDown = () => {
-      setIsClicking(true);
-    };
-
-    const handleMouseUp = () => {
-      setIsClicking(false);
-    };
-
-    const handleMouseLeave = () => {
-      setIsHidden(true);
-    };
-
-    const handleMouseEnter = () => {
-      setIsHidden(false);
-    };
-
-    // Physics animation
-    const lerp = (start: number, end: number, factor: number) => {
-      return start + (end - start) * factor;
-    };
-
-    const animateCursor = () => {
-      // Calculate physics-based movement with lag effect
-      dotPosition.x = lerp(dotPosition.x, cursorPosition.x, 0.5);
-      dotPosition.y = lerp(dotPosition.y, cursorPosition.y, 0.5);
-      
-      ringPosition.x = lerp(ringPosition.x, cursorPosition.x, 0.2);
-      ringPosition.y = lerp(ringPosition.y, cursorPosition.y, 0.2);
-      
-      // Apply the calculated positions
-      cursorDot.style.transform = `translate(${dotPosition.x}px, ${dotPosition.y}px)`;
-      cursorRing.style.transform = `translate(${ringPosition.x}px, ${ringPosition.y}px)`;
-      
-      // Apply visual effects based on state
-      cursorDot.style.opacity = isHidden ? '0' : '1';
-      cursorRing.style.opacity = isHidden ? '0' : '1';
-      
-      if (isPointer) {
-        cursorRing.classList.add('cursor-hover');
-      } else {
-        cursorRing.classList.remove('cursor-hover');
+      if (target.tagName === 'A' || 
+          target.tagName === 'BUTTON' || 
+          target.classList.contains('interactive') ||
+          target.closest('a') || 
+          target.closest('button')) {
+        setIsHovering(true);
+        
+        // Check for data-cursor-text attribute
+        const cursorText = target.getAttribute('data-cursor-text') || 
+                          target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
+        
+        if (cursorText) {
+          setHasText(cursorText);
+        }
       }
-      
-      if (isClicking) {
-        cursorRing.classList.add('cursor-active');
-        cursorDot.style.transform = `translate(${dotPosition.x}px, ${dotPosition.y}px) scale(0.5)`;
-      } else {
-        cursorRing.classList.remove('cursor-active');
-      }
-      
-      if (cursorText) {
-        cursorRing.classList.add('cursor-text');
-        cursorRing.textContent = cursorText;
-      } else {
-        cursorRing.classList.remove('cursor-text');
-        cursorRing.textContent = '';
-      }
-      
-      requestAnimationFrame(animateCursor);
     };
 
-    // Start the animation
-    animateCursor();
+    const handleElementMouseLeave = () => {
+      setIsHovering(false);
+      setHasText(null);
+    };
 
-    // Register event listeners
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Add event delegation for interactive elements
+    document.addEventListener('mouseover', handleElementMouseEnter);
+    document.addEventListener('mouseout', handleElementMouseLeave);
 
-    // Clean up on component unmount
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+    // Apply classes based on state
+    const updateCursorClasses = () => {
+      if (cursorRing instanceof HTMLElement) {
+        cursorRing.classList.toggle('cursor-hover', isHovering);
+        cursorRing.classList.toggle('cursor-active', isActive);
+        cursorRing.classList.toggle('cursor-text', !!hasText);
+        cursorRing.classList.toggle('cursor-hidden', !isVisible);
+        
+        if (hasText && cursorRing instanceof HTMLElement) {
+          cursorRing.textContent = hasText;
+        } else if (cursorRing instanceof HTMLElement) {
+          cursorRing.textContent = '';
+        }
+      }
       
-      document.body.removeChild(cursorDot);
-      document.body.removeChild(cursorRing);
+      if (cursorDot instanceof HTMLElement) {
+        cursorDot.classList.toggle('cursor-hidden', !isVisible);
+      }
     };
-  }, []);
 
-  return null; // This component doesn't render anything visible
+    // Use requestAnimationFrame for smoother updates
+    let animationFrame: number;
+    const animate = () => {
+      updateCursorClasses();
+      animationFrame = requestAnimationFrame(animate);
+    };
+    animate();
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseover', handleElementMouseEnter);
+      document.removeEventListener('mouseout', handleElementMouseLeave);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [isHovering, isActive, isVisible, hasText]);
+
+  return null; // Component doesn't render anything directly
 };
 
 export default CustomCursor;

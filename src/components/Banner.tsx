@@ -3,8 +3,8 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <section className="py-10 bg-black relative w-full overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-10 bg-black relative overflow-hidden">
+      <div className="container mx-auto">
         <div className="flex justify-center items-center">
           <div className="w-full max-w-6xl overflow-hidden rounded-lg shadow-neon-glow">
             <img 

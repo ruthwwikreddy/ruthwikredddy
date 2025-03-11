@@ -35,7 +35,7 @@ const Links = () => {
   ];
 
   // Function to get color based on category
-  const getCategoryColorClass = (category: string) => {
+  const getCategoryColorClass = (category) => {
     switch(category) {
       case 'Project': return 'from-pink-500 to-rose-500';
       case 'Educational': return 'from-blue-400 to-cyan-400';
@@ -46,15 +46,15 @@ const Links = () => {
   };
 
   return (
-    <section id="links" className="py-20 bg-black bg-grid relative w-full overflow-hidden">
+    <section id="links" className="py-20 bg-black bg-grid">
       <div className="container mx-auto">
         <h2 className="section-title text-center mx-auto mb-10">Explore My Work</h2>
-        <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12 px-4">
+        <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
           Browse through my portfolio of web development projects, interactive tools, educational resources, 
           and UI/UX showcases. Each link represents a unique solution to specific challenges.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 px-2 sm:px-3 md:px-4 max-w-full mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {allLinks.map((link, index) => (
             <a
               key={index}
@@ -62,18 +62,18 @@ const Links = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#ea384c]/10 
-                       rounded-lg p-3 sm:p-4 hover:border-[#ea384c]/50 transition-all duration-300 
-                       hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[120px] sm:min-h-[130px]
-                       hover:-translate-y-1 w-full text-center`}
+                       rounded-lg p-5 hover:border-[#ea384c]/50 transition-all duration-300 
+                       hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[140px]
+                       hover:-translate-y-1`}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
                             opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
               
-              <div className="relative z-10 flex flex-col items-center text-center w-full">
-                <span className="mb-2 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
+              <div className="relative z-10 flex flex-col items-center text-center">
+                <span className="mb-3 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
                   {link.icon}
                 </span>
-                <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300 break-words w-full text-sm sm:text-base">
+                <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
                   {link.label}
                 </span>
                 <span className="text-xs text-gray-400 mt-1">{link.category}</span>
@@ -91,6 +91,10 @@ const Links = () => {
             </a>
           ))}
         </div>
+
+        <div className="absolute particle w-2 h-2 opacity-40 bottom-32 right-20" style={{"--x1": "-50px", "--y1": "30px", "--x2": "20px", "--y2": "-40px"} as React.CSSProperties}></div>
+        <div className="absolute particle w-2 h-2 opacity-40 top-40 left-1/3" style={{"--x1": "70px", "--y1": "-20px", "--x2": "-30px", "--y2": "50px"} as React.CSSProperties}></div>
+        <div className="absolute particle w-2 h-2 opacity-40 top-20 right-1/4" style={{"--x1": "-30px", "--y1": "50px", "--x2": "40px", "--y2": "20px"} as React.CSSProperties}></div>
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -43,7 +42,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[90%] sm:max-w-[85%] md:max-w-[75%] rounded-xl px-4 sm:px-6 py-4 backdrop-blur-xl bg-black/70 border border-[#ea384c]/20 shadow-lg animate-pulse-glow">
+    <nav className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-[85%] md:max-w-[75%] rounded-xl px-6 py-4 backdrop-blur-xl bg-black/70 border border-[#ea384c]/20 shadow-lg">
       <div className="flex justify-between items-center">
         <a href="#home" className="font-heading text-xl font-bold text-white mr-4 hover:text-[#ea384c] transition-colors">
           R
@@ -58,7 +57,7 @@ const Navbar = () => {
         </button>
 
         {/* Desktop menu */}
-        <div className="hidden md:flex space-x-6 lg:space-x-8">
+        <div className="hidden md:flex space-x-8">
           {menuItems.map((item) => (
             <a
               key={item.name}

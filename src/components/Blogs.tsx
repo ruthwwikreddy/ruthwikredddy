@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 const Blogs = () => {
@@ -44,13 +43,13 @@ const Blogs = () => {
   ];
 
   return (
-    <section id="blogs" className="py-20 bg-black relative overflow-hidden">
+    <section id="blogs" className="py-20 bg-black relative">
       {/* Background grid effect */}
       <div className="absolute inset-0 bg-grid opacity-20"></div>
       
-      {/* Animated particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+      {/* Animated particles - limit the number for performance */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, i) => (
           <div 
             key={i}
             className="particle absolute animate-float"
@@ -67,7 +66,7 @@ const Blogs = () => {
         ))}
       </div>
       
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 px-4">
         <h2 className="section-title text-center mx-auto">Blog Posts</h2>
         
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -78,7 +77,7 @@ const Blogs = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="h-48 overflow-hidden relative">
+              <div className="h-48 relative">
                 <img 
                   src={blog.image} 
                   alt={blog.title} 
