@@ -46,8 +46,7 @@ const Links = () => {
   };
 
   return (
-    <section id="links" className="py-20 bg-black bg-grid relative overflow-hidden">
-      {/* Fixed width container to prevent overflow */}
+    <section id="links" className="py-20 bg-black bg-grid relative w-full">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-center mx-auto mb-10">Explore My Work</h2>
         <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
@@ -55,7 +54,7 @@ const Links = () => {
           and UI/UX showcases. Each link represents a unique solution to specific challenges.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-full">
           {allLinks.map((link, index) => (
             <a
               key={index}
@@ -65,16 +64,16 @@ const Links = () => {
               className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#ea384c]/10 
                        rounded-lg p-5 hover:border-[#ea384c]/50 transition-all duration-300 
                        hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[140px]
-                       hover:-translate-y-1`}
+                       hover:-translate-y-1 max-w-full`}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
                             opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
               
-              <div className="relative z-10 flex flex-col items-center text-center">
+              <div className="relative z-10 flex flex-col items-center text-center w-full">
                 <span className="mb-3 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
                   {link.icon}
                 </span>
-                <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
+                <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300 break-words w-full">
                   {link.label}
                 </span>
                 <span className="text-xs text-gray-400 mt-1">{link.category}</span>

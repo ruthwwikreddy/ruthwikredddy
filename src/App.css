@@ -1,4 +1,3 @@
-
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -7,6 +6,8 @@
   color: #fff;
   overflow-x: hidden;
   background-color: black;
+  width: 100%;
+  position: relative;
 }
 
 /* Upgraded Advanced Cursor styling */
@@ -15,6 +16,10 @@ body {
   background-color: black;
   overflow-x: hidden;
   max-width: 100vw;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom cursor elements will be added dynamically via JS */
@@ -388,7 +393,23 @@ body {
 }
 
 /* Fix for horizontal overflow */
-html, body {
+html, body, #root {
   max-width: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+section {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }

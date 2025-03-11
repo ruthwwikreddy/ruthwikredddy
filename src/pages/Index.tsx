@@ -20,17 +20,19 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden w-full">
+    <div className="min-h-screen bg-background w-full max-w-[100vw] overflow-x-hidden">
       <CustomCursor />
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Links />
-      <Banner />
-      <Certifications />
-      <Blogs />
-      <Contact />
+      <main className="w-full overflow-x-hidden">
+        <Hero />
+        <About />
+        <Projects />
+        <Links />
+        <Banner />
+        <Certifications />
+        <Blogs />
+        <Contact />
+      </main>
       <Footer />
       <Toaster />
     </div>
