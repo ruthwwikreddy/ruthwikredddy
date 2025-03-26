@@ -26,7 +26,7 @@ const Certifications = () => {
   
   const certificates = Array.from({ length: 24 }, (_, i) => ({
     id: i + 1,
-    url: `/assets/images/Certificate Portfolio/Certificate Portfolio-${String(i + 1).padStart(2, '0')}.png`
+    url: `\\assets\\images\\Certificate Portfolio\\Certificate Portfolio-${String(i + 1).padStart(2, '0')}.png`
   }));
 
   const openModal = (index: number, type: 'certificate' | 'offer') => {
