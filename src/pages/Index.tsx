@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { useEffect } from "react";
 import Banner from "@/components/Banner";
+import Featured from "@/components/Featured";
 
 const Index = () => {
   // Add scroll restoration and smooth scroll behavior
@@ -59,6 +60,7 @@ const Index = () => {
           <Links />
           <Banner />
           <Certifications />
+          <Featured />
           <Blogs />
           <Contact />
         </main>

@@ -282,3 +282,36 @@ html, body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
+/* Ensure the background and text colors are consistent with the theme */
+body {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+}
+
+/* Section title styling */
+.section-title {
+  color: #ea384c; /* Red color for section titles */
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(234, 56, 76, 0.5);
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the fade-in animation to the featured cards */
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards;
+}
