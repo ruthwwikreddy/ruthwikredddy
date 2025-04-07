@@ -61,6 +61,11 @@ const Featured = () => {
     };
   }, []);
 
+  const handleLinkClick = (url: string) => {
+    // Open the link in a new tab
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="featured" className="py-16 md:py-20 bg-black text-white relative overflow-hidden w-full max-w-[100vw]">
       {/* Abstract background elements */}
@@ -115,8 +120,9 @@ const Featured = () => {
                 key={index}
                 className={`group bg-black/40 backdrop-blur-md p-6 rounded-lg transition-all duration-500 border border-[#ea384c]/10 hover:border-[#ea384c]/50 hover:shadow-[0_0_15px_rgba(234,56,76,0.3)] relative overflow-hidden ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                } cursor-pointer`}
                 style={{ transitionDelay: `${index * 100}ms` }}
+                onClick={() => handleLinkClick(link.url)}
               >
                 {/* Hover effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ea384c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -127,15 +133,10 @@ const Featured = () => {
                   </span>
                 )}
                 
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-white group-hover:text-[#ea384c] transition-all duration-300 flex items-start"
-                >
+                <div className="text-lg font-semibold text-white group-hover:text-[#ea384c] transition-all duration-300 flex items-start">
                   <span className="flex-1">{link.title}</span>
                   <ExternalLink className="w-4 h-4 mt-1 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                </div>
                 
                 {/* Bottom glow effect */}
                 <div className="h-0.5 w-0 bg-gradient-to-r from-[#ea384c]/50 to-[#ea384c] group-hover:w-full absolute bottom-0 left-0 transition-all duration-500 rounded-full"></div>

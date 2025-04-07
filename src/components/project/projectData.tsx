@@ -76,16 +76,20 @@ export const caseStudies: CaseStudy[] = [
     impact: "The collaboration enabled MediLink to transform their innovative healthcare solution from concept to reality. Through the MVP development approach, they validated their idea, optimized their product based on real user feedback, and set a strong foundation for future growth.",
     links: [
       {
-        text: "MediLink India",
-        url: "https://medilinkindia.glide.page"
+        text: "MediLink V1",
+        url: "https://ruthwikreddy.xyz/medilink/"
       },
       {
-        text: "MediLink Portal",
-        url: "https://ruthwwikreddy.github.io/medilink/"
+        text: "MediLink V2",
+        url: "https://medilinkindia.glide.page/"
+      },
+      {
+        text: "MediLink Main",
+        url: "https://medilink-india.vercel.app/"
       },
       {
         text: "Emergency Card",
-        url: "https://ruthwwikreddy.github.io/emergency-card/"
+        url: "https://ruthwikreddy.xyz/emergency-card/"
       }
     ]
   },
