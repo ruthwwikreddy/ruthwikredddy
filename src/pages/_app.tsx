@@ -1,8 +1,9 @@
+
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div style={{ height: '100vh', overflow: 'auto' }}>
+    <div className="min-h-screen w-full overflow-x-hidden">
       <Component {...pageProps} />
     </div>
   );

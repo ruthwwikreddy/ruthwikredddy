@@ -1,8 +1,18 @@
 
-import React from 'react';
-import { ExternalLink, Link2, ArrowUpRight, Bookmark, Code, Gamepad2, Palette } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ExternalLink, Link2, ArrowUpRight, Bookmark, Code, Gamepad2, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 const Links = () => {
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
+  
   // Combine all links into a single array
   const allLinks = [
     // Main Projects
@@ -45,6 +55,33 @@ const Links = () => {
     }
   };
 
+  // Set up auto-rotation every 3 seconds
+  useEffect(() => {
+    if (!api) return;
+
+    // Create an interval for auto-rotation
+    const autoRotateInterval = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    // Cleanup on unmount
+    return () => clearInterval(autoRotateInterval);
+  }, [api]);
+
+  // Update current slide index when carousel moves
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
   return (
     <section id="links" className="py-20 bg-black bg-grid">
       <div className="container mx-auto">
@@ -54,42 +91,73 @@ const Links = () => {
           and UI/UX showcases. Each link represents a unique solution to specific challenges.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {allLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#ea384c]/10 
-                       rounded-lg p-5 hover:border-[#ea384c]/50 transition-all duration-300 
-                       hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[140px]
-                       hover:-translate-y-1`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
-                            opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-              
-              <div className="relative z-10 flex flex-col items-center text-center">
-                <span className="mb-3 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
-                  {link.icon}
-                </span>
-                <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
-                  {link.label}
-                </span>
-                <span className="text-xs text-gray-400 mt-1">{link.category}</span>
-                
-                <div className="absolute -bottom-6 -right-6 transform translate-x-1/2 translate-y-1/2 opacity-0 
-                              group-hover:opacity-100 group-hover:-translate-y-0 group-hover:-translate-x-0 
-                              transition-all duration-300">
-                  <ArrowUpRight className="h-5 w-5 text-[#ea384c]" />
-                </div>
+        <div className="mx-auto max-w-6xl px-8">
+          <Carousel 
+            setApi={setApi}
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-4">
+              {allLinks.map((link, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/4">
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      // Fix link opening issue by explicitly opening in new tab
+                      e.preventDefault();
+                      window.open(link.url, '_blank', 'noopener,noreferrer');
+                    }}
+                    className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#ea384c]/10 
+                              rounded-lg p-5 hover:border-[#ea384c]/50 transition-all duration-300 
+                              hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[140px]
+                              hover:-translate-y-1 block w-full`}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
+                                  opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                    
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                      <span className="mb-3 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
+                        {link.icon}
+                      </span>
+                      <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
+                        {link.label}
+                      </span>
+                      <span className="text-xs text-gray-400 mt-1">{link.category}</span>
+                      
+                      <div className="absolute -bottom-6 -right-6 transform translate-x-1/2 translate-y-1/2 opacity-0 
+                                    group-hover:opacity-100 group-hover:-translate-y-0 group-hover:-translate-x-0 
+                                    transition-all duration-300">
+                        <ArrowUpRight className="h-5 w-5 text-[#ea384c]" />
+                      </div>
+                    </div>
+                    
+                    <span className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <ExternalLink className="h-3 w-3 text-gray-400" />
+                    </span>
+                  </a>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex items-center justify-center mt-8 gap-2">
+              <CarouselPrevious className="relative static left-auto transform-none h-8 w-8 rounded-full" />
+              <div className="flex gap-1">
+                {Array.from({ length: Math.ceil(allLinks.length / 4) }).map((_, i) => (
+                  <span
+                    key={i}
+                    className={`block h-2 w-2 rounded-full transition-colors duration-300 ${
+                      current === i ? "bg-[#ea384c]" : "bg-gray-600"
+                    }`}
+                  />
+                ))}
               </div>
-              
-              <span className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ExternalLink className="h-3 w-3 text-gray-400" />
-              </span>
-            </a>
-          ))}
+              <CarouselNext className="relative static right-auto transform-none h-8 w-8 rounded-full" />
+            </div>
+          </Carousel>
         </div>
 
         <div className="absolute particle w-2 h-2 opacity-40 bottom-32 right-20" style={{"--x1": "-50px", "--y1": "30px", "--x2": "20px", "--y2": "-40px"} as React.CSSProperties}></div>
