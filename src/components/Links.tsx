@@ -16,18 +16,18 @@ const Links = () => {
   // Combine all links into a single array
   const allLinks = [
     // Main Projects
-    { url: "https://ruthwikreddy.xyz/medilink/", label: "MediLink", category: "Project", icon: <Link2 className="h-4 w-4" /> },
+    { url: "https://ruthwikreddy.xyz/medilink/", label: "MediLink V1", category: "Project", icon: <Link2 className="h-4 w-4" /> },
+    { url: "https://medilinkindia.glide.page/", label: "MediLink V2", category: "Project", icon: <Link2 className="h-4 w-4" /> },
+    { url: "https://medilink-india.vercel.app/", label: "MediLink Main", category: "Project", icon: <Link2 className="h-4 w-4" /> },
     { url: "https://ruthwikreddy.xyz/emergency-card/", label: "Emergency Card", category: "Project", icon: <Link2 className="h-4 w-4" /> },
-    { url: "https://ruthwikreddy.xyz/muscleworks/", label: "Muscle Works", category: "Project", icon: <Link2 className="h-4 w-4" /> },
-    { url: "https://ruthwikreddy.xyz/dolcevita-india/", label: "Dolce Vita", category: "Project", icon: <Link2 className="h-4 w-4" /> },
+    { url: "https://muscleworks.vercel.app/", label: "Muscle Works", category: "Project", icon: <Link2 className="h-4 w-4" /> },
+    { url: "https://dolcevita-india.vercel.app/", label: "Dolce Vita", category: "Project", icon: <Link2 className="h-4 w-4" /> },
     { url: "https://ruthwikreddy.xyz/innovate-students/", label: "Innovate Students", category: "Project", icon: <Link2 className="h-4 w-4" /> },
     
     // Educational Tools
     { url: "https://ruthwikreddy.xyz/carbon_atom/", label: "Carbon Atom", category: "Educational", icon: <Bookmark className="h-4 w-4" /> },
     { url: "https://ruthwikreddy.xyz/periodic_table/", label: "Periodic Table", category: "Educational", icon: <Bookmark className="h-4 w-4" /> },
     { url: "https://ruthwikreddy.xyz/age_calculator/", label: "Age Calculator", category: "Educational", icon: <Bookmark className="h-4 w-4" /> },
-    { url: "https://ruthwikreddy.xyz/Binary/", label: "Binary Calculator", category: "Educational", icon: <Bookmark className="h-4 w-4" /> },
-    { url: "https://ruthwikreddy.xyz/word-counter/", label: "Word Counter", category: "Educational", icon: <Bookmark className="h-4 w-4" /> },
     
     // Games & Interactive
     { url: "https://ruthwikreddy.xyz/memory_game/", label: "Memory Game", category: "Game", icon: <Gamepad2 className="h-4 w-4" /> },
