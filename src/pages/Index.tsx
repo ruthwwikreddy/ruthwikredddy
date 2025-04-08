@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,7 +10,6 @@ import CustomCursor from "@/components/CustomCursor";
 import { useEffect } from "react";
 import Banner from "@/components/Banner";
 import Featured from "@/components/Featured";
-import Projects from "@/components/Projects";
 
 const Index = () => {
   useEffect(() => {
@@ -49,7 +47,6 @@ const Index = () => {
         <main className="flex-1 w-full">
           <Hero />
           <About />
-          <Projects />
           <Links />
           <Banner />
           <Certifications />
