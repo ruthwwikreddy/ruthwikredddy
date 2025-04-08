@@ -47,11 +47,11 @@ const Links = () => {
   // Function to get color based on category
   const getCategoryColorClass = (category) => {
     switch(category) {
-      case 'Project': return 'from-pink-500 to-rose-500';
-      case 'Educational': return 'from-blue-400 to-cyan-400';
-      case 'Game': return 'from-green-400 to-emerald-400';
-      case 'UI/UX': return 'from-purple-400 to-indigo-400';
-      default: return 'from-gray-400 to-slate-400';
+      case 'Project': return 'from-blue-500 to-[#032950]';
+      case 'Educational': return 'from-cyan-400 to-blue-400';
+      case 'Game': return 'from-emerald-400 to-blue-400';
+      case 'UI/UX': return 'from-indigo-400 to-blue-400';
+      default: return 'from-slate-400 to-blue-400';
     }
   };
 
@@ -112,16 +112,16 @@ const Links = () => {
                       e.preventDefault();
                       window.open(link.url, '_blank', 'noopener,noreferrer');
                     }}
-                    className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#ea384c]/10 
-                              rounded-lg p-5 hover:border-[#ea384c]/50 transition-all duration-300 
-                              hover:shadow-neon-glow flex flex-col items-center justify-center min-h-[140px]
+                    className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#032950]/10 
+                              rounded-lg p-5 hover:border-[#032950]/50 transition-all duration-300 
+                              hover:shadow-[0_0_15px_rgba(3,41,80,0.3)] hover:border-[#032950]/30 flex flex-col items-center justify-center min-h-[140px]
                               hover:-translate-y-1 block w-full`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
                                   opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                     
                     <div className="relative z-10 flex flex-col items-center text-center">
-                      <span className="mb-3 text-[#ea384c] group-hover:text-shadow-neon-red transition-all duration-300">
+                      <span className="mb-3 text-[#032950] group-hover:text-shadow-neon-blue transition-all duration-300">
                         {link.icon}
                       </span>
                       <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
@@ -132,7 +132,7 @@ const Links = () => {
                       <div className="absolute -bottom-6 -right-6 transform translate-x-1/2 translate-y-1/2 opacity-0 
                                     group-hover:opacity-100 group-hover:-translate-y-0 group-hover:-translate-x-0 
                                     transition-all duration-300">
-                        <ArrowUpRight className="h-5 w-5 text-[#ea384c]" />
+                        <ArrowUpRight className="h-5 w-5 text-[#032950]" />
                       </div>
                     </div>
                     
@@ -150,7 +150,7 @@ const Links = () => {
                   <span
                     key={i}
                     className={`block h-2 w-2 rounded-full transition-colors duration-300 ${
-                      current === i ? "bg-[#ea384c]" : "bg-gray-600"
+                      current === i ? "bg-[#032950]" : "bg-gray-600"
                     }`}
                   />
                 ))}

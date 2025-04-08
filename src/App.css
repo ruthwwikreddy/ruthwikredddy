@@ -1,3 +1,4 @@
+
 #root {
   max-width: 100vw;
   width: 100%;
@@ -12,7 +13,7 @@
   min-height: 100vh;
 }
 
-/* Upgraded Advanced Cursor styling */
+/* Updated Advanced Cursor styling with blue color */
 body {
   cursor: none !important;
   background-color: black;
@@ -40,16 +41,16 @@ body {
 .cursor-dot {
   width: 8px;
   height: 8px;
-  background-color: rgba(234, 56, 76, 0.9);
+  background-color: rgba(3, 41, 80, 0.9);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(234, 56, 76, 0.8), 0 0 20px rgba(234, 56, 76, 0.4);
+  box-shadow: 0 0 10px rgba(3, 41, 80, 0.8), 0 0 20px rgba(3, 41, 80, 0.4);
   transform: translate(-50%, -50%);
 }
 
 .cursor-ring {
   width: 32px;
   height: 32px;
-  border: 2px solid rgba(234, 56, 76, 0.6);
+  border: 2px solid rgba(3, 41, 80, 0.6);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.2s, height 0.2s, border 0.2s;
@@ -59,14 +60,14 @@ body {
   width: 50px;
   height: 50px;
   border-width: 3px;
-  background: rgba(234, 56, 76, 0.1);
+  background: rgba(3, 41, 80, 0.1);
   mix-blend-mode: difference;
 }
 
 .cursor-active {
   width: 24px;
   height: 24px;
-  background: rgba(234, 56, 76, 0.3);
+  background: rgba(3, 41, 80, 0.3);
 }
 
 .cursor-text {
@@ -81,7 +82,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(234, 56, 76, 0.9);
+  background: rgba(3, 41, 80, 0.9);
 }
 
 /* Enhanced Scrollbar styling */
@@ -95,18 +96,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(234, 56, 76, 0.5);
+  background: rgba(3, 41, 80, 0.5);
   border-radius: 4px;
   transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(234, 56, 76, 0.8);
+  background: rgba(3, 41, 80, 0.8);
 }
 
 /* Text selection */
 ::selection {
-  background-color: rgba(234, 56, 76, 0.3);
+  background-color: rgba(3, 41, 80, 0.3);
   color: #fff;
 }
 
@@ -135,12 +136,12 @@ body {
 
 /* Glow effect for important elements */
 .glow-effect {
-  box-shadow: 0 0 15px rgba(234, 56, 76, 0.5);
+  box-shadow: 0 0 15px rgba(3, 41, 80, 0.5);
   transition: box-shadow 0.3s ease;
 }
 
 .glow-effect:hover {
-  box-shadow: 0 0 25px rgba(234, 56, 76, 0.7);
+  box-shadow: 0 0 25px rgba(3, 41, 80, 0.7);
 }
 
 /* Enhanced Futuristic button hover effect */
@@ -153,7 +154,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(3, 41, 80, 0.3) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -169,7 +170,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(234, 56, 76, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(3, 41, 80, 0.2), transparent);
   transition: left 0.8s;
 }
 
@@ -179,7 +180,7 @@ body {
 
 /* Enhanced Text shimmer effect */
 .text-shimmer {
-  background: linear-gradient(90deg, #fff, #ea384c, #fff);
+  background: linear-gradient(90deg, #fff, #032950, #fff);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -196,7 +197,7 @@ body {
 /* Enhanced Typing animation */
 .typing-animation {
   overflow: hidden;
-  border-right: 2px solid #ea384c;
+  border-right: 2px solid #032950;
   white-space: nowrap;
   margin: 0 auto;
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
@@ -209,7 +210,7 @@ body {
 
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: #ea384c }
+  50% { border-color: #032950 }
 }
 
 /* Enhanced Scan line effect */
@@ -225,7 +226,7 @@ body {
   left: 0;
   width: 100%;
   height: 10px;
-  background: linear-gradient(180deg, transparent, rgba(234, 56, 76, 0.2), transparent);
+  background: linear-gradient(180deg, transparent, rgba(3, 41, 80, 0.2), transparent);
   animation: scan-line 3s linear infinite;
 }
 
@@ -264,7 +265,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(234, 56, 76, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(3, 41, 80, 0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -277,8 +278,8 @@ body {
 /* Enhanced Background grid */
 .bg-grid {
   background-image: 
-    linear-gradient(rgba(234, 56, 76, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(234, 56, 76, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(3, 41, 80, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3, 41, 80, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
@@ -291,9 +292,9 @@ body {
   position: absolute;
   width: 2px;
   height: 2px;
-  background-color: rgba(234, 56, 76, 0.3);
+  background-color: rgba(3, 41, 80, 0.3);
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(234, 56, 76, 0.3);
+  box-shadow: 0 0 5px rgba(3, 41, 80, 0.3);
   animation: float-random 20s linear infinite;
 }
 
@@ -316,13 +317,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(234, 56, 76, 0);
+  background: rgba(3, 41, 80, 0);
   transition: background 0.3s;
   pointer-events: none;
 }
 
 .neo-trail:hover::before {
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 60%);
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(3, 41, 80, 0.3) 0%, transparent 60%);
 }
 
 /* Physics-based effects for interactive elements */
@@ -366,7 +367,7 @@ body {
   content: '';
   position: absolute;
   inset: -5px;
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(234, 56, 76, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(3, 41, 80, 0.3) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   border-radius: inherit;
@@ -387,7 +388,7 @@ body {
     box-shadow: none;
   }
   2%, 8%, 12%, 18% {
-    box-shadow: 0 0 20px rgba(234, 56, 76, 0.8), 0 0 30px rgba(234, 56, 76, 0.6);
+    box-shadow: 0 0 20px rgba(3, 41, 80, 0.8), 0 0 30px rgba(3, 41, 80, 0.6);
   }
 }
 

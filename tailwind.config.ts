@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -73,8 +74,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				portfolio: {
-					'primary': '#ea384c',
-					'secondary': '#c2152a',
+					'primary': '#032950',
+					'secondary': '#021c33',
 					'accent': '#222222',
 					'dark': '#000000',
 					'light': '#333333'
@@ -89,13 +90,13 @@ export default {
 				sm: '0 1px 2px var(--tw-shadow-color)',
 				DEFAULT: '0 2px 4px var(--tw-shadow-color)',
 				lg: '0 8px 16px var(--tw-shadow-color)',
-				'neon-red': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.5)',
-				'glitch-red': '0 0 10px rgba(234, 56, 76, 0.7), -3px -1px 1px rgba(0, 0, 0, 0.5), 3px 1px 1px rgba(255, 255, 255, 0.8)',
+				'neon-blue': '0 0 10px rgba(3, 41, 80, 0.7), 0 0 20px rgba(3, 41, 80, 0.5)',
+				'glitch-blue': '0 0 10px rgba(3, 41, 80, 0.7), -3px -1px 1px rgba(0, 0, 0, 0.5), 3px 1px 1px rgba(255, 255, 255, 0.8)',
 			},
 			boxShadow: {
-				'neon-glow': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.3)',
-				'neon-pulse': '0 0 10px rgba(234, 56, 76, 0.7), 0 0 20px rgba(234, 56, 76, 0.3), 0 0 30px rgba(234, 56, 76, 0.1)',
-				'neon-strong': '0 0 15px rgba(234, 56, 76, 0.8), 0 0 30px rgba(234, 56, 76, 0.5), 0 0 45px rgba(234, 56, 76, 0.2)'
+				'neon-glow': '0 0 10px rgba(3, 41, 80, 0.7), 0 0 20px rgba(3, 41, 80, 0.3)',
+				'neon-pulse': '0 0 10px rgba(3, 41, 80, 0.7), 0 0 20px rgba(3, 41, 80, 0.3), 0 0 30px rgba(3, 41, 80, 0.1)',
+				'neon-strong': '0 0 15px rgba(3, 41, 80, 0.8), 0 0 30px rgba(3, 41, 80, 0.5), 0 0 45px rgba(3, 41, 80, 0.2)'
 			},
 			backgroundImage: {
               'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
