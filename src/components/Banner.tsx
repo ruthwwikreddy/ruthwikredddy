@@ -4,13 +4,15 @@ import React from "react";
 const Banner = () => {
   return (
     <section className="py-10 bg-black relative overflow-hidden">
-      <div className="container-fluid px-0 mx-0 w-full">
-        <div className="w-full overflow-hidden">
-          <img 
-            src=".\assets\images\Banner.jpg" 
-            alt="Banner" 
-            className="w-full h-auto object-cover" 
-          />
+      <div className="container mx-auto">
+        <div className="flex justify-center items-center">
+          <div className="w-full max-w-6xl overflow-hidden rounded-lg shadow-neon-glow">
+            <img 
+              src=".\assets\images\Banner.jpg" 
+              alt="Banner" 
+              className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105" 
+            />
+          </div>
         </div>
       </div>
     </section>
