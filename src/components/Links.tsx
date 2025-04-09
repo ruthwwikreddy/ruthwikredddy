@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ExternalLink, Link2, ArrowUpRight, Bookmark, Code, Gamepad2, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Link2, ArrowUpRight, Bookmark, Code, Gamepad2, Palette } from 'lucide-react';
 import { 
   Carousel, 
   CarouselContent, 
@@ -45,14 +45,20 @@ const Links = () => {
   ];
 
   // Function to get color based on category
-  const getCategoryColorClass = (category) => {
+  const getCategoryColorClass = (category: string) => {
     switch(category) {
       case 'Project': return 'from-blue-500 to-[#032950]';
-      case 'Educational': return 'from-cyan-400 to-blue-400';
-      case 'Game': return 'from-emerald-400 to-blue-400';
-      case 'UI/UX': return 'from-indigo-400 to-blue-400';
-      default: return 'from-slate-400 to-blue-400';
+      case 'Educational': return 'from-cyan-400 to-[#032950]';
+      case 'Game': return 'from-emerald-400 to-[#032950]';
+      case 'UI/UX': return 'from-indigo-400 to-[#032950]';
+      default: return 'from-slate-400 to-[#032950]';
     }
+  };
+
+  // Function to safely open links in a new tab
+  const handleLinkClick = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   // Set up auto-rotation every 3 seconds
@@ -107,11 +113,7 @@ const Links = () => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => {
-                      // Fix link opening issue by explicitly opening in new tab
-                      e.preventDefault();
-                      window.open(link.url, '_blank', 'noopener,noreferrer');
-                    }}
+                    onClick={(e) => handleLinkClick(link.url, e)}
                     className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#032950]/10 
                               rounded-lg p-5 hover:border-[#032950]/50 transition-all duration-300 
                               hover:shadow-[0_0_15px_rgba(3,41,80,0.3)] hover:border-[#032950]/30 flex flex-col items-center justify-center min-h-[140px]
@@ -144,7 +146,7 @@ const Links = () => {
               ))}
             </CarouselContent>
             <div className="flex items-center justify-center mt-8 gap-2">
-              <CarouselPrevious className="relative static left-auto transform-none h-8 w-8 rounded-full" />
+              <CarouselPrevious className="relative static left-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#032950]/30 text-[#032950] hover:bg-[#032950]/10 hover:text-white" />
               <div className="flex gap-1">
                 {Array.from({ length: Math.ceil(allLinks.length / 4) }).map((_, i) => (
                   <span
@@ -155,7 +157,7 @@ const Links = () => {
                   />
                 ))}
               </div>
-              <CarouselNext className="relative static right-auto transform-none h-8 w-8 rounded-full" />
+              <CarouselNext className="relative static right-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#032950]/30 text-[#032950] hover:bg-[#032950]/10 hover:text-white" />
             </div>
           </Carousel>
         </div>

@@ -14,7 +14,7 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#032950] to-transparent"></div>
           
-          {/* Added animated light beams */}
+          {/* Animated light beams */}
           <div className="absolute inset-0 overflow-hidden opacity-40">
             <div className="absolute h-[2px] w-[60%] bg-gradient-to-r from-transparent via-[#032950] to-transparent top-[30%] left-[20%] animate-[pulse_5s_ease-in-out_infinite]"></div>
             <div className="absolute h-[2px] w-[40%] bg-gradient-to-r from-transparent via-[#032950]/80 to-transparent top-[60%] left-[10%] animate-[pulse_7s_ease-in-out_infinite_0.5s]"></div>
