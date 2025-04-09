@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import { Send, CheckCircle } from "lucide-react";
@@ -114,7 +115,7 @@ const Contact = () => {
             <div 
               className="card backdrop-blur-lg p-8 hover:shadow-neon-glow transition-all duration-500 animate-fade-up"
               style={{
-                background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(234, 56, 76, 0.1) 0%, rgba(0, 0, 0, 0.8) 50%)`,
+                background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(3, 41, 80, 0.1) 0%, rgba(0, 0, 0, 0.8) 50%)`,
               }}
             >
               <div className="absolute inset-0 rounded-lg pointer-events-none overflow-hidden">
@@ -145,8 +146,8 @@ const Contact = () => {
                     <div 
                       className={`absolute inset-0 rounded-md pointer-events-none transition-opacity duration-300 ${focusedField === 'name' ? 'opacity-100' : 'opacity-0'}`}
                       style={{ 
-                        boxShadow: 'inset 0 0 15px rgba(234, 56, 76, 0.3)',
-                        background: 'radial-gradient(circle at center, rgba(234, 56, 76, 0.05) 0%, transparent 70%)'
+                        boxShadow: 'inset 0 0 15px rgba(3, 41, 80, 0.3)',
+                        background: 'radial-gradient(circle at center, rgba(3, 41, 80, 0.05) 0%, transparent 70%)'
                       }}
                     ></div>
                   </div>
@@ -173,8 +174,8 @@ const Contact = () => {
                     <div 
                       className={`absolute inset-0 rounded-md pointer-events-none transition-opacity duration-300 ${focusedField === 'email' ? 'opacity-100' : 'opacity-0'}`}
                       style={{ 
-                        boxShadow: 'inset 0 0 15px rgba(234, 56, 76, 0.3)',
-                        background: 'radial-gradient(circle at center, rgba(234, 56, 76, 0.05) 0%, transparent 70%)'
+                        boxShadow: 'inset 0 0 15px rgba(3, 41, 80, 0.3)',
+                        background: 'radial-gradient(circle at center, rgba(3, 41, 80, 0.05) 0%, transparent 70%)'
                       }}
                     ></div>
                   </div>
@@ -201,8 +202,8 @@ const Contact = () => {
                     <div 
                       className={`absolute inset-0 rounded-md pointer-events-none transition-opacity duration-300 ${focusedField === 'message' ? 'opacity-100' : 'opacity-0'}`}
                       style={{ 
-                        boxShadow: 'inset 0 0 15px rgba(234, 56, 76, 0.3)',
-                        background: 'radial-gradient(circle at center, rgba(234, 56, 76, 0.05) 0%, transparent 70%)'
+                        boxShadow: 'inset 0 0 15px rgba(3, 41, 80, 0.3)',
+                        background: 'radial-gradient(circle at center, rgba(3, 41, 80, 0.05) 0%, transparent 70%)'
                       }}
                     ></div>
                   </div>
