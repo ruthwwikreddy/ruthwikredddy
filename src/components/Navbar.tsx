@@ -8,7 +8,6 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +60,23 @@ const Navbar = () => {
     });
   };
 
+  // Handle smooth scrolling for anchor links
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 100;
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      setTimeout(() => {
+        window.scrollBy(0, -offset);
+      }, 10);
+    }
+    setIsOpen(false); // Close mobile menu if open
+  };
+
   // Custom styles for NavigationMenuLink
   const navLinkStyles = (isActive: boolean) => 
     cn(
@@ -80,7 +96,11 @@ const Navbar = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="flex justify-between items-center">
-          <a href="#home" className="font-heading text-xl font-bold text-white mr-4 hover:text-[#032950] transition-colors">
+          <a 
+            href="#home" 
+            className="font-heading text-xl font-bold text-white mr-4 hover:text-[#032950] transition-colors"
+            onClick={(e) => handleNavClick(e, '#home')}
+          >
             R
           </a>
 
@@ -102,7 +122,7 @@ const Navbar = () => {
                     <NavigationMenuLink 
                       href={item.href}
                       className={navLinkStyles(activeSection === item.href.substring(1))}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => handleNavClick(e, item.href)}
                     >
                       <item.icon size={16} />
                       {item.name}
@@ -126,7 +146,7 @@ const Navbar = () => {
                         ? 'text-[#032950] font-medium' 
                         : 'text-gray-300 hover:text-[#032950]'
                     }`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                   >
                     <item.icon size={16} />
                     {item.name}

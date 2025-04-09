@@ -34,7 +34,7 @@ const About = () => {
       </div>
       
       <div className="container mx-auto relative z-10">
-        <h2 className="section-title text-center mx-auto">About Me</h2>
+        <h2 className="section-title text-center mx-auto" id="about-title">About Me</h2>
         
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           <div className="space-y-6">

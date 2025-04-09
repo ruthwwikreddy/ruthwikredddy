@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -23,7 +24,7 @@ const Index = () => {
         e.preventDefault();
         const element = document.querySelector(href);
         if (element) {
-          const offset = 100;
+          const offset = 100; // Adjust this value based on your layout
           element.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
