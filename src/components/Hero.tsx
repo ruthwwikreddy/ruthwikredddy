@@ -48,11 +48,11 @@ const Hero = () => {
 
             <div className="flex flex-wrap gap-5 mb-8">
               <a href="#contact" className="btn-primary">Get In Touch</a>
-              <a href="#projects" className="btn-outline">View Projects</a>
+              <a href="#links" className="btn-outline">View Projects</a>
             </div>
 
             <div className="flex space-x-5">
-              <a href="https://www.linkedin.com/in/ruthwikredd/" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
+              <a href="https://www.linkedin.com/in/ruthwwikreddy/" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
                 <Linkedin className="w-6 h-6" />
               </a>
               <a href="https://x.com/ruthwikreddy" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
@@ -61,7 +61,7 @@ const Hero = () => {
               <a href="https://www.instagram.com/ruthwwikreddy/" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="https://github.com/ruthwikredd" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
+              <a href="https://github.com/ruthwwikreddy" target="_blank" rel="noopener noreferrer" className="text-white opacity-70 hover:opacity-100 hover:text-[#032950] transition-all duration-300 hover:scale-110 transform">
                 <Github className="w-6 h-6" />
               </a>
             </div>
@@ -73,7 +73,7 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full border border-[#032950]/30 animate-pulse"></div>
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-[#032950] shadow-[0_0_30px_rgba(3,41,80,0.5)]">
                 <img 
-                  src=".\assets\images\logo.jpg" 
+                  src="./assets/images/logo.jpg" 
                   alt="Ruthwik Reddy"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />

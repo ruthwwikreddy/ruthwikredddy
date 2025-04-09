@@ -20,7 +20,7 @@ const Navbar = () => {
   const menuItems = [
     { name: 'Home', href: '#home', icon: Home },
     { name: 'About', href: '#about', icon: User },
-    { name: 'Projects', href: '#projects', icon: Briefcase },
+    { name: 'Projects', href: '#links', icon: Briefcase },
     { name: 'Certifications', href: '#certifications', icon: Award },
     { name: 'Featured', href: '#featured', icon: Star },
     { name: 'Blogs', href: '#blogs', icon: BookOpen },
