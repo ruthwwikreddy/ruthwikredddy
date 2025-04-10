@@ -82,23 +82,23 @@ const Navbar = () => {
     cn(
       "flex items-center gap-2 px-3 py-2 transition-all duration-300 text-sm font-medium relative",
       isActive 
-        ? "text-[#032950] after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-[#032950] after:left-0 after:bottom-0 after:shadow-[0_0_10px_rgba(3,41,80,0.7)]" 
-        : "text-gray-300 hover:text-[#032950] after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#032950] after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full hover:after:shadow-[0_0_10px_rgba(3,41,80,0.7)]"
+        ? "text-[#007BFF] after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-[#007BFF] after:left-0 after:bottom-0 after:shadow-[0_0_10px_rgba(0,123,255,0.7)]" 
+        : "text-gray-300 hover:text-[#007BFF] after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#007BFF] after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full hover:after:shadow-[0_0_10px_rgba(0,123,255,0.7)]"
     );
 
   return (
     <>
       <nav 
-        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-[85%] md:max-w-[75%] rounded-xl px-6 py-4 backdrop-blur-xl bg-black/70 border border-[#032950]/20 transition-all duration-300 ${
+        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-[85%] md:max-w-[75%] rounded-xl px-6 py-4 backdrop-blur-xl bg-black/70 border border-[#007BFF]/20 transition-all duration-300 ${
           scrolled ? 'shadow-neon-strong' : 'shadow-neon-glow'
-        } ${isHovered ? 'border-[#032950]/50 shadow-neon-strong scale-[1.02]' : ''}`}
+        } ${isHovered ? 'border-[#007BFF]/50 shadow-neon-strong scale-[1.02]' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="flex justify-between items-center">
           <a 
             href="#home" 
-            className="font-heading text-xl font-bold text-white mr-4 hover:text-[#032950] transition-colors"
+            className="font-heading text-xl font-bold text-white mr-4 hover:text-[#007BFF] transition-colors"
             onClick={(e) => handleNavClick(e, '#home')}
           >
             R
@@ -106,7 +106,7 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <button 
-            className="md:hidden p-2 text-white hover:text-[#032950] transition-colors" 
+            className="md:hidden p-2 text-white hover:text-[#007BFF] transition-colors" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
@@ -135,7 +135,7 @@ const Navbar = () => {
 
           {/* Mobile menu */}
           {isOpen && (
-            <div className="md:hidden absolute bottom-full left-0 right-0 mb-3 bg-black/90 backdrop-blur-xl rounded-lg shadow-neon-glow py-4 border border-[#032950]/20 animate-fade-in">
+            <div className="md:hidden absolute bottom-full left-0 right-0 mb-3 bg-black/90 backdrop-blur-xl rounded-lg shadow-neon-glow py-4 border border-[#007BFF]/20 animate-fade-in">
               <div className="flex flex-col space-y-3">
                 {menuItems.map((item) => (
                   <a
@@ -143,8 +143,8 @@ const Navbar = () => {
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 transition-colors duration-300 ${
                       activeSection === item.href.substring(1) 
-                        ? 'text-[#032950] font-medium' 
-                        : 'text-gray-300 hover:text-[#032950]'
+                        ? 'text-[#007BFF] font-medium' 
+                        : 'text-gray-300 hover:text-[#007BFF]'
                     }`}
                     onClick={(e) => handleNavClick(e, item.href)}
                   >
@@ -161,12 +161,12 @@ const Navbar = () => {
       {/* Scroll to top button */}
       <button 
         onClick={scrollToTop}
-        className={`fixed z-40 bottom-24 right-6 p-3 rounded-full bg-black/80 border border-[#032950]/40 transition-all duration-300 hover:bg-black hover:border-[#032950]/60 hover:shadow-neon-glow ${
+        className={`fixed z-40 bottom-24 right-6 p-3 rounded-full bg-black/80 border border-[#007BFF]/40 transition-all duration-300 hover:bg-black hover:border-[#007BFF]/60 hover:shadow-neon-glow ${
           showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
         aria-label="Scroll to top"
       >
-        <ChevronUp size={18} className="text-[#032950]" />
+        <ChevronUp size={18} className="text-[#007BFF]" />
       </button>
     </>
   );

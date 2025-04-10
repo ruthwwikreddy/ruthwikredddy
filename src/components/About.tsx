@@ -38,21 +38,21 @@ const About = () => {
         
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           <div className="space-y-6">
-            <p className="text-foreground leading-relaxed hover:text-[#032950] transition-colors duration-500">
+            <p className="text-foreground leading-relaxed hover:text-[#007BFF] transition-colors duration-500">
               I'm a 10th-grade student at DDMS (AMS) P. Obul Reddy Public School with a passion for technology and innovation. 
               As an active member of the Robotics Club and NCC Air Wing, I've developed strong leadership skills and technical expertise.
             </p>
-            <p className="text-foreground leading-relaxed hover:text-[#032950] transition-colors duration-500">
+            <p className="text-foreground leading-relaxed hover:text-[#007BFF] transition-colors duration-500">
               My journey in technology has led me to participate in various competitions, including the Youth Ideathon, 
               Atal Marathon, and Indian Future Tycoon, where I've consistently demonstrated my problem-solving abilities and innovative thinking.
             </p>
             
             <div className="flex flex-wrap gap-3 mt-6">
-              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#032950]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale">Innovation</span>
-              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#032950]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.1s"}}>Robotics</span>
-              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#032950]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.2s"}}>Leadership</span>
-              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#032950]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.3s"}}>Programming</span>
-              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#032950]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.4s"}}>Problem Solving</span>
+              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale">Innovation</span>
+              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.1s"}}>Robotics</span>
+              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.2s"}}>Leadership</span>
+              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.3s"}}>Programming</span>
+              <span className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform hover:scale-105 animate-pulse-scale" style={{animationDelay: "0.4s"}}>Problem Solving</span>
             </div>
           </div>
           

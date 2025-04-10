@@ -47,11 +47,11 @@ const Links = () => {
   // Function to get color based on category
   const getCategoryColorClass = (category: string) => {
     switch(category) {
-      case 'Project': return 'from-blue-500 to-[#032950]';
-      case 'Educational': return 'from-cyan-400 to-[#032950]';
-      case 'Game': return 'from-emerald-400 to-[#032950]';
-      case 'UI/UX': return 'from-indigo-400 to-[#032950]';
-      default: return 'from-slate-400 to-[#032950]';
+      case 'Project': return 'from-blue-500 to-[#007BFF]';
+      case 'Educational': return 'from-cyan-400 to-[#007BFF]';
+      case 'Game': return 'from-emerald-400 to-[#007BFF]';
+      case 'UI/UX': return 'from-indigo-400 to-[#007BFF]';
+      default: return 'from-slate-400 to-[#007BFF]';
     }
   };
 
@@ -114,16 +114,16 @@ const Links = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => handleLinkClick(link.url, e)}
-                    className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#032950]/10 
-                              rounded-lg p-5 hover:border-[#032950]/50 transition-all duration-300 
-                              hover:shadow-[0_0_15px_rgba(3,41,80,0.3)] hover:border-[#032950]/30 flex flex-col items-center justify-center min-h-[140px]
+                    className={`relative group overflow-hidden backdrop-blur-sm bg-black/40 border border-[#007BFF]/10 
+                              rounded-lg p-5 hover:border-[#007BFF]/50 transition-all duration-300 
+                              hover:shadow-[0_0_15px_rgba(0,123,255,0.3)] hover:border-[#007BFF]/30 flex flex-col items-center justify-center min-h-[140px]
                               hover:-translate-y-1 block w-full`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColorClass(link.category)} 
                                   opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                     
                     <div className="relative z-10 flex flex-col items-center text-center">
-                      <span className="mb-3 text-[#032950] group-hover:text-shadow-neon-blue transition-all duration-300">
+                      <span className="mb-3 text-[#007BFF] group-hover:text-shadow-neon-blue transition-all duration-300">
                         {link.icon}
                       </span>
                       <span className="font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
@@ -134,7 +134,7 @@ const Links = () => {
                       <div className="absolute -bottom-6 -right-6 transform translate-x-1/2 translate-y-1/2 opacity-0 
                                     group-hover:opacity-100 group-hover:-translate-y-0 group-hover:-translate-x-0 
                                     transition-all duration-300">
-                        <ArrowUpRight className="h-5 w-5 text-[#032950]" />
+                        <ArrowUpRight className="h-5 w-5 text-[#007BFF]" />
                       </div>
                     </div>
                     
@@ -146,18 +146,18 @@ const Links = () => {
               ))}
             </CarouselContent>
             <div className="flex items-center justify-center mt-8 gap-2">
-              <CarouselPrevious className="relative static left-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#032950]/30 text-[#032950] hover:bg-[#032950]/10 hover:text-white" />
+              <CarouselPrevious className="relative static left-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#007BFF]/30 text-[#007BFF] hover:bg-[#007BFF]/10 hover:text-white" />
               <div className="flex gap-1">
                 {Array.from({ length: Math.ceil(allLinks.length / 4) }).map((_, i) => (
                   <span
                     key={i}
                     className={`block h-2 w-2 rounded-full transition-colors duration-300 ${
-                      current === i ? "bg-[#032950]" : "bg-gray-600"
+                      current === i ? "bg-[#007BFF]" : "bg-gray-600"
                     }`}
                   />
                 ))}
               </div>
-              <CarouselNext className="relative static right-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#032950]/30 text-[#032950] hover:bg-[#032950]/10 hover:text-white" />
+              <CarouselNext className="relative static right-auto transform-none h-8 w-8 rounded-full bg-black/60 border-[#007BFF]/30 text-[#007BFF] hover:bg-[#007BFF]/10 hover:text-white" />
             </div>
           </Carousel>
         </div>
