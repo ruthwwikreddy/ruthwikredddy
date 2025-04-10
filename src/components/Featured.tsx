@@ -70,20 +70,20 @@ const Featured = () => {
     <section id="featured" className="py-16 md:py-20 bg-black text-white relative overflow-hidden w-full max-w-[100vw]">
       {/* Abstract background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[#032950]/5 blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-[#032950]/5 blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 rounded-full bg-[#032950]/5 blur-2xl"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[#007BFF]/5 blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-[#007BFF]/5 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 rounded-full bg-[#007BFF]/5 blur-2xl"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 max-w-7xl">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col items-center mb-12">
             <div className="flex items-center mb-4">
-              <Star className="text-[#032950] w-5 h-5 mr-2" />
+              <Star className="text-[#007BFF] w-5 h-5 mr-2" />
               <h2 className="text-4xl font-bold text-white uppercase tracking-widest">Featured</h2>
-              <Star className="text-[#032950] w-5 h-5 ml-2" />
+              <Star className="text-[#007BFF] w-5 h-5 ml-2" />
             </div>
-            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#032950] to-transparent rounded-full shadow-[0_0_10px_rgba(3,41,80,0.7)]"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#007BFF] to-transparent rounded-full shadow-[0_0_10px_rgba(0,123,255,0.7)]"></div>
           </div>
 
           {/* Category filter */}
@@ -92,8 +92,8 @@ const Featured = () => {
               onClick={() => setActiveCategory(null)} 
               className={`px-3 py-1.5 rounded-full text-sm transition-all duration-300 ${
                 activeCategory === null
-                  ? 'bg-[#032950] text-white shadow-[0_0_10px_rgba(3,41,80,0.5)]'
-                  : 'bg-black text-gray-400 border border-[#032950]/20 hover:border-[#032950]/50'
+                  ? 'bg-[#007BFF] text-white shadow-[0_0_10px_rgba(0,123,255,0.5)]'
+                  : 'bg-black text-gray-400 border border-[#007BFF]/20 hover:border-[#007BFF]/50'
               }`}
             >
               All
@@ -105,8 +105,8 @@ const Featured = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-3 py-1.5 rounded-full text-sm transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-[#032950] text-white shadow-[0_0_10px_rgba(3,41,80,0.5)]'
-                    : 'bg-black text-gray-400 border border-[#032950]/20 hover:border-[#032950]/50'
+                    ? 'bg-[#007BFF] text-white shadow-[0_0_10px_rgba(0,123,255,0.5)]'
+                    : 'bg-black text-gray-400 border border-[#007BFF]/20 hover:border-[#007BFF]/50'
                 }`}
               >
                 {category}
@@ -118,28 +118,28 @@ const Featured = () => {
             {filteredLinks.map((link, index) => (
               <div
                 key={index}
-                className={`group bg-black/40 backdrop-blur-md p-6 rounded-lg transition-all duration-500 border border-[#032950]/10 hover:border-[#032950]/50 hover:shadow-[0_0_15px_rgba(3,41,80,0.3)] relative overflow-hidden ${
+                className={`group bg-black/40 backdrop-blur-md p-6 rounded-lg transition-all duration-500 border border-[#007BFF]/10 hover:border-[#007BFF]/50 hover:shadow-[0_0_15px_rgba(0,123,255,0.3)] relative overflow-hidden ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 } cursor-pointer`}
                 style={{ transitionDelay: `${index * 100}ms` }}
                 onClick={() => handleLinkClick(link.url)}
               >
                 {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#032950]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 {link.category && (
-                  <span className="inline-block px-2 py-1 text-xs bg-black/60 text-[#032950] rounded-full mb-3 border border-[#032950]/20">
+                  <span className="inline-block px-2 py-1 text-xs bg-black/60 text-[#007BFF] rounded-full mb-3 border border-[#007BFF]/20">
                     {link.category}
                   </span>
                 )}
                 
-                <div className="text-lg font-semibold text-white group-hover:text-[#032950] transition-all duration-300 flex items-start">
+                <div className="text-lg font-semibold text-white group-hover:text-[#007BFF] transition-all duration-300 flex items-start">
                   <span className="flex-1">{link.title}</span>
                   <ExternalLink className="w-4 h-4 mt-1 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 
                 {/* Bottom glow effect */}
-                <div className="h-0.5 w-0 bg-gradient-to-r from-[#032950]/50 to-[#032950] group-hover:w-full absolute bottom-0 left-0 transition-all duration-500 rounded-full"></div>
+                <div className="h-0.5 w-0 bg-gradient-to-r from-[#007BFF]/50 to-[#007BFF] group-hover:w-full absolute bottom-0 left-0 transition-all duration-500 rounded-full"></div>
               </div>
             ))}
           </div>
