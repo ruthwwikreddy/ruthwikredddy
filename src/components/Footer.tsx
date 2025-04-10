@@ -13,7 +13,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/ruthwwikreddy/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#032950] transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-[#007BFF] transition-all duration-300 hover:scale-110"
             >
               <Linkedin className="w-5 h-5" />
             </a>
@@ -21,7 +21,7 @@ const Footer = () => {
               href="https://x.com/ruthwikreddy" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#032950] transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-[#007BFF] transition-all duration-300 hover:scale-110"
             >
               <Twitter className="w-5 h-5" />
             </a>
@@ -29,7 +29,7 @@ const Footer = () => {
               href="https://www.instagram.com/ruthwwikreddy/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#032950] transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-[#007BFF] transition-all duration-300 hover:scale-110"
             >
               <Instagram className="w-5 h-5" />
             </a>
@@ -37,7 +37,7 @@ const Footer = () => {
               href="https://github.com/ruthwwikreddy" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#032950] transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-[#007BFF] transition-all duration-300 hover:scale-110"
             >
               <Github className="w-5 h-5" />
             </a>
