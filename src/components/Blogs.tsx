@@ -89,14 +89,14 @@ const Blogs = () => {
                 {/* Scan line effect */}
                 <div className={`absolute inset-0 scan-line-effect ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
               </div>
-              <div className="p-6 bg-black/80 backdrop-blur-sm border-t border-[#032950]/20">
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#032950] transition-colors duration-300">{blog.title}</h3>
+              <div className="p-6 bg-black/80 backdrop-blur-sm border-t border-[#007BFF]/20">
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#007BFF] transition-colors duration-300">{blog.title}</h3>
                 <p className="text-gray-300 mb-4">{blog.description}</p>
                 <a 
                   href={blog.url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-[#032950] font-medium neo-trail relative overflow-hidden after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#032950] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left group-hover:after:shadow-[0_0_10px_rgba(3,41,80,0.7)]"
+                  className="inline-block text-[#007BFF] font-medium neo-trail relative overflow-hidden after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007BFF] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left group-hover:after:shadow-[0_0_10px_rgba(0,123,255,0.7)]"
                 >
                   Read More
                 </a>
