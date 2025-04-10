@@ -66,13 +66,13 @@ const Navbar = () => {
     const element = document.querySelector(href);
     if (element) {
       const offset = 100;
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
-      setTimeout(() => {
-        window.scrollBy(0, -offset);
-      }, 10);
     }
     setIsOpen(false); // Close mobile menu if open
   };

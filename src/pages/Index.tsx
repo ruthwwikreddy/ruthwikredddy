@@ -24,14 +24,14 @@ const Index = () => {
         e.preventDefault();
         const element = document.querySelector(href);
         if (element) {
-          const offset = 100; // Adjust this value based on your layout
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          const offset = 100; 
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
           });
-          setTimeout(() => {
-            window.scrollBy(0, -offset);
-          }, 10);
         }
       }
     };

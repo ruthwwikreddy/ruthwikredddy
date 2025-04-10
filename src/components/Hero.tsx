@@ -8,13 +8,13 @@ const Hero = () => {
     const element = document.querySelector(targetId);
     if (element) {
       const offset = 100;
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
-      setTimeout(() => {
-        window.scrollBy(0, -offset);
-      }, 10);
     }
   };
 
