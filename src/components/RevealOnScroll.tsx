@@ -44,7 +44,7 @@ const RevealOnScroll = ({
           }, delay);
         }
       },
-      { threshold }
+      { threshold, rootMargin: '0px 0px -100px 0px' }
     );
     
     if (currentRef) {

@@ -16,6 +16,45 @@ const About = () => {
       {/* Background grid effect */}
       <div className="absolute inset-0 bg-grid opacity-20"></div>
       
+      {/* Enhanced animated background lines for futuristic feel */}
+      <div className="absolute inset-0 opacity-20">
+        {[...Array(5)].map((_, i) => (
+          <motion.div 
+            key={`h-line-${i}`}
+            className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent"
+            style={{ top: `${(i + 1) * 20}%` }}
+            animate={{
+              opacity: [0.2, 0.8, 0.2],
+              boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.5)', '0 0 0px rgba(0,123,255,0)']
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5
+            }}
+          />
+        ))}
+        
+        {[...Array(5)].map((_, i) => (
+          <motion.div 
+            key={`v-line-${i}`}
+            className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/50 to-transparent"
+            style={{ left: `${(i + 1) * 20}%` }}
+            animate={{
+              opacity: [0.2, 0.8, 0.2],
+              boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.5)', '0 0 0px rgba(0,123,255,0)']
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.7
+            }}
+          />
+        ))}
+      </div>
+      
       {/* Animated particles */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(8)].map((_, i) => (
@@ -64,7 +103,7 @@ const About = () => {
                 {['Innovation', 'Robotics', 'Leadership', 'Programming', 'Problem Solving'].map((skill, index) => (
                   <motion.span 
                     key={index}
-                    className="px-4 py-2 bg-secondary text-foreground rounded-full text-sm hover:bg-[#007BFF]/80 hover:text-white transition-all duration-300 transform"
+                    className="px-4 py-2 bg-black text-[#007BFF] rounded-full text-sm border border-[#007BFF]/30 hover:bg-[#007BFF]/10 hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,123,255,0.2)]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
@@ -73,7 +112,7 @@ const About = () => {
                     }}
                     whileHover={{ 
                       scale: 1.1, 
-                      boxShadow: "0 0 10px rgba(0, 123, 255, 0.5)" 
+                      boxShadow: "0 0 15px rgba(0, 123, 255, 0.6)" 
                     }}
                   >
                     {skill}
@@ -84,22 +123,56 @@ const About = () => {
           </RevealOnScroll>
           
           <RevealOnScroll direction="right" delay={400}>
-            <div className="glass-card p-6 hover:shadow-neon-glow transition-all duration-500">
-              <h3 className="text-xl font-semibold mb-6 neon-text">Skills</h3>
-              <div className="space-y-5">
+            <div className="glass-card p-8 rounded-xl backdrop-blur-md bg-black/40 border border-[#007BFF]/20 hover:border-[#007BFF]/50 transition-all duration-500">
+              <h3 className="text-2xl font-semibold mb-8 neon-text relative">
+                Skills
+                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#007BFF] shadow-[0_0_10px_rgba(0,123,255,0.7)]"></span>
+              </h3>
+              
+              <div className="space-y-6">
                 {skills.map((skill, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7 + (index * 0.2) }}
-                  >
+                  <RevealOnScroll key={index} delay={600 + (index * 200)}>
                     <ProgressBar 
                       label={skill.label} 
                       percentage={skill.percentage}
                     />
-                  </motion.div>
+                  </RevealOnScroll>
                 ))}
+              </div>
+              
+              {/* Data visualizer decorative element */}
+              <div className="mt-8 flex justify-end">
+                <motion.div 
+                  className="w-16 h-10 relative"
+                  animate={{
+                    boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.4)', '0 0 0px rgba(0,123,255,0)']
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div 
+                      key={i}
+                      className="absolute bottom-0 bg-[#007BFF] w-1.5 rounded-t-sm"
+                      style={{
+                        left: `${i * 3}px`,
+                        height: `${Math.random() * 100}%`,
+                      }}
+                      animate={{
+                        height: [`${Math.random() * 30 + 10}%`, `${Math.random() * 80 + 20}%`, `${Math.random() * 30 + 10}%`]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: i * 0.2
+                      }}
+                    />
+                  ))}
+                </motion.div>
               </div>
             </div>
           </RevealOnScroll>

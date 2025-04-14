@@ -193,6 +193,25 @@
   .reveal-animate.active {
     @apply opacity-100 translate-y-0;
   }
+  
+  /* Enhanced Progress Bar Styles */
+  .futuristic-progress-track {
+    @apply w-full bg-gray-800/40 backdrop-blur-md rounded-full h-3 border border-[#007BFF]/20 shadow-inner overflow-hidden;
+  }
+  
+  .futuristic-progress-bar {
+    @apply h-full bg-gradient-to-r from-[#0042a5] via-[#007BFF] to-[#00a1ff] rounded-full relative overflow-hidden shadow-[0_0_10px_rgba(0,123,255,0.5)] transition-all duration-1000;
+  }
+  
+  .futuristic-progress-glow {
+    @apply absolute inset-0 opacity-75 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: shimmer 2s infinite;
+  }
+  
+  .skill-dot {
+    @apply absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_5px_rgba(255,255,255,0.8)];
+    animation: pulse-light 1.5s infinite;
+  }
 }
 
 /* Animations */
@@ -249,6 +268,76 @@
 
 .animate-glitch {
   animation: glitch 0.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-light {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 5px rgba(255,255,255,0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.5);
+  }
+}
+
+@keyframes data-bars {
+  0%, 100% {
+    height: 30%;
+  }
+  50% {
+    height: 70%;
+  }
+}
+
+@keyframes float-data {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Add these new classes to support our futuristic UI */
+.data-line {
+  height: 1px;
+  @apply bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent;
+  animation: pulse-opacity 3s infinite;
+}
+
+.data-point {
+  @apply absolute w-1.5 h-1.5 rounded-full bg-[#007BFF] shadow-[0_0_10px_rgba(0,123,255,0.7)];
+  animation: blink 2s infinite;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(0,123,255,0.9);
+  }
 }
 
 /* Smooth scrolling */
