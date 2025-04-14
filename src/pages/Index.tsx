@@ -1,4 +1,6 @@
 
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -8,10 +10,8 @@ import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
-import { useEffect, useState } from "react";
 import Banner from "@/components/Banner";
 import Featured from "@/components/Featured";
-import { motion, AnimatePresence } from "framer-motion";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const Index = () => {
@@ -89,7 +89,7 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative min-h-screen w-full bg-background overflow-hidden"
+          className="relative min-h-screen w-full bg-background"
         >
           <CustomCursor />
           <div className="flex flex-col w-full">
@@ -105,7 +105,6 @@ const Index = () => {
               <Contact />
             </main>
             <Footer />
-            <ScrollToTopButton />
           </div>
         </motion.div>
       )}

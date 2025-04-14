@@ -31,32 +31,29 @@ const RevealOnScroll = ({
   };
 
   useEffect(() => {
+    const currentRef = ref.current;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           // Add a small delay before revealing if specified
           setTimeout(() => {
-            if (ref.current) {
-              ref.current.classList.add('reveal-active');
+            if (currentRef) {
+              currentRef.classList.add('reveal-active');
             }
           }, delay);
-          
-          // Unobserve after revealing
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
         }
       },
       { threshold }
     );
     
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [threshold, delay]);
