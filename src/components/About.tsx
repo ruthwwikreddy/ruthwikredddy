@@ -21,11 +21,11 @@ const About = () => {
         {[...Array(5)].map((_, i) => (
           <motion.div 
             key={`h-line-${i}`}
-            className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent"
+            className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#9b87f5]/50 to-transparent"
             style={{ top: `${(i + 1) * 20}%` }}
             animate={{
               opacity: [0.2, 0.8, 0.2],
-              boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.5)', '0 0 0px rgba(0,123,255,0)']
+              boxShadow: ['0 0 0px rgba(155,135,245,0)', '0 0 10px rgba(155,135,245,0.5)', '0 0 0px rgba(155,135,245,0)']
             }}
             transition={{
               duration: 4 + i,
@@ -39,11 +39,11 @@ const About = () => {
         {[...Array(5)].map((_, i) => (
           <motion.div 
             key={`v-line-${i}`}
-            className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/50 to-transparent"
+            className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#9b87f5]/50 to-transparent"
             style={{ left: `${(i + 1) * 20}%` }}
             animate={{
               opacity: [0.2, 0.8, 0.2],
-              boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.5)', '0 0 0px rgba(0,123,255,0)']
+              boxShadow: ['0 0 0px rgba(155,135,245,0)', '0 0 10px rgba(155,135,245,0.5)', '0 0 0px rgba(155,135,245,0)']
             }}
             transition={{
               duration: 4 + i,
@@ -90,11 +90,11 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           <RevealOnScroll direction="left" delay={200}>
             <div className="space-y-6">
-              <p className="text-foreground leading-relaxed hover:text-[#007BFF] transition-colors duration-500">
+              <p className="text-foreground leading-relaxed hover:text-[#9b87f5] transition-colors duration-500">
                 I'm a 10th-grade student at DDMS (AMS) P. Obul Reddy Public School with a passion for technology and innovation. 
                 As an active member of the Robotics Club and NCC Air Wing, I've developed strong leadership skills and technical expertise.
               </p>
-              <p className="text-foreground leading-relaxed hover:text-[#007BFF] transition-colors duration-500">
+              <p className="text-foreground leading-relaxed hover:text-[#9b87f5] transition-colors duration-500">
                 My journey in technology has led me to participate in various competitions, including the Youth Ideathon, 
                 Atal Marathon, and Indian Future Tycoon, where I've consistently demonstrated my problem-solving abilities and innovative thinking.
               </p>
@@ -103,7 +103,7 @@ const About = () => {
                 {['Innovation', 'Robotics', 'Leadership', 'Programming', 'Problem Solving'].map((skill, index) => (
                   <motion.span 
                     key={index}
-                    className="px-4 py-2 bg-black text-[#007BFF] rounded-full text-sm border border-[#007BFF]/30 hover:bg-[#007BFF]/10 hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,123,255,0.2)]"
+                    className="px-4 py-2 bg-black text-[#9b87f5] rounded-full text-sm border border-[#9b87f5]/30 hover:bg-[#9b87f5]/10 hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(155,135,245,0.2)]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
@@ -112,7 +112,7 @@ const About = () => {
                     }}
                     whileHover={{ 
                       scale: 1.1, 
-                      boxShadow: "0 0 15px rgba(0, 123, 255, 0.6)" 
+                      boxShadow: "0 0 15px rgba(155, 135, 245, 0.6)" 
                     }}
                   >
                     {skill}
@@ -123,10 +123,10 @@ const About = () => {
           </RevealOnScroll>
           
           <RevealOnScroll direction="right" delay={400}>
-            <div className="glass-card p-8 rounded-xl backdrop-blur-md bg-black/40 border border-[#007BFF]/20 hover:border-[#007BFF]/50 transition-all duration-500">
+            <div className="glass-card p-8 rounded-xl backdrop-blur-md bg-black/40 border border-[#9b87f5]/20 hover:border-[#9b87f5]/50 transition-all duration-500">
               <h3 className="text-2xl font-semibold mb-8 neon-text relative">
                 Skills
-                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#007BFF] shadow-[0_0_10px_rgba(0,123,255,0.7)]"></span>
+                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#9b87f5] shadow-[0_0_10px_rgba(155,135,245,0.7)]"></span>
               </h3>
               
               <div className="space-y-6">
@@ -145,7 +145,7 @@ const About = () => {
                 <motion.div 
                   className="w-16 h-10 relative"
                   animate={{
-                    boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 10px rgba(0,123,255,0.4)', '0 0 0px rgba(0,123,255,0)']
+                    boxShadow: ['0 0 0px rgba(155,135,245,0)', '0 0 10px rgba(155,135,245,0.4)', '0 0 0px rgba(155,135,245,0)']
                   }}
                   transition={{
                     duration: 4,
@@ -156,7 +156,7 @@ const About = () => {
                   {[...Array(5)].map((_, i) => (
                     <motion.div 
                       key={i}
-                      className="absolute bottom-0 bg-[#007BFF] w-1.5 rounded-t-sm"
+                      className="absolute bottom-0 bg-[#9b87f5] w-1.5 rounded-t-sm"
                       style={{
                         left: `${i * 3}px`,
                         height: `${Math.random() * 100}%`,
