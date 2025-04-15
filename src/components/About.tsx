@@ -1,16 +1,8 @@
 
-import ProgressBar from './ProgressBar';
 import RevealOnScroll from './RevealOnScroll';
 import { motion } from 'framer-motion';
 
 const About = () => {
-  const skills = [
-    { label: 'Leadership & Innovation', percentage: 85 },
-    { label: 'Technical Skills', percentage: 75 },
-    { label: 'Python', percentage: 50 },
-    { label: 'Web Development', percentage: 30 },
-  ];
-
   return (
     <section id="about" className="py-20 bg-black relative overflow-hidden">
       {/* Background grid effect */}
@@ -87,7 +79,7 @@ const About = () => {
           <h2 className="section-title text-center mx-auto" id="about-title">About Me</h2>
         </RevealOnScroll>
         
-        <div className="grid md:grid-cols-2 gap-12 mt-12">
+        <div className="mt-12">
           <RevealOnScroll direction="left" delay={200}>
             <div className="space-y-6">
               <p className="text-foreground leading-relaxed hover:text-[#9b87f5] transition-colors duration-500">
@@ -118,61 +110,6 @@ const About = () => {
                     {skill}
                   </motion.span>
                 ))}
-              </div>
-            </div>
-          </RevealOnScroll>
-          
-          <RevealOnScroll direction="right" delay={400}>
-            <div className="glass-card p-8 rounded-xl backdrop-blur-md bg-black/40 border border-[#9b87f5]/20 hover:border-[#9b87f5]/50 transition-all duration-500">
-              <h3 className="text-2xl font-semibold mb-8 neon-text relative">
-                Skills
-                <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#9b87f5] shadow-[0_0_10px_rgba(155,135,245,0.7)]"></span>
-              </h3>
-              
-              <div className="space-y-6">
-                {skills.map((skill, index) => (
-                  <RevealOnScroll key={index} delay={600 + (index * 200)}>
-                    <ProgressBar 
-                      label={skill.label} 
-                      percentage={skill.percentage}
-                    />
-                  </RevealOnScroll>
-                ))}
-              </div>
-              
-              {/* Data visualizer decorative element */}
-              <div className="mt-8 flex justify-end">
-                <motion.div 
-                  className="w-16 h-10 relative"
-                  animate={{
-                    boxShadow: ['0 0 0px rgba(155,135,245,0)', '0 0 10px rgba(155,135,245,0.4)', '0 0 0px rgba(155,135,245,0)']
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div 
-                      key={i}
-                      className="absolute bottom-0 bg-[#9b87f5] w-1.5 rounded-t-sm"
-                      style={{
-                        left: `${i * 3}px`,
-                        height: `${Math.random() * 100}%`,
-                      }}
-                      animate={{
-                        height: [`${Math.random() * 30 + 10}%`, `${Math.random() * 80 + 20}%`, `${Math.random() * 30 + 10}%`]
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: i * 0.2
-                      }}
-                    />
-                  ))}
-                </motion.div>
               </div>
             </div>
           </RevealOnScroll>

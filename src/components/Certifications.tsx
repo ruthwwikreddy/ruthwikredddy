@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Award, ZoomIn, ZoomOut, X } from 'lucide-react';
 
@@ -85,12 +84,12 @@ const Certifications = () => {
         <h2 className="section-title text-center mx-auto">Certifications</h2>
         
         <div className="mt-12">
-          <div className="flex border-b border-[#032950]/30 mb-8">
+          <div className="flex border-b border-[#6E59A5]/30 mb-8">
             <button
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'microsoft'
-                  ? 'text-[#032950] border-b-2 border-[#032950] shadow-[0_4px_8px_-4px_rgba(3,41,80,0.7)]'
-                  : 'text-gray-400 hover:text-[#032950]'
+                  ? 'text-[#9b87f5] border-b-2 border-[#9b87f5] shadow-[0_4px_8px_-4px_rgba(155,135,245,0.7)]'
+                  : 'text-gray-400 hover:text-[#9b87f5]'
               }`}
               onClick={() => setActiveTab('microsoft')}
             >
@@ -99,8 +98,8 @@ const Certifications = () => {
             <button
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'google'
-                  ? 'text-[#032950] border-b-2 border-[#032950] shadow-[0_4px_8px_-4px_rgba(3,41,80,0.7)]'
-                  : 'text-gray-400 hover:text-[#032950]'
+                  ? 'text-[#9b87f5] border-b-2 border-[#9b87f5] shadow-[0_4px_8px_-4px_rgba(155,135,245,0.7)]'
+                  : 'text-gray-400 hover:text-[#9b87f5]'
               }`}
               onClick={() => setActiveTab('google')}
             >
@@ -113,8 +112,8 @@ const Certifications = () => {
               ? certifications.microsoft.map((cert, index) => (
                 <div key={index} className="badge-item">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#032950]/30 shadow-[0_0_15px_rgba(3,41,80,0.3)]">
-                      <Award className="h-7 w-7 text-[#032950]" />
+                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#9b87f5]/30 shadow-[0_0_15px_rgba(155,135,245,0.3)]">
+                      <Award className="h-7 w-7 text-[#9b87f5]" />
                     </span>
                   </div>
                   <h4 className="text-center font-medium text-white">{cert.name}</h4>
@@ -123,8 +122,8 @@ const Certifications = () => {
               : certifications.google.map((cert, index) => (
                 <div key={index} className="badge-item">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#032950]/30 shadow-[0_0_15px_rgba(3,41,80,0.3)]">
-                      <Award className="h-7 w-7 text-[#032950]" />
+                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#9b87f5]/30 shadow-[0_0_15px_rgba(155,135,245,0.3)]">
+                      <Award className="h-7 w-7 text-[#9b87f5]" />
                     </span>
                   </div>
                   <h4 className="text-center font-medium text-white">{cert.name}</h4>
