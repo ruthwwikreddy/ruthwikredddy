@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Award, ZoomIn, ZoomOut, X } from 'lucide-react';
 
@@ -85,12 +84,12 @@ const Certifications = () => {
         <h2 className="section-title text-center mx-auto">Certifications</h2>
         
         <div className="mt-12">
-          <div className="flex border-b border-[#007BFF]/30 mb-8">
+          <div className="flex border-b border-[#6E59A5]/30 mb-8">
             <button
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'microsoft'
-                  ? 'text-[#007BFF] border-b-2 border-[#007BFF] shadow-[0_4px_8px_-4px_rgba(0,123,255,0.7)]'
-                  : 'text-gray-400 hover:text-[#007BFF]'
+                  ? 'text-[#9b87f5] border-b-2 border-[#9b87f5] shadow-[0_4px_8px_-4px_rgba(155,135,245,0.7)]'
+                  : 'text-gray-400 hover:text-[#9b87f5]'
               }`}
               onClick={() => setActiveTab('microsoft')}
             >
@@ -99,8 +98,8 @@ const Certifications = () => {
             <button
               className={`py-3 px-6 font-medium transition-colors ${
                 activeTab === 'google'
-                  ? 'text-[#007BFF] border-b-2 border-[#007BFF] shadow-[0_4px_8px_-4px_rgba(0,123,255,0.7)]'
-                  : 'text-gray-400 hover:text-[#007BFF]'
+                  ? 'text-[#9b87f5] border-b-2 border-[#9b87f5] shadow-[0_4px_8px_-4px_rgba(155,135,245,0.7)]'
+                  : 'text-gray-400 hover:text-[#9b87f5]'
               }`}
               onClick={() => setActiveTab('google')}
             >
@@ -113,8 +112,8 @@ const Certifications = () => {
               ? certifications.microsoft.map((cert, index) => (
                 <div key={index} className="badge-item">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#007BFF]/30 shadow-[0_0_15px_rgba(0,123,255,0.3)]">
-                      <Award className="h-7 w-7 text-[#007BFF]" />
+                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#9b87f5]/30 shadow-[0_0_15px_rgba(155,135,245,0.3)]">
+                      <Award className="h-7 w-7 text-[#9b87f5]" />
                     </span>
                   </div>
                   <h4 className="text-center font-medium text-white">{cert.name}</h4>
@@ -123,8 +122,8 @@ const Certifications = () => {
               : certifications.google.map((cert, index) => (
                 <div key={index} className="badge-item">
                   <div className="mb-4 flex items-center justify-center">
-                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#007BFF]/30 shadow-[0_0_15px_rgba(0,123,255,0.3)]">
-                      <Award className="h-7 w-7 text-[#007BFF]" />
+                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/50 border border-[#9b87f5]/30 shadow-[0_0_15px_rgba(155,135,245,0.3)]">
+                      <Award className="h-7 w-7 text-[#9b87f5]" />
                     </span>
                   </div>
                   <h4 className="text-center font-medium text-white">{cert.name}</h4>
@@ -139,7 +138,7 @@ const Certifications = () => {
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {certificates.map((cert, index) => (
-                  <div key={cert.id} className="bg-black border border-[#007BFF]/20 rounded-lg overflow-hidden hover:border-[#007BFF]/60 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,123,255,0.4)] group">
+                  <div key={cert.id} className="bg-black border border-[#032950]/20 rounded-lg overflow-hidden hover:border-[#032950]/60 transition-all duration-300 hover:shadow-[0_0_15px_rgba(3,41,80,0.4)] group">
                     <button 
                       onClick={() => openModal(index, 'certificate')}
                       className="block relative aspect-[4/3] overflow-hidden w-full"
@@ -150,7 +149,7 @@ const Certifications = () => {
                         className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 filter saturate-0 group-hover:saturate-100"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Award className="w-8 h-8 text-[#007BFF] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0" />
+                        <Award className="w-8 h-8 text-[#032950] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0" />
                       </div>
                     </button>
                   </div>
@@ -168,17 +167,17 @@ const Certifications = () => {
           
           <div className="relative z-10 max-w-7xl w-full h-full flex flex-col">
             <div className="flex justify-between items-center p-4">
-              <div className="text-[#007BFF] text-lg">
+              <div className="text-[#032950] text-lg">
                 Certificate {selectedImageIndex + 1} of {certificates.length}
               </div>
               <div className="flex space-x-4">
-                <button onClick={zoomIn} className="text-white hover:text-[#007BFF] transition-colors">
+                <button onClick={zoomIn} className="text-white hover:text-[#032950] transition-colors">
                   <ZoomIn className="h-6 w-6" />
                 </button>
-                <button onClick={zoomOut} className="text-white hover:text-[#007BFF] transition-colors">
+                <button onClick={zoomOut} className="text-white hover:text-[#032950] transition-colors">
                   <ZoomOut className="h-6 w-6" />
                 </button>
-                <button onClick={closeModal} className="text-white hover:text-[#007BFF] transition-colors">
+                <button onClick={closeModal} className="text-white hover:text-[#032950] transition-colors">
                   <X className="h-6 w-6" />
                 </button>
               </div>
@@ -196,7 +195,7 @@ const Certifications = () => {
                   <img
                     src={certificates[selectedImageIndex].url}
                     alt={`Certificate ${certificates[selectedImageIndex].id}`}
-                    className="max-h-[80vh] border border-[#007BFF]/30 shadow-[0_0_30px_rgba(0,123,255,0.3)]"
+                    className="max-h-[80vh] border border-[#032950]/30 shadow-[0_0_30px_rgba(3,41,80,0.3)]"
                     style={{ maxWidth: '90vw' }}
                   />
                 )}
@@ -206,7 +205,7 @@ const Certifications = () => {
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
               <button 
                 onClick={showPreviousImage}
-                className="bg-[#007BFF] rounded-full p-2 text-white hover:bg-[#0069d9] hover:shadow-[0_0_15px_rgba(0,123,255,0.7)] transition-all duration-300"
+                className="bg-[#032950] rounded-full p-2 text-white hover:bg-[#021c33] hover:shadow-[0_0_15px_rgba(3,41,80,0.7)] transition-all duration-300"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
@@ -215,7 +214,7 @@ const Certifications = () => {
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
               <button 
                 onClick={showNextImage}
-                className="bg-[#007BFF] rounded-full p-2 text-white hover:bg-[#0069d9] hover:shadow-[0_0_15px_rgba(0,123,255,0.7)] transition-all duration-300"
+                className="bg-[#032950] rounded-full p-2 text-white hover:bg-[#021c33] hover:shadow-[0_0_15px_rgba(3,41,80,0.7)] transition-all duration-300"
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
