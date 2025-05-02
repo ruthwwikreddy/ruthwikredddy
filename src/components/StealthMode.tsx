@@ -1,5 +1,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 
 const STEALTH_MODE_CLICK_COUNT = 10;
 const IDLE_TIMEOUT = 60000; // 1 minute in milliseconds
