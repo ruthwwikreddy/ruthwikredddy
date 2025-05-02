@@ -37,7 +37,7 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
   const [stealthModeActive, setStealthModeActive] = useState(false);
   const [showIdleQuote, setShowIdleQuote] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(idleQuotes[0]);
-  const [quoteInterval, setQuoteIntervalId] = useState<number | null>(null);
+  const [quoteInterval, setQuoteIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
   const [isIdle, setIsIdle] = useState(false);
   const [originalTitle] = useState(document.title);
 
@@ -106,7 +106,7 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
         setShowIdleQuote(true);
         
         // Start cycling through quotes
-        const intervalId = window.setInterval(() => {
+        const intervalId = setInterval(() => {
           setCurrentQuote(idleQuotes[Math.floor(Math.random() * idleQuotes.length)]);
         }, 5000);
         
@@ -137,14 +137,14 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
 
   // Handle tab visibility changes
   useEffect(() => {
-    let titleInterval: number | null = null;
+    let titleInterval: ReturnType<typeof setInterval> | null = null;
     let titleIndex = 0;
     
     const handleVisibilityChange = () => {
       if (document.hidden) {
         if (titleInterval) clearInterval(titleInterval);
         
-        titleInterval = window.setInterval(() => {
+        titleInterval = setInterval(() => {
           document.title = callBackTitles[titleIndex++ % callBackTitles.length];
         }, 2000);
       } else {

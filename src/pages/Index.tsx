@@ -76,12 +76,44 @@ const Index = () => {
           transition={{ duration: 0.5 }}
         >
           <motion.div 
-            className="text-4xl font-bold text-[#007BFF]"
+            className="relative"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ repeat: Infinity, duration: 1, repeatType: "reverse" }}
+            transition={{ duration: 0.5 }}
           >
-            R
+            {/* Modern loader with animated circles */}
+            <div className="w-24 h-24 relative">
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={`loader-circle-${i}`}
+                  className="absolute inset-0 border-4 border-[#007BFF] rounded-full"
+                  style={{
+                    borderTopColor: "transparent",
+                    scale: 1 - i * 0.2,
+                  }}
+                  animate={{ 
+                    rotate: 360,
+                    opacity: [0.8, 0.2, 0.8],
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    ease: "linear",
+                    delay: i * 0.2,
+                  }}
+                />
+              ))}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-[#007BFF]"
+                animate={{ 
+                  opacity: [1, 0.6, 1],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                R
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       ) : (
@@ -108,6 +140,7 @@ const Index = () => {
             </main>
             <Footer />
           </div>
+          <ScrollToTopButton />
         </motion.div>
       )}
     </AnimatePresence>
