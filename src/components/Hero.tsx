@@ -40,19 +40,26 @@ const Hero = () => {
     <section 
       id="home" 
       ref={heroRef} 
-      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-12"
     >
-      {/* Background elements */}
+      {/* Enhanced Background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Grid background */}
-        <div className="absolute inset-0 bg-grid opacity-20"></div>
+        {/* Grid background with parallax effect */}
+        <motion.div 
+          className="absolute inset-0 bg-grid opacity-20"
+          style={{ 
+            x: (mousePosition.x - 0.5) * -20,
+            y: (mousePosition.y - 0.5) * -20,
+          }}
+        ></motion.div>
 
-        {/* Animated overlay gradient */}
+        {/* Animated gradient overlay with depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black"></div>
 
-        {/* Background animated elements - dots & lines */}
+        {/* Enhanced background animated elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {/* Floating dots with parallax effect */}
+          {[...Array(16)].map((_, i) => (
             <motion.div 
               key={`dot-${i}`}
               className="absolute w-1.5 h-1.5 rounded-full bg-[#007BFF]/40"
@@ -74,17 +81,18 @@ const Hero = () => {
             />
           ))}
           
-          {/* Animated grid lines */}
+          {/* Enhanced animated grid lines with parallax */}
           {[...Array(5)].map((_, i) => (
             <motion.div 
               key={`h-line-${i}`}
               className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent"
               style={{ 
                 top: `${20 + i * 15}%`,
-                translateX: `${(mousePosition.x - 0.5) * -20}px`,
+                translateX: `${(mousePosition.x - 0.5) * -30}px`,
               }}
               animate={{
                 opacity: [0.1, 0.3, 0.1],
+                boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 5px rgba(0,123,255,0.3)', '0 0 0px rgba(0,123,255,0)']
               }}
               transition={{
                 duration: 4 + i,
@@ -101,10 +109,11 @@ const Hero = () => {
               className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent"
               style={{ 
                 left: `${20 + i * 15}%`,
-                translateY: `${(mousePosition.y - 0.5) * -20}px`,
+                translateY: `${(mousePosition.y - 0.5) * -30}px`,
               }}
               animate={{
                 opacity: [0.1, 0.3, 0.1],
+                boxShadow: ['0 0 0px rgba(0,123,255,0)', '0 0 5px rgba(0,123,255,0.3)', '0 0 0px rgba(0,123,255,0)']
               }}
               transition={{
                 duration: 4 + i,
@@ -117,17 +126,18 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Main Content Bento Grid */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 items-center gap-12">
+        <div className="grid md:grid-cols-2 items-center gap-6 md:gap-12">
           {/* Left column - Text content */}
-          <div className="text-left order-2 md:order-1">
+          <div className="text-left order-2 md:order-1 bento-card bg-opacity-20 border-opacity-30 backdrop-blur-lg">
             <RevealOnScroll>
               <motion.div 
                 className="mb-2"
                 whileHover={{ scale: 1.02 }}
               >
                 <h2 
-                  className="text-xl md:text-2xl text-[#007BFF]"
+                  className="text-xl md:text-2xl text-[#007BFF] font-medium"
                   onMouseEnter={() => setHoverStates({ ...hoverStates, title: true })}
                   onMouseLeave={() => setHoverStates({ ...hoverStates, title: false })}
                 >
@@ -138,7 +148,7 @@ const Hero = () => {
 
             <RevealOnScroll delay={200}>
               <motion.div 
-                className="mb-5"
+                className="mb-6"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -159,24 +169,24 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <h2 className="text-xl md:text-2xl text-white opacity-90">
-                  <span className="text-[#007BFF]">Student, </span> 
-                  <span className="text-[#007BFF]">Innovator </span> & 
-                  <span className="text-[#007BFF]"> Tech Enthusiast</span>
+                <h2 className="text-xl md:text-2xl text-white opacity-90 leading-relaxed">
+                  <span className="text-[#007BFF] font-medium">Student, </span> 
+                  <span className="text-[#007BFF] font-medium">Innovator </span> & 
+                  <span className="text-[#007BFF] font-medium"> Tech Enthusiast</span>
                 </h2>
               </motion.div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={600}>
-              <div className="mt-12">
+              <div className="mt-10">
                 <motion.a
                   href="#about"
                   className="btn-primary inline-block"
                   whileHover={{ 
                     scale: 1.05,
-                    boxShadow: "0 0 20px rgba(0, 123, 255, 0.7)"
+                    boxShadow: "0 0 25px rgba(0, 123, 255, 0.7)"
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{ scale: 0.95 }}
                   onMouseEnter={() => setHoverStates({ ...hoverStates, button: true })}
                   onMouseLeave={() => setHoverStates({ ...hoverStates, button: false })}
                 >
@@ -195,7 +205,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Animated scroll indicator */}
+      {/* Enhanced animated scroll indicator */}
       <motion.div 
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
         initial={{ opacity: 0, y: -20 }}
@@ -206,7 +216,14 @@ const Hero = () => {
         }}
       >
         <motion.div
-          animate={{ y: [0, 12, 0] }}
+          animate={{ 
+            y: [0, 12, 0],
+            boxShadow: [
+              "0 0 0px rgba(0, 123, 255, 0.4)",
+              "0 0 8px rgba(0, 123, 255, 0.7)",
+              "0 0 0px rgba(0, 123, 255, 0.4)",
+            ]
+          }}
           transition={{ 
             repeat: Infinity,
             duration: 1.5,
@@ -215,7 +232,10 @@ const Hero = () => {
           className="w-6 h-10 rounded-full border-2 border-[#007BFF] flex items-center justify-center p-1"
         >
           <motion.div 
-            animate={{ height: ["20%", "80%", "20%"] }}
+            animate={{ 
+              height: ["20%", "80%", "20%"],
+              opacity: [0.7, 1, 0.7]
+            }}
             transition={{
               repeat: Infinity,
               duration: 1.5,
@@ -224,7 +244,7 @@ const Hero = () => {
             className="w-1 bg-[#007BFF] rounded-full"
           />
         </motion.div>
-        <p className="text-sm text-[#007BFF] mt-2">Scroll Down</p>
+        <p className="text-sm text-[#007BFF] mt-2 font-medium">Scroll Down</p>
       </motion.div>
     </section>
   );
