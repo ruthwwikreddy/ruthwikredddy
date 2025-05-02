@@ -93,7 +93,7 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
 
   // Set up idle timer
   useEffect(() => {
-    let idleTimer: number | null = null;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
     
     const resetIdleTimer = () => {
       handleUserActivity();
@@ -194,7 +194,8 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
 
       {/* Stealth Mode CSS */}
       {stealthModeActive && (
-        <style jsx global>{`
+        <style>
+          {`
           body.stealth-mode-active {
             background-color: #000;
             color: #00ff41;
@@ -238,7 +239,8 @@ const StealthMode = ({ nameSelector }: StealthModeProps) => {
             pointer-events: none;
             z-index: 999;
           }
-        `}</style>
+          `}
+        </style>
       )}
     </>
   );

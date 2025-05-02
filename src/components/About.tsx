@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
+import Gallery from './Gallery';
 
 const About = () => {
   return (

@@ -1,13 +1,8 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
 
-// Import all gallery images
-const importAll = (r: any) => r.keys().map(r);
-
-// Dynamically import all images from gallery folder
-// In a real implementation, these would be loaded from the assets/images/gallery folder
 const galleryImages = [
   '/src/assets/images/Certificate Portfolio/Certificate Portfolio-01.png',
   '/src/assets/images/Certificate Portfolio/Certificate Portfolio-02.png',
