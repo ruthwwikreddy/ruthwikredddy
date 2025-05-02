@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // Path to profile image 
-const profileImagePath = "/src/assets/images/logo.jpg";
+const profileImagePath = "./src/assets/images/logo.jpg";
 
 const ProfileAvatar = () => {
   const [isHovered, setIsHovered] = useState(false);
