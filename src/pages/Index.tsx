@@ -13,6 +13,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Banner from "@/components/Banner";
 import Featured from "@/components/Featured";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import StealthMode from "@/components/StealthMode";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -92,6 +93,7 @@ const Index = () => {
           className="relative min-h-screen w-full bg-background"
         >
           <CustomCursor />
+          <StealthMode nameSelector=".hero-name" />
           <div className="flex flex-col w-full">
             <Navbar activeSection={activeSection} />
             <main className="flex-1 w-full">
