@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Star, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -266,23 +265,6 @@ const Featured = () => {
             </motion.div>
           )}
         </motion.div>
-      </div>
-      
-      {/* Fixed indicator dots for larger screens showing all available categories */}
-      <div className="hidden md:flex fixed right-6 top-1/2 transform -translate-y-1/2 flex-col gap-2 z-30">
-        {[null, ...categories].map((category, index) => (
-          <motion.div
-            key={index}
-            className={`w-2 h-2 rounded-full cursor-pointer ${
-              (category === activeCategory || (category === null && activeCategory === null))
-                ? 'bg-[#007BFF] shadow-[0_0_10px_rgba(0,123,255,0.7)]'
-                : 'bg-gray-600'
-            }`}
-            whileHover={{ scale: 1.5 }}
-            onClick={() => setActiveCategory(category)}
-            title={category || 'All'}
-          />
-        ))}
       </div>
     </section>
   );
