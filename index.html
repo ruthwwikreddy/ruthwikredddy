@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruthwik Reddy - Student, Innovator & Tech Enthusiast</title>
+    <meta name="description" content="Portfolio of Akkenapally Ruthwik Reddy - Student, Innovator, and Tech Enthusiast from Hyderabad, India" />
+    <meta name="author" content="Ruthwik Reddy" />
+    <meta property="og:title" content="Ruthwik Reddy - Student, Innovator & Tech Enthusiast" />
+    <meta property="og:url" content="https://ruthwikreddy.xyz" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ruthwikreddy" />
+    <style>
+      #idle-quote {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.75);
+        color: #007BFF;
+        padding: 14px 20px;
+        border-radius: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        box-shadow: 0 0 10px rgba(0, 170, 255, 0.5), 0 0 20px rgba(0, 170, 255, 0.3);
+        border: 1px solid rgba(0, 170, 255, 0.3);
+        opacity: 0;
+        transition: opacity 0.4s ease, transform 0.3s ease;
+        z-index: 9999;
+        transform: translateY(10px);
+      }
+
+      #idle-quote.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Stealth Mode Base Styles */
+      .stealth-mode {
+        --stealth-primary: #00ff41;
+        --stealth-bg: #000000;
+        --stealth-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      }
+      
+      body.stealth-mode-active {
+        background-color: var(--stealth-bg);
+        color: var(--stealth-primary);
+        font-family: 'Courier New', monospace;
+        position: relative;
+      }
+      
+      body.stealth-mode-active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg, 
+          rgba(0, 20, 0, 0.1) 0%, 
+          rgba(0, 20, 0, 0.2) 100%
+        );
+        pointer-events: none;
+        z-index: 1000;
+      }
+    </style>
+    <script>
+      // Original title
+      const originalTitle = "Ruthwik Reddy - Student, Innovator & Tech Enthusiast";
+
+      // Call-back titles when the tab is hidden
+      const callBackTitles = [
+        "Come back, genius!",
+        "Still curious?",
+        "Click the tab again!",
+        "Innovation's waiting!",
+        "You left brilliance!",
+        "Let's finish this!",
+        "Back to big ideas!",
+        "Don't miss the magic!"
+      ];
+
+      // Idle quotes to display when the user is inactive
+      const idleQuotes = [
+        "💡 Innovation is the calling card of the future.",
+        "🚀 Big ideas start small. Keep going.",
+        "🧠 Build fast, learn faster!",
+        "⚡ Don't just scroll, solve!",
+        "🎯 MVPs are made, not found.",
+        "👨‍💻 Ruthwik is still hacking away...",
+        "📚 Great things take iteration.",
+        "🔥 You're 1 click away from the next breakthrough."
+      ];
+
+      let titleInterval;
+      let idleTimer;
+      let quoteInterval;
+      let isIdle = false;
+      let titleIndex = 0;
+      let quoteIndex = 0;
+      let lastHiddenTime = null;
+      let returnedFromLongIdle = false;
+
+      // Play sound on first load
+      function playSound1() {
+        const audio = new Audio("https://www.soundjay.com/button/sounds/button-16.mp3");
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+      }
+
+      // Play sound after 1+ minute of idle time
+      function playSound2() {
+        const audio = new Audio("https://www.soundjay.com/button/sounds/button-3.mp3");
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+      }
+
+      // Handle visibility change (tab switching)
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          lastHiddenTime = Date.now();
+          titleInterval = setInterval(() => {
+            document.title = callBackTitles[titleIndex++ % callBackTitles.length];
+          }, 2000);
+        } else {
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+
+          const now = Date.now();
+          if (lastHiddenTime && now - lastHiddenTime >= 60000 && !returnedFromLongIdle) {
+            playSound2(); // 1+ min return
+            returnedFromLongIdle = true;
+          } else {
+            playSound1(); // short return
+          }
+
+          lastHiddenTime = null;
+        }
+      }
+
+      // Reset idle timer on any user activity
+      function resetIdleTimer() {
+        isIdle = false;
+        returnedFromLongIdle = false;
+        const quoteBox = document.getElementById("idle-quote");
+        if (quoteBox) {
+          quoteBox.classList.remove("show");
+          clearTimeout(idleTimer);
+          clearInterval(quoteInterval);
+          idleTimer = setTimeout(() => {
+            isIdle = true;
+            showIdleQuotes();
+          }, 30000); // 30 sec of inactivity
+        }
+      }
+
+      // Show idle quotes when the user is idle
+      function showIdleQuotes() {
+        const quoteBox = document.getElementById("idle-quote");
+        if (quoteBox) {
+          quoteBox.innerText = idleQuotes[quoteIndex++ % idleQuotes.length];
+          quoteBox.classList.add("show");
+          quoteInterval = setInterval(() => {
+            quoteBox.innerText = idleQuotes[quoteIndex++ % idleQuotes.length];
+          }, 5000); // Change quote every 5 sec
+        }
+      }
+
+      // Attach event listeners to detect user activity
+      ["mousemove", "keydown", "click", "scroll"].forEach(event => {
+        window.addEventListener(event, resetIdleTimer);
+      });
+
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      // On window load, initialize the idle timer and play initial sound
+      window.onload = () => {
+        resetIdleTimer();
+        playSound1(); // first load
+      };
+    </script>
+    <script type="module" crossorigin src="/assets/index-BvOpWo4f.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DpgPlYsR.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <div id="idle-quote"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </body>
+</html>
