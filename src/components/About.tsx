@@ -15,8 +15,9 @@ const About: React.FC = () => {
           <motion.div 
             key={`h-line-${i}`}
             className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent"
-            style={{ top: `${(i + 1) * 20}%` }}
+            initial={{ y: `${(i + 1) * 20}%` }}
             animate={{
+              y: `${(i + 1) * 20}%`,
               opacity: [0.2, 0.8, 0.2]
             }}
             transition={{
@@ -32,7 +33,7 @@ const About: React.FC = () => {
           <motion.div 
             key={`v-line-${i}`}
             className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/50 to-transparent"
-            style={{ left: `${(i + 1) * 20}%` }}
+            initial={{ x: `${(i + 1) * 20}%` }}
             animate={{
               opacity: [0.2, 0.8, 0.2]
             }}
@@ -58,7 +59,10 @@ const About: React.FC = () => {
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               opacity: Math.random() * 0.5 + 0.2,
-            }}
+              position: 'absolute',
+              borderRadius: '50%',
+              backgroundColor: 'white'
+            } as React.CSSProperties}
             animate={{
               y: [0, Math.random() * 50 - 25, 0],
               x: [0, Math.random() * 50 - 25, 0],
