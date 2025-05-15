@@ -41,19 +41,19 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16 bg-black overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 md:pt-0 bg-black overflow-hidden">
       {/* Enhanced radial gradient background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(0,123,255,0.15)_0%,rgba(0,0,0,0)_60%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,123,255,0.15)_0%,rgba(0,0,0,0)_60%)] md:bg-[radial-gradient(circle_at_20%_30%,rgba(0,123,255,0.15)_0%,rgba(0,0,0,0)_60%)]"></div>
       
       {/* Animated background lines with improved effects */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        <div className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent top-[20%] animate-[pulse_4s_ease-in-out_infinite]"></div>
-        <div className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/30 to-transparent top-[50%] animate-[pulse_5s_ease-in-out_infinite_1s]"></div>
-        <div className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent top-[80%] animate-[pulse_4.5s_ease-in-out_infinite_0.5s]"></div>
+      <div className="absolute inset-0 overflow-hidden opacity-10 md:opacity-20">
+        <div className="absolute h-[0.5px] md:h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/50 to-transparent top-[15%] md:top-[20%] animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute h-[0.5px] md:h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/30 to-transparent top-[50%] animate-[pulse_5s_ease-in-out_infinite_1s]"></div>
+        <div className="absolute h-[0.5px] md:h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent top-[85%] md:top-[80%] animate-[pulse_4.5s_ease-in-out_infinite_0.5s]"></div>
         
-        <div className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/50 to-transparent left-[20%] animate-[pulse_4.5s_ease-in-out_infinite]"></div>
-        <div className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/30 to-transparent left-[50%] animate-[pulse_5s_ease-in-out_infinite_0.7s]"></div>
-        <div className="absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent left-[80%] animate-[pulse_4s_ease-in-out_infinite_1.5s]"></div>
+        <div className="hidden md:block absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/50 to-transparent left-[20%] animate-[pulse_4.5s_ease-in-out_infinite]"></div>
+        <div className="hidden md:block absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/30 to-transparent left-[50%] animate-[pulse_5s_ease-in-out_infinite_0.7s]"></div>
+        <div className="hidden md:block absolute w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent left-[80%] animate-[pulse_4s_ease-in-out_infinite_1.5s]"></div>
       </div>
 
       {/* Floating particles */}
@@ -84,23 +84,23 @@ const Hero: React.FC = () => {
         />
       ))}
 
-      <div className="container mx-auto z-10">
+      <div className="container mx-auto z-10 px-4 sm:px-6">
         <motion.div 
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           <div>
             <motion.h1 
-              className="text-4xl md:text-7xl font-bold mb-4 leading-tight"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight"
               variants={itemVariants}
             >
               <span className="neon-text animate-text-flicker">i'm ruthwik.</span>
             </motion.h1>
             
             <motion.div 
-              className="text-xl text-gray-400 mb-8 border-l-2 border-[#007BFF] pl-4 space-y-2"
+              className="text-lg sm:text-xl text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-4 space-y-1 sm:space-y-2"
               variants={itemVariants}
             >
               <p>i'm 15.</p>
@@ -109,7 +109,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="space-y-4 mb-8 glass-card p-5 rounded-lg"
+              className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 glass-card p-4 sm:p-5 rounded-lg"
               variants={itemVariants}
             >
               <div className="flex items-center group">
@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="flex flex-wrap gap-5 mb-8"
+              className="flex flex-wrap gap-3 sm:gap-5 mb-6 sm:mb-8"
               variants={itemVariants}
             >
               <motion.a 
@@ -139,7 +139,7 @@ const Hero: React.FC = () => {
                 onClick={(e) => handleSmoothScroll(e, '#contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-primary shadow-[0_0_20px_rgba(0,123,255,0.7)] hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
+                className="btn-primary text-sm sm:text-base px-5 py-3 sm:px-6 sm:py-3 shadow-[0_0_15px_rgba(0,123,255,0.5)] hover:shadow-[0_0_20px_rgba(0,123,255,0.7)] md:hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
               >
                 Get In Touch
               </motion.a>
@@ -148,14 +148,14 @@ const Hero: React.FC = () => {
                 onClick={(e) => handleSmoothScroll(e, '#links')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-outline shadow-[0_0_20px_rgba(0,123,255,0.7)] hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
+                className="btn-outline text-sm sm:text-base px-5 py-3 sm:px-6 sm:py-3 shadow-[0_0_15px_rgba(0,123,255,0.5)] hover:shadow-[0_0_20px_rgba(0,123,255,0.7)] md:hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
               >
                 View Projects
               </motion.a>
             </motion.div>
 
             <motion.div 
-              className="flex space-x-5"
+              className="flex space-x-4 sm:space-x-5"
               variants={itemVariants}
             >
               {[
@@ -169,13 +169,13 @@ const Hero: React.FC = () => {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(0,123,255,0.4)]"
+                  className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.4)] w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
                   whileHover={{
                     scale: 1.05,
                     transition: { duration: 0.3 }
                   }}
                 >
-                  <social.icon className="w-6 h-6" />
+                  <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </motion.a>
               ))}
             </motion.div>

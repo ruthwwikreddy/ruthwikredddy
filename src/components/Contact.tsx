@@ -46,46 +46,46 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" className="py-20 bg-black relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-20 bg-black relative overflow-hidden">
       {/* Background effect with a subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-radial from-portfolio-primary/5 via-transparent to-transparent opacity-50"></div>
-      <div className="absolute inset-0 bg-grid opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-portfolio-primary/5 via-transparent to-transparent opacity-30 md:opacity-50"></div>
+      <div className="absolute inset-0 bg-grid opacity-10 md:opacity-20"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="text-gray-300 max-w-xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12 px-2">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">Get In Touch</h2>
+          <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
             Have a project in mind or just want to say hello? Feel free to reach out and I'll get back to you as soon as possible.
           </p>
         </div>
         
-        <div className="max-w-lg mx-auto mt-12 relative">
+        <div className="max-w-lg mx-auto mt-8 md:mt-12 relative">
           {state.succeeded ? (
-            <div className="card backdrop-blur-lg p-8 text-center animate-fade-up">
-              <div className="flex flex-col items-center justify-center space-y-4 py-8">
-                <div className="w-16 h-16 bg-portfolio-primary/10 rounded-full flex items-center justify-center mb-4 animate-pulse-scale">
-                  <CheckCircle className="w-8 h-8 text-portfolio-primary" />
+            <div className="card backdrop-blur-sm md:backdrop-blur-lg p-6 md:p-8 text-center animate-fade-up">
+              <div className="flex flex-col items-center justify-center space-y-3 md:space-y-4 py-6 md:py-8">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-portfolio-primary/10 rounded-full flex items-center justify-center mb-3 md:mb-4 animate-pulse-scale">
+                  <CheckCircle className="w-7 h-7 md:w-8 md:h-8 text-portfolio-primary" />
                 </div>
-                <h3 className="text-2xl font-bold neon-text">Message Sent!</h3>
-                <p className="text-gray-300">Thanks for reaching out. I'll get back to you soon.</p>
+                <h3 className="text-xl md:text-2xl font-bold text-portfolio-primary">Message Sent!</h3>
+                <p className="text-gray-300 text-sm md:text-base">Thanks for reaching out. I'll get back to you soon.</p>
               </div>
             </div>
           ) : (
             <div 
-              className="card backdrop-blur-lg p-8 hover:shadow-neon-glow transition-all duration-500 animate-fade-up"
+              className="card backdrop-blur-sm md:backdrop-blur-lg p-5 md:p-8 transition-all duration-500 animate-fade-up"
               style={{
                 background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(3, 41, 80, 0.1) 0%, rgba(0, 0, 0, 0.8) 50%)`,
               }}
             >
               <div className="absolute inset-0 rounded-lg pointer-events-none overflow-hidden">
                 <div className="absolute inset-px rounded-lg border border-portfolio-primary/20 z-0"></div>
-                <div className="absolute h-40 w-40 bg-portfolio-primary/30 blur-[100px] -bottom-20 -right-20 z-0"></div>
-                <div className="absolute h-40 w-40 bg-portfolio-primary/20 blur-[100px] -top-20 -left-20 z-0"></div>
+                <div className="absolute h-32 w-32 md:h-40 md:w-40 bg-portfolio-primary/20 md:bg-portfolio-primary/30 blur-[60px] md:blur-[100px] -bottom-10 -right-10 md:-bottom-20 md:-right-20 z-0"></div>
+                <div className="absolute h-32 w-32 md:h-40 md:w-40 bg-portfolio-primary/10 md:bg-portfolio-primary/20 blur-[60px] md:blur-[100px] -top-10 -left-10 md:-top-20 md:-left-20 z-0"></div>
               </div>
               
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 md:space-y-6 relative z-10">
                 <div className="relative group">
-                  <label htmlFor="name" className={`block text-sm font-medium ${focusedField === 'name' ? 'text-portfolio-primary' : 'text-gray-300'} mb-1 transition-colors duration-300`}>
+                  <label htmlFor="name" className={`block text-xs md:text-sm font-medium ${focusedField === 'name' ? 'text-portfolio-primary' : 'text-gray-300'} mb-1 transition-colors duration-300`}>
                     Name
                   </label>
                   <div className="relative">
@@ -97,7 +97,7 @@ const Contact = () => {
                       onFocus={() => handleFocus('name')}
                       onBlur={handleBlur}
                       placeholder="Your name"
-                      className="w-full px-4 py-3 rounded-md bg-black/60 border border-portfolio-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-portfolio-primary focus:border-transparent transition-all hover:border-portfolio-primary/50"
+                      className="w-full px-4 py-2.5 md:py-3 text-sm md:text-base rounded-md bg-black/40 md:bg-black/60 border border-portfolio-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-portfolio-primary focus:border-transparent transition-all hover:border-portfolio-primary/50"
                       data-cursor-text="Type here"
                     />
                     <ValidationError prefix="Name" field="name" errors={state.errors} />
