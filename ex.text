@@ -1,0 +1,7 @@
+rm -rf .git
+git init
+git remote add origin https://github.com/ruthwwikreddy/ruthwikredddy.git 
+git add .
+git commit -m "Fresh push: Clean Vite + React setup"
+git branch -M main
+git push -u origin main --force
