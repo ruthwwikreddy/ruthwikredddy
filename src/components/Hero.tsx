@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16 md:pt-0 bg-black overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-16 md:pt-0 bg-black overflow-hidden sm:px-4 md:px-6">
       {/* Enhanced radial gradient background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,123,255,0.15)_0%,rgba(0,0,0,0)_60%)] md:bg-[radial-gradient(circle_at_20%_30%,rgba(0,123,255,0.15)_0%,rgba(0,0,0,0)_60%)]"></div>
       
@@ -84,22 +84,22 @@ const Hero: React.FC = () => {
         />
       ))}
 
-      <div className="container mx-auto z-10 px-4 sm:px-6">
+      <div className="container mx-auto z-10 w-full px-4 sm:px-6">
         <motion.div 
-          className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >          <div>
             <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
               variants={itemVariants}
             >
               <span className="neon-text animate-text-flicker">Ruthwik Reddy</span>
             </motion.h1>
             
             <motion.div 
-              className="text-lg sm:text-xl text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-4 space-y-1 sm:space-y-2"
+              className="text-sm sm:text-base md:text-lg text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-3 sm:pl-4 space-y-1 sm:space-y-2"
               variants={itemVariants}
             >
               <p>i'm 15.</p>
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 glass-card p-4 sm:p-5 rounded-lg"
+              className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 glass-card p-3 sm:p-4 rounded-lg"
               variants={itemVariants}
             >
               <div className="flex items-center group">
@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="flex flex-wrap gap-3 sm:gap-5 mb-6 sm:mb-8"
+              className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-5 mb-6 sm:mb-8"
               variants={itemVariants}
             >
               <motion.a 
@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="flex space-x-4 sm:space-x-5"
+              className="flex flex-wrap justify-center gap-4 sm:gap-5"
               variants={itemVariants}
             >
               {[
@@ -168,7 +168,7 @@ const Hero: React.FC = () => {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.4)] w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
+                  className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.4)] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center"
                   whileHover={{
                     scale: 1.05,
                     transition: { duration: 0.3 }
@@ -195,7 +195,7 @@ const Hero: React.FC = () => {
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               ></motion.div>
-              <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-[#007BFF] shadow-[0_0_30px_rgba(0,123,255,0.5)] group">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-[#007BFF] shadow-[0_0_30px_rgba(0,123,255,0.5)] group">
                 <motion.img 
                   src="/images/logo.jpg" 
                   alt="Ruthwik Reddy"

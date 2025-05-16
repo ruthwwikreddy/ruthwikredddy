@@ -9,19 +9,19 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black/80 to-black/95">
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-black/80 to-black/95">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-12">
           <h2 className="section-title text-center mx-auto mb-4">About Me</h2>
         </div>
         
-        <div className="mt-6 sm:mt-8 md:mt-10 max-w-6xl mx-auto">
+        <div className="mt-6 sm:mt-8 md:mt-10 max-w-4xl mx-auto">
           <RevealOnScroll direction="left" delay={200}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-center w-full">
               {/* Left Column - Text Content */}
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <motion.div 
-                  className="text-lg sm:text-xl text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-4 space-y-1 sm:space-y-2"
+                  className="text-sm sm:text-base md:text-lg text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-3 sm:pl-4 space-y-1 sm:space-y-2"
                   variants={itemVariants}
                   initial="hidden"
                   whileInView="visible"
@@ -58,7 +58,7 @@ const About = () => {
                   viewport={{ once: true }}
                 >
                   <h3 className="text-xl font-semibold mb-2">Track Record</h3>
-                  <div className="space-y-2">
+                  <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center">
                       <span className="text-sm text-[#007BFF] mr-2">•</span>
                       <p>40+ tech projects built</p>
@@ -87,8 +87,8 @@ const About = () => {
               </div>
               
               {/* Right Column - Image */}
-              <div className="hidden md:flex justify-center">
-                <div className="relative w-full max-w-md lg:max-w-lg aspect-[3/4] rounded-xl md:rounded-2xl border border-[#007BFF]/20 overflow-hidden">
+              <div className="hidden sm:block justify-center">
+                <div className="relative w-full max-w-md aspect-[3/4] rounded-xl sm:rounded-2xl border border-[#007BFF]/20 overflow-hidden">
                   <img 
                     src="/images/Gallery/1.png" 
                     alt="Ruthwik" 
@@ -100,8 +100,8 @@ const About = () => {
             </div>
             
             {/* Signature */}
-            <div className="mt-6 sm:mt-8 md:mt-10 text-right">
-              <div className="inline-block text-foreground/90 text-sm sm:text-base md:text-lg font-medium border-t-2 border-[#007BFF]/50 pt-1.5 sm:pt-2 px-3 sm:px-4">
+            <div className="mt-4 sm:mt-6 md:mt-8 text-right">
+              <div className="inline-block text-foreground/90 text-xs sm:text-sm md:text-base font-medium border-t-2 border-[#007BFF]/50 pt-1.5 sm:pt-2 px-3 sm:px-4">
                 – ruthwik 🛠️
               </div>
             </div>
