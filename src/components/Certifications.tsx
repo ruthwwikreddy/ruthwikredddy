@@ -63,13 +63,14 @@ const Certifications = () => {
   }, [selectedImageIndex]);
 
   return (
-    <section id="certifications" className="py-20 bg-background">
-      <div className="container mx-auto">
-        <h2 className="section-title text-center mx-auto">Certifications</h2>
+    <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black/80 to-black/95">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="section-title text-center mx-auto mb-4">Certifications</h2>
+        </div>
         
         <div className="mt-12">
           <div className="mt-4">
-            <h3 className="text-2xl font-semibold mb-6 neon-text">All Certificates</h3>
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {certificates.map((cert, index) => (

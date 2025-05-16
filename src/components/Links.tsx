@@ -270,11 +270,7 @@ const Links = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="section-title text-center mx-auto mb-4">Explore My Work</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-            Browse through my portfolio of web development projects, interactive tools, educational resources, 
-            and UI/UX showcases. Each project represents a unique solution to specific challenges.
-          </p>
+          <h2 className="section-title text-center mx-auto mb-4">Projects</h2>
 
           {/* Enhanced search and filter interface */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">

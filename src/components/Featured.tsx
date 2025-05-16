@@ -1,293 +1,362 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Star, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { HTMLAttributes } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, ArrowUpRight, Link2, Gamepad2, Palette, Search } from 'lucide-react';
+import { ContactFormData } from '../types';
+import ContactForm from './Contact';
 
-interface FeaturedLink {
+interface Link {
   url: string;
-  title: string;
-  category?: string;
+  label: string;
+  category: string;
+  icon: React.ReactNode;
+  description: string;
+  tags: string[];
 }
 
-const Featured = () => {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+const Featured: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [contactFormData, setContactFormData] = useState<ContactFormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const featuredLinks: FeaturedLink[] = [
-    { url: "https://youthideathon.in/world-entrepreneur-day-celebrating-those-who-make-big-ideas-happen/", title: "Turning Big Ideas into Reality: Celebrating World Entrepreneur Day", category: "Entrepreneurship" },
-    { url: "https://youthideathon.in/todays-blog-on-webinar-start-your-startup/", title: "From Idea to Reality: Insights from the 'Start Your Startup' Webinar", category: "Entrepreneurship" },
-    { url: "https://www.amsporps.org/accolades_2022_2023/28.ATAL_Innovation_Summit.pdf", title: "ATAL Innovation Summit: Celebrating Young Innovators", category: "Innovation" },
-    { url: "https://hyperstack.id/credential/85b77067-ee11-4696-8f4e-b4afba8cc898", title: "ATL Marathon 2022 - 23 - Top 400 Teams", category: "Achievement" },
-    { url: "https://portal.itscredible.com/qr/455692314649", title: "Top 1000 at Youth Ideathon 2023", category: "Achievement" },
-    { url: "https://hyperstack.id/credential/3e2777ac-e851-436b-9cd2-ed068e0c13b1", title: "Tinkerpreneur 2024", category: "Entrepreneurship" },
-    { url: "https://unstop.com/certificate-preview/292ce27d-1251-4963-9e94-9478607f492d?utm_campaign=", title: "Webinar on Future of Semiconductor", category: "Technology" },
-    { url: "https://unstop.com/certificate-preview/b1a0bceb-806a-42ff-bf12-601347f504e7?utm_campaign=", title: "InnoVision 2024: Igniting Ideas, Shaping the Future", category: "Innovation" },
-    { url: "http://unstop.com/certificate-preview/24341243-70d2-4c7a-be8a-bbb5ff82fd2d", title: "Youth Entrepreneurship Challenge", category: "Entrepreneurship" },
-    { url: "https://unstop.com/certificate-preview/17785b0d-2049-440d-8491-fb660f9ff070", title: "TATA Crucible Campus Quiz 2024", category: "Competition" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/13996561", title: "Innovating with Google Cloud Artificial Intelligence", category: "Technology" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/12784720", title: "Introduction to Security Principles in Cloud Computing", category: "Technology" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/11605627", title: "Introduction to Data Analytics in Google Cloud", category: "Technology" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/8372913", title: "Introduction to Large Language Models", category: "Technology" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/7997050", title: "Introduction to Responsible AI", category: "Technology" },
-    { url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/6360159", title: "Introduction to Generative AI", category: "Technology" },
+  const [filteredLinks, setFilteredLinks] = useState<Link[]>([]);
+
+  // Combine all links into a single array with enhanced metadata
+  const allLinks: Link[] = [
+    {
+      url: "https://youthideathon.in/world-entrepreneur-day-celebrating-those-who-make-big-ideas-happen/",
+      label: "World Entrepreneur Day",
+      category: "Entrepreneurship",
+      icon: <Link2 className="h-4 w-4" />,
+      description: "An innovative healthcare platform featured on World Entrepreneur Day for its patient-centric approach",
+      tags: ["Healthcare", "Startup", "YouthIdeathon", "Entrepreneurship"]
+    },
+    {
+      url: "https://youthideathon.in/todays-blog-on-webinar-start-your-startup/",
+      label: "From Idea to Reality: Insights from the 'Start Your Startup' Webinar",
+      category: "Entrepreneurship",
+      icon: <Gamepad2 className="h-4 w-4" />,
+      description: "Learnings from a Youth Ideathon webinar guiding aspiring entrepreneurs through the startup process",
+      tags: ["Startup Tips", "Innovation", "Webinar", "YouthIdeathon"]
+    },
+    {
+      url: "https://www.amsporps.org/accolades_2022_2023/28.ATAL_Innovation_Summit.pdf",
+      label: "ATAL Innovation Summit: Celebrating Young Innovators",
+      category: "Innovation",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Showcasing exceptional projects by students at the ATAL Innovation Summit",
+      tags: ["Innovation", "ATL", "Recognition", "Student Achievements"]
+    },
+    {
+      url: "https://hyperstack.id/credential/85b77067-ee11-4696-8f4e-b4afba8cc898",
+      label: "ATL Marathon 2022 - 23 - Top 400 Teams",
+      category: "Achievement",
+      icon: <Link2 className="h-4 w-4" />,
+      description: "Secured a spot in the top 400 teams nationwide in the ATL Marathon challenge",
+      tags: ["ATL Marathon", "Top 400", "Innovation Challenge", "Recognition"]
+    },
+    {
+      url: "https://portal.itscredible.com/qr/455692314649",
+      label: "Top 1000 at Youth Ideathon 2023",
+      category: "Achievement",
+      icon: <Link2 className="h-4 w-4" />,
+      description: "Earned recognition among the top 1000 changemakers at Youth Ideathon 2023",
+      tags: ["YouthIdeathon", "Entrepreneurship", "Achievement"]
+    },
+    {
+      url: "https://hyperstack.id/credential/29f405a3-7368-4320-986a-20b63326193c",
+      label: "Top 300 at Tinkerpreneur 2024",
+      category: "Achievement",
+      icon: <Link2 className="h-4 w-4" />,
+      description: "Recognized among top 300 participants in the national-level Tinkerpreneur bootcamp",
+      tags: ["Tinkerpreneur", "Entrepreneurship", "Top 300"]
+    },
+    {
+      url: "https://hyperstack.id/credential/3e2777ac-e851-436b-9cd2-ed068e0c13b1",
+      label: "Tinkerpreneur 2024",
+      category: "Entrepreneurship",
+      icon: <Gamepad2 className="h-4 w-4" />,
+      description: "Participated in the ATL Tinkerpreneur program fostering business innovation in students",
+      tags: ["Innovation", "Tinkerpreneur", "ATL", "Startup Bootcamp"]
+    },
+    {
+      url: "https://unstop.com/certificate-preview/292ce27d-1251-4963-9e94-9478607f492d?utm_campaign=",
+      label: "Webinar on Future of Semiconductor",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Explored trends, applications, and innovations in the semiconductor industry",
+      tags: ["Semiconductor", "Webinar", "Electronics", "Tech Trends"]
+    },
+    {
+      url: "https://unstop.com/certificate-preview/b1a0bceb-806a-42ff-bf12-601347f504e7?utm_campaign=",
+      label: "InnoVision 2024: Igniting Ideas, Shaping the Future",
+      category: "Innovation",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Participation in InnoVision 2024, a platform for sharing groundbreaking ideas",
+      tags: ["Innovation", "InnoVision", "FutureTech", "Ideas"]
+    },
+    {
+      url: "http://unstop.com/certificate-preview/24341243-70d2-4c7a-be8a-bbb5ff82fd2d",
+      label: "Youth Entrepreneurship Challenge",
+      category: "Entrepreneurship",
+      icon: <Gamepad2 className="h-4 w-4" />,
+      description: "Engaged in a challenge to develop entrepreneurial solutions to real-world problems",
+      tags: ["Entrepreneurship", "Youth Challenge", "Business Ideas"]
+    },
+    {
+      url: "https://unstop.com/certificate-preview/17785b0d-2049-440d-8491-fb660f9ff070",
+      label: "TATA Crucible Campus Quiz 2024",
+      category: "Competition",
+      icon: <Link2 className="h-4 w-4" />,
+      description: "Participated in one of India’s largest campus quiz competitions by TATA",
+      tags: ["Quiz", "Knowledge", "TATA Crucible", "Competition"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/13996561",
+      label: "Innovating with Google Cloud Artificial Intelligence",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Completed Google Cloud badge on building AI solutions using GCP tools",
+      tags: ["Google Cloud", "AI", "Certification", "Innovation"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/12784720",
+      label: "Introduction to Security Principles in Cloud Computing",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Learned key security concepts for protecting cloud-based systems",
+      tags: ["Cloud Security", "Google Cloud", "Cybersecurity", "Certification"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/11605627",
+      label: "Introduction to Data Analytics in Google Cloud",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Gained foundational skills in data analytics using Google Cloud tools",
+      tags: ["Data Analytics", "Cloud", "Google Cloud", "Certification"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/8372913",
+      label: "Introduction to Large Language Models",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Explored how large language models work and their real-world applications",
+      tags: ["LLMs", "AI", "NLP", "Google Cloud"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/7997050",
+      label: "Introduction to Responsible AI",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Studied ethical AI practices and responsible development techniques",
+      tags: ["Responsible AI", "Ethics", "Artificial Intelligence", "Certification"]
+    },
+    {
+      url: "https://www.cloudskillsboost.google/public_profiles/0449bd87-9b01-43d5-b528-788c68dcbba4/badges/6360159",
+      label: "Introduction to Generative AI",
+      category: "Technology",
+      icon: <Palette className="h-4 w-4" />,
+      description: "Learned about the fundamentals and use cases of generative AI models",
+      tags: ["Generative AI", "Google Cloud", "ML", "AI"]
+    },
   ];
 
-  // Extract unique categories
-  const categories = [...new Set(featuredLinks.map(link => link.category))].filter(Boolean) as string[];
+  // Get unique categories
+  const categories = [...new Set(allLinks.map(link => link.category))];
 
-  // Filter links based on active category
-  const filteredLinks = activeCategory 
-    ? featuredLinks.filter(link => link.category === activeCategory)
-    : featuredLinks;
-
+  // Filter links based on search and category
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    const filtered = allLinks.filter(link => {
+      const matchesSearch = link.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         link.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         link.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+      const matchesCategory = !selectedCategory || link.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+    setFilteredLinks(filtered);
+  }, [searchTerm, selectedCategory]);
 
-    const section = document.getElementById('featured');
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
-
-  const handleLinkClick = (url: string) => {
-    // Open the link in a new tab
+  // Handle link click
+  const handleLinkClick = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  // Scroll to top of container when category changes
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [activeCategory]);
+  // Handle contact form submission
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitSuccess(false);
 
-  // Card variants for animation
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.05,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }),
-    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.3 } }
+    try {
+      // Here you would typically send the form data to your backend
+      // For now, we'll just simulate a successful submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubmitSuccess(true);
+      setContactFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
+  // Initialize filtered links
+  useEffect(() => {
+    setFilteredLinks(allLinks);
+  }, []);
+
   return (
-    <section id="featured" className="py-16 md:py-24 bg-black text-white relative overflow-hidden w-full max-w-[100vw]">
-      {/* Enhanced background elements with more dynamic effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-[#007BFF]/10 blur-[100px] animate-pulse-soft"></div>
-        <div className="absolute bottom-20 right-20 w-64 h-64 rounded-full bg-[#007BFF]/10 blur-[120px] animate-pulse-soft" style={{animationDelay: "1.5s"}}></div>
-        <div className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full bg-[#007BFF]/10 blur-[80px] animate-pulse-soft" style={{animationDelay: "0.8s"}}></div>
-        
-        {/* Interactive grid lines that respond to scroll */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent absolute top-1/4 animate-[pulse_8s_ease-in-out_infinite]"></div>
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent absolute top-2/4 animate-[pulse_10s_ease-in-out_infinite]"></div>
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#007BFF]/20 to-transparent absolute top-3/4 animate-[pulse_7s_ease-in-out_infinite]"></div>
-          
-          {/* Vertical lines */}
-          <div className="w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent absolute left-1/4 animate-[pulse_9s_ease-in-out_infinite]"></div>
-          <div className="w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent absolute left-2/4 animate-[pulse_11s_ease-in-out_infinite]"></div>
-          <div className="w-[1px] h-full bg-gradient-to-b from-transparent via-[#007BFF]/20 to-transparent absolute left-3/4 animate-[pulse_8s_ease-in-out_infinite]"></div>
-        </div>
-        
-        {/* Floating particles */}
+    <section id="featured" className="py-20 bg-black relative overflow-hidden">
+      {/* Enhanced background with animated grid and particles */}
+      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      <div className="absolute inset-0">
         {[...Array(10)].map((_, i) => (
-          <div 
+          <motion.div
             key={i}
-            className="absolute rounded-full bg-[#007BFF]/30"
-            style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `float ${Math.random() * 10 + 15}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: Math.random() * 0.5 + 0.2,
+            className="absolute w-1 h-1 rounded-full bg-[#007BFF]/30"
+            initial={{ 
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight 
+            }}
+            animate={{
+              y: [0, Math.random() * 200 - 100, 0],
+              x: [0, Math.random() * 200 - 100, 0],
+              opacity: [0.3, 0.7, 0.3]
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              ease: "linear"
             }}
           />
         ))}
       </div>
-      
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 max-w-7xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col items-center"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-8 sm:mb-12">My Work</h2>
-            <p className="text-xl sm:text-2xl text-gray-300 text-center mb-8 sm:mb-12 max-w-3xl mx-auto">
-              Here’s a curated collection of projects across healthcare, education, utilities, and UI/UX.
-              <br className="hidden sm:block" />
-              Each one solves a real-world problem with thoughtful design and tech.
-            </p>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="section-title text-center mx-auto mb-4">Featured</h2>
+
+          {/* Enhanced search and filter interface */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div className="relative w-full max-w-md">
+              <input
+                type="text"
+                placeholder="Search achievements..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 bg-black/50 border border-[#007BFF]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#007BFF] transition-all duration-300"
+              />
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            </div>
             
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8 sm:mb-12">
-              <button 
-                onClick={() => setActiveCategory(null)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  !activeCategory ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
+                  !selectedCategory 
+                    ? 'bg-[#007BFF] text-white' 
+                    : 'bg-black/50 text-gray-300 border border-[#007BFF]/30 hover:border-[#007BFF]/70'
                 }`}
               >
                 All
               </button>
-              <button 
-                onClick={() => setActiveCategory('Web Apps')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'Web Apps' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                Web Apps
-              </button>
-              <button 
-                onClick={() => setActiveCategory('Mobile')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'Mobile' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                Mobile
-              </button>
-              <button 
-                onClick={() => setActiveCategory('Tools')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'Tools' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                Tools
-              </button>
-              <button 
-                onClick={() => setActiveCategory('Games')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'Games' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                Games
-              </button>
-              <button 
-                onClick={() => setActiveCategory('UI/UX')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'UI/UX' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                UI/UX
-              </button>
-              <button 
-                onClick={() => setActiveCategory('Educational')}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === 'Educational' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
-                }`}
-              >
-                Educational
-              </button>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
+                    selectedCategory === category 
+                      ? 'bg-[#007BFF] text-white' 
+                      : 'bg-black/50 text-gray-300 border border-[#007BFF]/30 hover:border-[#007BFF]/70'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
           </div>
+        </div>
+        </div>
 
-          {/* Card grid with improved layout and animations */}
-          <div ref={containerRef} className="overflow-y-auto max-h-[800px] hide-scrollbar">
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={activeCategory || 'all'}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-                  exit: { opacity: 0, transition: { duration: 0.3 } }
-                }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        {/* Achievement grid with enhanced cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence>
+            {filteredLinks.map((link, index) => (
+              <motion.div
+                key={link.url}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className={`group relative overflow-hidden backdrop-blur-sm bg-black/40 border border-[#007BFF]/10 rounded-lg transition-all duration-500 hover:border-[#007BFF]/50 hover:shadow-[0_0_20px_rgba(0,123,255,0.4)] transform hover:-translate-y-1`}
+                onMouseEnter={() => setHoveredCardIndex(index)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
               >
-                {filteredLinks.map((link, index) => (
-                  <motion.div
-                    key={index}
-                    custom={index}
-                    variants={cardVariants}
-                    className="group bg-black/40 backdrop-blur-md p-6 rounded-lg transition-all duration-500 border border-[#007BFF]/10 hover:border-[#007BFF] hover:shadow-[0_0_20px_rgba(0,123,255,0.4)] relative overflow-hidden cursor-pointer transform hover:-translate-y-1"
-                    onClick={() => handleLinkClick(link.url)}
-                    onMouseEnter={() => setHoveredCardIndex(index)}
-                    onMouseLeave={() => setHoveredCardIndex(null)}
-                  >
-                    {/* Enhanced hover effect with animated gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Particle effect on hover */}
-                    {hoveredCardIndex === index && (
-                      <>
-                        <div className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full bg-[#007BFF]/50 animate-ping"></div>
-                        <div className="absolute top-1/3 left-1/4 w-1 h-1 rounded-full bg-[#007BFF]/50 animate-ping" style={{animationDelay: "0.3s"}}></div>
-                        <div className="absolute top-2/3 right-1/4 w-1 h-1 rounded-full bg-[#007BFF]/50 animate-ping" style={{animationDelay: "0.6s"}}></div>
-                      </>
-                    )}
-                    
-                    {/* Category badge with improved styling */}
-                    {link.category && (
-                      <span className="inline-block px-3 py-1 text-xs bg-black/80 text-[#007BFF] rounded-full mb-4 border border-[#007BFF]/30 group-hover:bg-[#007BFF]/10 group-hover:border-[#007BFF]/60 transition-all duration-300">
-                        {link.category}
-                      </span>
-                    )}
-                    
-                    {/* Title with improved hover effect */}
-                    <div className="text-lg font-semibold text-white group-hover:text-[#007BFF] transition-all duration-300 flex items-start">
-                      <span className="flex-1">{link.title}</span>
-                      <ArrowUpRight className="w-4 h-4 mt-1 ml-2 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1 duration-500" />
-                    </div>
-                    
-                    {/* Enhanced glow effect */}
-                    <div className="h-0.5 w-0 bg-gradient-to-r from-[#007BFF]/50 to-[#007BFF] group-hover:w-full absolute bottom-0 left-0 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(0,123,255,0.7)]"></div>
-                    
-                    {/* Corner accent */}
-                    <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-[#007BFF]/30 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          
-          {/* Empty state message with animations if no items match filter */}
-          {filteredLinks.length === 0 && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="text-center py-10"
-            >
-              <p className="text-gray-400 mb-4">No featured links match the selected category.</p>
-              <motion.button 
-                onClick={() => setActiveCategory(null)}
-                className="px-4 py-2 bg-[#007BFF]/20 text-[#007BFF] rounded-md hover:bg-[#007BFF]/30 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Show all links
-              </motion.button>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => handleLinkClick(link.url, e)}
+                  className="block p-6"
+                >
+                {/* Category badge */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#007BFF]/10 text-[#007BFF] border border-[#007BFF]/30`}>
+                    {link.icon}
+                    <span className="ml-1">{link.category}</span>
+                  </span>
+                </div>
+
+                {/* Title and description */}
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#007BFF] transition-colors duration-300">
+                  {link.label}
+                </h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  {link.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {link.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="px-2 py-1 rounded-md text-xs bg-black/30 text-gray-300 border border-[#007BFF]/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* View link */}
+                <div className="flex items-center text-[#007BFF] text-sm">
+                  <span className="mr-2">View Details</span>
+                  <ArrowUpRight className="h-4 w-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                </div>
+
+                {/* Hover effects */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-transparent via-[#007BFF] to-transparent w-0 group-hover:w-full transition-all duration-700"></div>
+              </a>
             </motion.div>
-          )}
-        </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
 };
 
 export default Featured;
+
