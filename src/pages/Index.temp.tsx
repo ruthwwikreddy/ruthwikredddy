@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import { CaseStudyCarousel } from "@/components/portfolio/CaseStudyCarousel";
 import Links from "@/components/Links";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
@@ -126,12 +125,10 @@ const Index = () => {
         >
           <CustomCursor />
           <div className="flex flex-col w-full">
-
             <main className="flex-1 w-full">
               <Hero />
               <About />
               <Links />
-              <CaseStudyCarousel />
               <Banner />
               <Certifications />
               <Featured />

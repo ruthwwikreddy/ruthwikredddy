@@ -269,47 +269,51 @@ const Links = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="section-title text-center mx-auto mb-4">Projects</h2>
+        <div className="text-center mb-16">
+          <h2 className="section-title text-center mx-auto mb-6 text-4xl font-bold">Projects</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+            Explore my diverse portfolio of projects across different domains and technologies
+          </p>
+        </div>
 
-          {/* Enhanced search and filter interface */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <div className="relative w-full max-w-md">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+          <div className="relative w-full max-w-md">
+            <div className="relative">
               <input
                 type="text"
                 placeholder="Search projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 bg-black/50 border border-[#007BFF]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#007BFF] transition-all duration-300"
+                className="w-full px-4 py-3 bg-black/50 border border-[#007BFF]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#007BFF] transition-all duration-300"
               />
-              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             </div>
-            
-            <div className="flex flex-wrap justify-center gap-2">
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
+                !selectedCategory 
+                  ? 'bg-[#007BFF] text-white' 
+                  : 'bg-black/50 text-gray-300 border border-[#007BFF]/30 hover:border-[#007BFF]/70'
+              }`}
+            >
+              All
+            </button>
+            {categories.map((category) => (
               <button
-                onClick={() => setSelectedCategory(null)}
-                className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
-                  !selectedCategory 
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
+                  selectedCategory === category 
                     ? 'bg-[#007BFF] text-white' 
                     : 'bg-black/50 text-gray-300 border border-[#007BFF]/30 hover:border-[#007BFF]/70'
                 }`}
               >
-                All
+                {category}
               </button>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
-                    selectedCategory === category 
-                      ? 'bg-[#007BFF] text-white' 
-                      : 'bg-black/50 text-gray-300 border border-[#007BFF]/30 hover:border-[#007BFF]/70'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
