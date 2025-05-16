@@ -90,13 +90,18 @@ const About: React.FC = () => {
               {/* Left Column - Text Content */}
               <div className="space-y-4 md:space-y-6">
                 <p className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-[#007BFF] mb-2 xs:mb-3 sm:mb-4 leading-tight">
-                  💡 i don't just study. i build.
+                  About Me
                 </p>
                 
                 <div className="space-y-2 sm:space-y-3 md:space-y-4">
                   <p className="text-foreground leading-relaxed group">
-                    <span className="text-xs xs:text-sm sm:text-base md:text-lg font-medium group-hover:text-[#007BFF] transition-colors duration-200 leading-relaxed">
-                      👋 i'm a 10th grader at obul reddy (hyderabad).
+                    <span className="text-sm sm:text-base md:text-lg font-medium group-hover:text-[#007BFF] transition-colors duration-200 leading-relaxed">
+                      🏆 Recognized at Youth Ideathon, Atal Marathon & Indian Future Tycoon — but for me, it's not about awards.
+                    </span>
+                  </p>
+                  <p className="text-foreground leading-relaxed group">
+                    <span className="text-sm sm:text-base md:text-lg font-medium group-hover:text-[#007BFF] transition-colors duration-200 leading-relaxed">
+                      It's about bringing ideas to life.
                     </span>
                   </p>
                   

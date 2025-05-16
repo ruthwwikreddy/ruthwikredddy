@@ -55,7 +55,9 @@ const Contact = () => {
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12 px-2">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">Get In Touch</h2>
           <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
-            Have a project in mind or just want to say hello? Feel free to reach out and I'll get back to you as soon as possible.
+            Have a project idea? Or just want to jam on tech, innovation, or design?
+            <br className="hidden md:block" />
+            <span className="block md:inline">👋 Let's connect — I usually reply fast.</span>
           </p>
         </div>
         

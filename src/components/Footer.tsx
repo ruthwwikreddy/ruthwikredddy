@@ -43,7 +43,8 @@ const Footer: React.FC = () => {
               <Github className="w-5 h-5" />
             </a>
           </div>
-          <p>built this myself. still fixing bugs.</p>
+          <p className="text-sm text-gray-400">This portfolio was designed and built by me.</p>
+          <p className="text-sm text-gray-400">Still improving it — like everything else I build.</p>
         </div>
       </div>
     </footer>

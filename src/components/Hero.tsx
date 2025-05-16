@@ -96,9 +96,16 @@ const Hero: React.FC = () => {
               className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight"
               variants={itemVariants}
             >
-              <span className="neon-text animate-text-flicker">i'm ruthwik.</span>
+              <span className="neon-text animate-text-flicker">Hi, I'm Ruthwik Reddy.</span>
             </motion.h1>
             
+            <motion.p className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-6 md:mb-8 leading-relaxed" variants={itemVariants}>
+              15 years old.
+            </motion.p>
+            <motion.p className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-6 md:mb-8 leading-relaxed" variants={itemVariants}>
+              I build tech that solves real problems.
+            </motion.p>
+
             <motion.div 
               className="text-lg sm:text-xl text-gray-400 mb-6 sm:mb-8 border-l-2 border-[#007BFF] pl-4 space-y-1 sm:space-y-2"
               variants={itemVariants}

@@ -135,53 +135,73 @@ const Featured = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          {/* Enhanced section title with animation */}
-          <motion.div 
-            className="flex items-center mb-4 group cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <Star className="text-[#007BFF] w-5 h-5 mr-2 group-hover:animate-[spin_4s_linear_infinite]" />
-            <h2 className="text-4xl font-bold text-white uppercase tracking-widest group-hover:text-[#007BFF] transition-colors duration-300">Featured</h2>
-            <Star className="text-[#007BFF] w-5 h-5 ml-2 group-hover:animate-[spin_4s_linear_infinite]" />
-          </motion.div>
-          
-          <motion.div 
-            className="h-1 w-32 bg-gradient-to-r from-transparent via-[#007BFF] to-transparent rounded-full shadow-[0_0_10px_rgba(0,123,255,0.7)] mb-14"
-            whileHover={{ width: 180 }}
-            transition={{ duration: 0.5 }}
-          ></motion.div>
-
-          {/* Enhanced Category filter with animations */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <motion.button 
-              onClick={() => setActiveCategory(null)} 
-              className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                activeCategory === null
-                  ? 'bg-[#007BFF] text-white shadow-[0_0_15px_rgba(0,123,255,0.5)]'
-                  : 'bg-black/70 backdrop-blur-sm text-gray-300 border border-[#007BFF]/20 hover:border-[#007BFF]/70 hover:text-white hover:shadow-[0_0_10px_rgba(0,123,255,0.3)]'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              All
-            </motion.button>
+          <div className="container mx-auto px-4 sm:px-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-8 sm:mb-12">My Work</h2>
+            <p className="text-xl sm:text-2xl text-gray-300 text-center mb-8 sm:mb-12 max-w-3xl mx-auto">
+              Here’s a curated collection of projects across healthcare, education, utilities, and UI/UX.
+              <br className="hidden sm:block" />
+              Each one solves a real-world problem with thoughtful design and tech.
+            </p>
             
-            {categories.map((category) => (
-              <motion.button 
-                key={category} 
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                  activeCategory === category
-                    ? 'bg-[#007BFF] text-white shadow-[0_0_15px_rgba(0,123,255,0.5)]'
-                    : 'bg-black/70 backdrop-blur-sm text-gray-300 border border-[#007BFF]/20 hover:border-[#007BFF]/70 hover:text-white hover:shadow-[0_0_10px_rgba(0,123,255,0.3)]'
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8 sm:mb-12">
+              <button 
+                onClick={() => setActiveCategory(null)}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  !activeCategory ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
               >
-                {category}
-              </motion.button>
-            ))}
+                All
+              </button>
+              <button 
+                onClick={() => setActiveCategory('Web Apps')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'Web Apps' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                Web Apps
+              </button>
+              <button 
+                onClick={() => setActiveCategory('Mobile')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'Mobile' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                Mobile
+              </button>
+              <button 
+                onClick={() => setActiveCategory('Tools')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'Tools' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                Tools
+              </button>
+              <button 
+                onClick={() => setActiveCategory('Games')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'Games' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                Games
+              </button>
+              <button 
+                onClick={() => setActiveCategory('UI/UX')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'UI/UX' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                UI/UX
+              </button>
+              <button 
+                onClick={() => setActiveCategory('Educational')}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === 'Educational' ? 'bg-[#007BFF]/20 text-[#007BFF]' : 'bg-[#007BFF]/10 text-gray-300'
+                }`}
+              >
+                Educational
+              </button>
+            </div>
           </div>
 
           {/* Card grid with improved layout and animations */}
