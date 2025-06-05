@@ -48,6 +48,8 @@ const Hero: React.FC = () => {
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,123,255,0.1)_0%,rgba(0,0,0,0)_70%)] animate-pulse-slow"></div>
       </div>
+
+
       
       {/* Animated background lines with improved effects */}
       <div className="absolute inset-0 overflow-hidden opacity-10 md:opacity-20">
@@ -133,53 +135,55 @@ const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6">
+            {/* Buttons and social icons */}
+            <div className="mt-8">
               <motion.div 
-                className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-5 mb-6 sm:mb-8"
+                className="flex flex-wrap gap-3 mb-4"
                 variants={itemVariants}
               >
                 <motion.a 
                   href="#contact" 
                   onClick={(e) => handleSmoothScroll(e, '#contact')}
-                  whileHover={{ scale: 1.05 }}
+                  className="btn-primary text-sm sm:text-base px-5 py-2.5 sm:px-6 sm:py-2.5 shadow-[0_0_15px_rgba(0,123,255,0.5)] hover:shadow-[0_0_20px_rgba(0,123,255,0.7)]"
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-primary text-sm sm:text-base px-5 py-3 sm:px-6 sm:py-3 shadow-[0_0_15px_rgba(0,123,255,0.5)] hover:shadow-[0_0_20px_rgba(0,123,255,0.7)] md:hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
                 >
                   Get In Touch
                 </motion.a>
                 <motion.a 
                   href="#links" 
                   onClick={(e) => handleSmoothScroll(e, '#links')}
-                  whileHover={{ scale: 1.05 }}
+                  className="btn-outline text-sm sm:text-base px-5 py-2.5 sm:px-6 sm:py-2.5 shadow-[0_0_15px_rgba(0,123,255,0.3)] hover:shadow-[0_0_20px_rgba(0,123,255,0.5)]"
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-outline text-sm sm:text-base px-5 py-3 sm:px-6 sm:py-3 shadow-[0_0_15px_rgba(0,123,255,0.5)] hover:shadow-[0_0_20px_rgba(0,123,255,0.7)] md:hover:shadow-[0_0_25px_rgba(0,123,255,0.9)]"
                 >
                   View Projects
                 </motion.a>
               </motion.div>
 
               <motion.div 
-                className="flex flex-wrap justify-center gap-4 sm:gap-5"
+                className="flex gap-4"
                 variants={itemVariants}
               >
-              {[
-                { icon: Linkedin, href: "https://www.linkedin.com/in/ruthwwikreddy/" },
-                { icon: Twitter, href: "https://x.com/ruthwikreddy" },
-                { icon: Instagram, href: "https://www.instagram.com/ruthwwikreddy/" },
-                { icon: Github, href: "https://github.com/ruthwwikreddy" }
-              ].map((social, index) => (
-                <motion.a 
-                  key={index}
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.4)] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center"
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                {[
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/ruthwwikreddy/" },
+                  { icon: Twitter, href: "https://x.com/ruthwikreddy" },
+                  { icon: Instagram, href: "https://www.instagram.com/ruthwwikreddy/" },
+                  { icon: Github, href: "https://github.com/ruthwwikreddy" }
+                ].map((social, index) => (
+                  <motion.a 
+                    key={index}
+                    href={social.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-white opacity-70 hover:opacity-100 hover:text-[#007BFF] transition-all duration-300"
+                    whileHover={{ 
+                      scale: 1.2, 
+                      rotate: [0, -10, 10, -10, 0],
+                      transition: { duration: 0.5 }
+                    }}
+                  >
+                    <social.icon className="w-5 h-5" />
                   </motion.a>
                 ))}
               </motion.div>

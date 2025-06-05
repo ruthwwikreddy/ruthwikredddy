@@ -1,129 +1,113 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasText, setHasText] = useState<string | null>(null);
+  const cursorDot = useRef<HTMLDivElement>(null);
+  const cursorOutline = useRef<HTMLDivElement>(null);
+  const requestRef = useRef<number>();
+  
+  // Check if we're on a touch device
+  const isTouchDevice = () => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  };
+
+  // Update cursor position
+  const updateCursor = (e: MouseEvent) => {
+    if (isTouchDevice()) return;
+    
+    const { clientX: x, clientY: y } = e;
+    
+    // Update cursor position with smooth animation
+    if (cursorDot.current) {
+      cursorDot.current.style.transform = `translate(${x}px, ${y}px) scale(${cursorDot.current.dataset.scale || 1})`;
+    }
+    
+    // Update outline with a slight delay for smooth trailing effect
+    if (cursorOutline.current) {
+      cursorOutline.current.style.transform = `translate(${x}px, ${y}px) scale(${cursorOutline.current.dataset.scale || 1})`;
+    }
+    
+    requestRef.current = requestAnimationFrame(() => updateCursor(e));
+  };
+
+  // Handle click effect
+  const handleMouseDown = () => {
+    if (cursorDot.current) cursorDot.current.classList.add('cursor-click');
+    if (cursorOutline.current) cursorOutline.current.classList.add('cursor-click');
+  };
+
+  const handleMouseUp = () => {
+    if (cursorDot.current) cursorDot.current.classList.remove('cursor-click');
+    if (cursorOutline.current) cursorOutline.current.classList.remove('cursor-click');
+  };
+
+  // Handle hover effects
+  const handleMouseOver = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const isInteractive = 
+      target.tagName === 'A' || 
+      target.tagName === 'BUTTON' || 
+      target.hasAttribute('role') ||
+      target.closest('a, button, [role="button"], .cursor-hover');
+    
+    if (isInteractive) {
+      cursorDot.current?.setAttribute('data-scale', '1.5');
+      cursorOutline.current?.setAttribute('data-scale', '1.5');
+    } else {
+      cursorDot.current?.setAttribute('data-scale', '1');
+      cursorOutline.current?.setAttribute('data-scale', '1');
+    }
+  };
 
   useEffect(() => {
-    // Only create cursor elements if they don't exist
-    let cursorDot = document.querySelector('.cursor-dot');
-    let cursorRing = document.querySelector('.cursor-ring');
-    
-    if (!cursorDot) {
-      cursorDot = document.createElement('div');
-      cursorDot.classList.add('cursor-dot');
-      document.body.appendChild(cursorDot);
+    if (isTouchDevice()) return;
+
+    // Create cursor elements if they don't exist
+    if (!cursorDot.current) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-dot';
+      cursorDot.current = dot;
+      document.body.appendChild(dot);
     }
     
-    if (!cursorRing) {
-      cursorRing = document.createElement('div');
-      cursorRing.classList.add('cursor-ring');
-      document.body.appendChild(cursorRing);
+    if (!cursorOutline.current) {
+      const outline = document.createElement('div');
+      outline.className = 'cursor-dot-outline';
+      cursorOutline.current = outline;
+      document.body.appendChild(outline);
     }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      // Update state
-      setPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
-      
-      // Directly update DOM for smoother performance
-      if (cursorDot instanceof HTMLElement) {
-        cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
-      
-      if (cursorRing instanceof HTMLElement) {
-        cursorRing.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
-    };
-
-    const handleMouseDown = () => setIsActive(true);
-    const handleMouseUp = () => setIsActive(false);
-    
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
-
-    // Handle hover states for interactive elements
-    const handleElementMouseEnter = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      
-      if (target.tagName === 'A' || 
-          target.tagName === 'BUTTON' || 
-          target.classList.contains('interactive') ||
-          target.closest('a') || 
-          target.closest('button')) {
-        setIsHovering(true);
-        
-        // Check for data-cursor-text attribute
-        const cursorText = target.getAttribute('data-cursor-text') || 
-                          target.closest('[data-cursor-text]')?.getAttribute('data-cursor-text');
-        
-        if (cursorText) {
-          setHasText(cursorText);
-        }
-      }
-    };
-
-    const handleElementMouseLeave = () => {
-      setIsHovering(false);
-      setHasText(null);
-    };
 
     // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', updateCursor);
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    
-    // Add event delegation for interactive elements
-    document.addEventListener('mouseover', handleElementMouseEnter);
-    document.addEventListener('mouseout', handleElementMouseLeave);
+    document.addEventListener('mouseover', handleMouseOver, true); // Use capture phase for better performance
 
-    // Apply classes based on state
-    const updateCursorClasses = () => {
-      if (cursorRing instanceof HTMLElement) {
-        cursorRing.classList.toggle('cursor-hover', isHovering);
-        cursorRing.classList.toggle('cursor-active', isActive);
-        cursorRing.classList.toggle('cursor-text', !!hasText);
-        cursorRing.classList.toggle('cursor-hidden', !isVisible);
-        
-        if (hasText && cursorRing instanceof HTMLElement) {
-          cursorRing.textContent = hasText;
-        } else if (cursorRing instanceof HTMLElement) {
-          cursorRing.textContent = '';
-        }
-      }
-      
-      if (cursorDot instanceof HTMLElement) {
-        cursorDot.classList.toggle('cursor-hidden', !isVisible);
-      }
-    };
-
-    // Use requestAnimationFrame for smoother updates
-    let animationFrame: number;
-    const animate = () => {
-      updateCursorClasses();
-      animationFrame = requestAnimationFrame(animate);
-    };
-    animate();
+    // Initial position
+    const handleMouseMove = (e: MouseEvent) => updateCursor(e);
+    document.addEventListener('mousemove', handleMouseMove);
 
     // Cleanup
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousemove', updateCursor);
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseover', handleElementMouseEnter);
-      document.removeEventListener('mouseout', handleElementMouseLeave);
-      cancelAnimationFrame(animationFrame);
+      document.removeEventListener('mouseover', handleMouseOver, true);
+      document.removeEventListener('mousemove', handleMouseMove);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+      
+      // Clean up cursor elements
+      if (cursorDot.current) {
+        document.body.removeChild(cursorDot.current);
+      }
+      if (cursorOutline.current) {
+        document.body.removeChild(cursorOutline.current);
+      }
     };
-  }, [isHovering, isActive, isVisible, hasText]);
+  }, []);
 
-  return null; // Component doesn't render anything directly
+  return null; // This component doesn't render anything
 };
 
 export default CustomCursor;
