@@ -28,33 +28,26 @@ body {
   position: relative;
 }
 
-/* Custom cursor elements will be added dynamically via JS */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  z-index: 999999;
-  pointer-events: none;
-  will-change: transform;
-  transition: transform 0.3s ease;
-}
-
 .cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: rgba(0, 123, 255, 0.9);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8), 0 0 20px rgba(0, 123, 255, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  clip-path: polygon(0% 0%, 100% 50%, 50% 50%, 50% 100%, 0% 100%);
+  border: 4px solid #00f;
+  box-shadow: 0 0 15px #00f, 0 0 30px #00f, 0 0 45px #00f;
+  pointer-events: none;
+  z-index: 9999;
   transform: translate(-50%, -50%);
+  transition: transform 0.08s ease;
 }
 
 .cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 2px solid rgba(0, 123, 255, 0.6);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, border 0.2s;
+  display: none !important;
 }
+
 
 .cursor-hover {
   width: 50px;

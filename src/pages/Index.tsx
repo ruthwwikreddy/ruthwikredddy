@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -25,6 +25,17 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentSvgIndex, setCurrentSvgIndex] = useState(0);
+  const svgFiles = ['GUzTxp01 (1).svg', 'GUzTxp01 (2).svg', 'GUzTxp01.svg'];
+
+  const rotateSvg = useCallback(() => {
+    setCurrentSvgIndex((prevIndex) => (prevIndex + 1) % svgFiles.length);
+  }, [svgFiles.length]);
+
+  useEffect(() => {
+    const interval = setInterval(rotateSvg, 5000);
+    return () => clearInterval(interval);
+  }, [rotateSvg]);
   const [contactFormData, setContactFormData] = useState<ContactFormData>({
     name: '',
     email: '',

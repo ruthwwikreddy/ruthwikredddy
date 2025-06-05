@@ -6,7 +6,6 @@ import Links from "@/components/Links";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 import Banner from "@/components/Banner";
 import Featured from "@/components/Featured";
 
@@ -123,7 +122,6 @@ const Index = () => {
           transition={{ duration: 0.5 }}
           className="relative min-h-screen w-full bg-background"
         >
-          <CustomCursor />
           <div className="flex flex-col w-full">
             <main className="flex-1 w-full">
               <Hero />

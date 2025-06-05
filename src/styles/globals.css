@@ -1,4 +1,27 @@
 
+/* Custom Cursor */
+* {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  width: 24px;
+  height: 24px;
+  background-color: #00f;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
+
+.cursor-dot.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: #f0f;
+}
+
 /* Base styles */
 html, body {
   max-width: 100%;
@@ -237,3 +260,4 @@ select,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
