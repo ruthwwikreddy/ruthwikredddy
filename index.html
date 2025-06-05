@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruthwik Reddy - Student, Innovator & Tech Enthusiast</title>
+    <script>
+      // Original title
+      const originalTitle = "Ruthwik Reddy - Student, Innovator & Tech Enthusiast";
+
+      // Call-back titles when the tab is hidden
+      const callBackTitles = [
+        "Come back, genius!",
+        "Still curious?",
+        "Click the tab again!",
+        "Innovation's waiting!",
+        "You left brilliance!",
+        "Let's finish this!",
+        "Back to big ideas!",
+        "Don't miss the magic!"
+      ];
+
+      let titleInterval;
+      let titleIndex = 0;
+
+      // Handle visibility change (tab switching)
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          titleInterval = setInterval(() => {
+            document.title = callBackTitles[titleIndex++ % callBackTitles.length];
+          }, 2000);
+        } else {
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+        }
+      }
+
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      // Initialize title on load
+      window.onload = () => {
+        document.title = originalTitle;
+      };
+    </script>
+    <meta name="description" content="Portfolio of Akkenapally Ruthwik Reddy - Student, Innovator, and Tech Enthusiast from Hyderabad, India" />
+    <meta name="author" content="Ruthwik Reddy" />
+    <meta property="og:title" content="Ruthwik Reddy - Student, Innovator & Tech Enthusiast" />
+    <meta property="og:url" content="https://ruthwikreddy.xyz" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ruthwikreddy" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
